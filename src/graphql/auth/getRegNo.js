@@ -9,7 +9,7 @@ const getRegNo=(req)=>{
 
     const token = header.replace('Bearer ','')
     const decoded = jwt.verify(token,"ct_admin")
-    return 6000
+    return 2018503557
     //return decoded.Register_No
 }
 

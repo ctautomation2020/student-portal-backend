@@ -1,7 +1,50 @@
 type Query {
+  login(data: credentialQueryInput!): loginPayload!
   personReference(data: Person_Reference_Input): [Person_Reference_Table]
   allStudents: [Student!]!
   student: Student!
+}
+
+type Mutation {
+  createUser(data: createCredentialsInput!): credentialPayload
+  updateUser(data: updateCredentialsInput!): credentialPayload
+  createStudent(data: createStudentInput!): Student!
+  updateStudent(data: updateStudentInput!): Student!
+}
+
+type credentials {
+  Credentials_ID: Int
+  Register_No: Int!
+  Username: String!
+  Password: String!
+  student: Student!
+}
+
+input createCredentialsInput {
+  Register_No: Int!
+  Username: String!
+  Password: String!
+}
+
+type credentialPayload {
+  Credentials_ID: Int
+  Register_No: Int!
+  Username: String!
+}
+
+input updateCredentialsInput {
+  Register_No: Int!
+  Username: String
+  Password: String
+}
+
+input credentialQueryInput {
+  Username: String!
+  Password: String!
+}
+
+type loginPayload {
+  token: String!
 }
 
 type Person_Reference_Table {
@@ -15,11 +58,6 @@ type Person_Reference_Table {
 input Person_Reference_Input {
   Reference_ID: Int
   Category: String
-}
-
-type Mutation {
-  createStudent(data: createStudentInput!): Student!
-  updateStudent(data: updateStudentInput!): Student!
 }
 
 type Student {

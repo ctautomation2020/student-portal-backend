@@ -1,4 +1,4 @@
-import getRegisterNo from "../auth/getRegNo"
+import getRegNo from "../auth/getRegNo"
 
 module.exports={
     Query:{
@@ -8,7 +8,7 @@ module.exports={
         },
 
         async student(parent, args, {prisma,req}, info){
-            const Register_No = getRegisterNo(req)
+            const Register_No = getRegNo(req)
             return await prisma.student.findOne({
                 where: {
                     Register_No
