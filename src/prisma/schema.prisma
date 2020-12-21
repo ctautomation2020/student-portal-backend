@@ -338,3 +338,36 @@ model credentials {
 
   @@index([Register_No], name: "Register_No")
 }
+
+model person {
+  Person_ID               Int       @id
+  Prefix_Ref              Int?
+  First_Name              String?
+  Last_Name               String?
+  Gender_Ref              Int?
+  DOB                     DateTime?
+  Community_Ref           Int?
+  Caste                   String?
+  Primary_MailID          String?
+  Secondary_MailID        String?
+  Aadhar_Card             Int?
+  PAN_Card                String?
+  Passport_Number         String?
+  Primary_ContactNumber   String?
+  Secondary_ContactNumber String?
+  Intercom_Number         String?
+  Alias_Name              String?
+  Address_Line1           String?
+  Address_Line2           String?
+  Address_Line3           String?
+  Address_Line4           String?
+  // This type is currently not supported.
+  // Photo                binary?
+  Marital_Status_Ref      Int?
+  Room_Num                String?
+
+  @@index([Community_Ref], name: "Community_Reference_ID_FK_idx")
+  @@index([Gender_Ref], name: "Gender_Reference_ID_FK_idx")
+  @@index([Marital_Status_Ref], name: "Marital_Status_Reference_ID_FK_idx")
+  @@index([Prefix_Ref], name: "Prefix_Reference_ID_FK_idx")
+}

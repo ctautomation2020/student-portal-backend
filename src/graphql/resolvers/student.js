@@ -68,6 +68,13 @@ module.exports={
                     }
                 }
             }
+            if(Residential_Type_Ref){
+                ref_data.person_reference_table_person_Residential_Type_RefToperson_reference_table={
+                    connect:{
+                        Reference_ID:Residential_Type_Ref
+                    }
+                }
+            }
             
             return await prisma.student.update({
                 where:{
