@@ -175,7 +175,7 @@ type Student {
   Admission_Category_Ref: Int
   Scholarship_Received_Ref: Int
   Scholarship_Details: String
-  NSO_NSS_YRC_Volunteer_Ref: Int
+  NSS_NSO_YRC_Volunteer_Ref: Int
   Hostel_Block_Room: String
 }
 
@@ -212,7 +212,7 @@ input createStudentInput {
   Admission_Category_Ref: Int
   Scholarship_Received_Ref: Int
   Scholarship_Details: String
-  NSO_NSS_YRC_Volunteer_Ref: Int
+  NSS_NSO_YRC_Volunteer_Ref: Int
   Hostel_Block_Room: String
 }
 
@@ -245,7 +245,7 @@ input updateStudentInput {
   Admission_Category_Ref: Int
   Scholarship_Received_Ref: Int
   Scholarship_Details: String
-  NSO_NSS_YRC_Volunteer_Ref: Int
+  NSS_NSO_YRC_Volunteer_Ref: Int
   Hostel_Block_Room: String
 }
 
