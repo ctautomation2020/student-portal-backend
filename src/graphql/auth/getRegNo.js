@@ -6,12 +6,9 @@ const getRegNo=(req)=>{
     if(!header){
         throw new Error("invalid auth")
     }
-
     const token = header.replace('Bearer ','')
     const decoded = jwt.verify(token,"ct_admin")
-    console.log(decoded.Register_No)
-    return 2018503557
-    //return decoded.Register_No
+    return decoded.Register_No
 }
 
 export default getRegNo

@@ -9,6 +9,7 @@ module.exports={
 
         async student(parent, args, {prisma,req}, info){
             const Register_No = getRegNo(req)
+            console.log(Register_No);
             return await prisma.student.findOne({
                 where: {
                     Register_No
@@ -21,57 +22,155 @@ module.exports={
     Mutation: {
         
         async createStudent(parent, {data}, {prisma}, info) {
-            const {Gender_Ref, Community_Ref, Residential_Type_Ref, Programme_Ref, Branch_Ref, Registration_Mode_Ref, Blood_Group_Ref, Admission_Category_Ref, Scholarship_Received_Ref, NSO_NSS_YRC_Volunteer_Ref,...noref_data} = data
+            const{Gender_Ref, Community_Ref, Residential_Type_Ref, Programme_Ref, Branch_Ref, Registration_Mode_Ref, Blood_Group_Ref, Admission_Category_Ref, Scholarship_Received_Ref, NSS_NSO_YRC_Volunteer_Ref,...noref_data} = data
             const ref_data = noref_data
             if(Gender_Ref){
-                ref_data.person_reference_table_person_Gender_RefToperson_reference_table={
+                ref_data.person_reference_table_person_reference_tableTostudent_Gender_Ref={
                     connect:{
                         Reference_ID:Gender_Ref
                     }
                 }
             }
             if(Community_Ref){
-                ref_data.person_reference_table_person_Community_RefToperson_reference_table={
+                ref_data.person_reference_table_person_reference_tableTostudent_Community_Ref={
                     connect:{
                         Reference_ID:Community_Ref
                     }
                 }
             }
             if(Residential_Type_Ref){
-                ref_data.person_reference_table_person_Community_RefToperson_reference_table={
+                ref_data.person_reference_table_person_reference_tableTostudent_Residential_Type_Ref={
                     connect:{
-                        Reference_ID:Community_Ref
+                        Reference_ID:Residential_Type_Ref
                     }
                 }
             }
-            return await prisma.person.create({data:{
+            if(Programme_Ref){
+                ref_data.person_reference_table_person_reference_tableTostudent_Programme_Ref={
+                    connect:{
+                        Reference_ID:Programme_Ref
+                    }
+                }
+            }
+            if(Branch_Ref){
+                ref_data.person_reference_table_person_reference_tableTostudent_Branch_Ref={
+                    connect:{
+                        Reference_ID:Branch_Ref
+                    }
+                }
+            }
+            if(Registration_Mode_Ref){
+                ref_data.person_reference_table_person_reference_tableTostudent_Registration_Mode_Ref={
+                    connect:{
+                        Reference_ID:Registration_Mode_Ref
+                    }
+                }
+            }
+            if(Blood_Group_Ref){
+                ref_data.person_reference_table_person_reference_tableTostudent_Blood_Group_Ref={
+                    connect:{
+                        Reference_ID:Blood_Group_Ref
+                    }
+                }
+            }
+            if(Admission_Category_Ref){
+                ref_data.person_reference_table_person_reference_tableTostudent_Admission_Category_Ref={
+                    connect:{
+                        Reference_ID:Admission_Category_Ref
+                    }
+                }
+            }
+            if(Scholarship_Received_Ref){
+                ref_data.person_reference_table_person_reference_tableTostudent_Scholarship_Received_Ref={
+                    connect:{
+                        Reference_ID:Scholarship_Received_Ref
+                    }
+                }
+            }
+            if(NSS_NSO_YRC_Volunteer_Ref){
+                ref_data.person_reference_table_person_reference_tableTostudent_NSS_NSO_YRC_Volunteer_Ref={
+                    connect:{
+                        Reference_ID:NSS_NSO_YRC_Volunteer_Ref
+                    }
+                }
+            }
+            
+            return await prisma.student.create({data:{
                 ...ref_data
             }
             })
         },
 
         async updateStudent(parent, {data}, {prisma}, info) {
-            const{Gender_Ref, Community_Ref, Residential_Type_Ref, Programme_Ref, Branch_Ref, Registration_Mode_Ref, Blood_Group_Ref, Admission_Category_Ref, Scholarship_Received_Ref, NSO_NSS_YRC_Volunteer_Ref,...noref_data} = data
-
+            const{Gender_Ref, Community_Ref, Residential_Type_Ref, Programme_Ref, Branch_Ref, Registration_Mode_Ref, Blood_Group_Ref, Admission_Category_Ref, Scholarship_Received_Ref, NSS_NSO_YRC_Volunteer_Ref,...noref_data} = data
             const ref_data = noref_data
-            if(Community_Ref){
-                ref_data.person_reference_table_person_Community_RefToperson_reference_table={
-                    connect:{
-                        Reference_ID:Community_Ref
-                    }
-                }
-            }
             if(Gender_Ref){
-                ref_data.person_reference_table_person_Gender_RefToperson_reference_table={
+                ref_data.person_reference_table_person_reference_tableTostudent_Gender_Ref={
                     connect:{
                         Reference_ID:Gender_Ref
                     }
                 }
             }
+            if(Community_Ref){
+                ref_data.person_reference_table_person_reference_tableTostudent_Community_Ref={
+                    connect:{
+                        Reference_ID:Community_Ref
+                    }
+                }
+            }
             if(Residential_Type_Ref){
-                ref_data.person_reference_table_person_Residential_Type_RefToperson_reference_table={
+                ref_data.person_reference_table_person_reference_tableTostudent_Residential_Type_Ref={
                     connect:{
                         Reference_ID:Residential_Type_Ref
+                    }
+                }
+            }
+            if(Programme_Ref){
+                ref_data.person_reference_table_person_reference_tableTostudent_Programme_Ref={
+                    connect:{
+                        Reference_ID:Programme_Ref
+                    }
+                }
+            }
+            if(Branch_Ref){
+                ref_data.person_reference_table_person_reference_tableTostudent_Branch_Ref={
+                    connect:{
+                        Reference_ID:Branch_Ref
+                    }
+                }
+            }
+            if(Registration_Mode_Ref){
+                ref_data.person_reference_table_person_reference_tableTostudent_Registration_Mode_Ref={
+                    connect:{
+                        Reference_ID:Registration_Mode_Ref
+                    }
+                }
+            }
+            if(Blood_Group_Ref){
+                ref_data.person_reference_table_person_reference_tableTostudent_Blood_Group_Ref={
+                    connect:{
+                        Reference_ID:Blood_Group_Ref
+                    }
+                }
+            }
+            if(Admission_Category_Ref){
+                ref_data.person_reference_table_person_reference_tableTostudent_Admission_Category_Ref={
+                    connect:{
+                        Reference_ID:Admission_Category_Ref
+                    }
+                }
+            }
+            if(Scholarship_Received_Ref){
+                ref_data.person_reference_table_person_reference_tableTostudent_Scholarship_Received_Ref={
+                    connect:{
+                        Reference_ID:Scholarship_Received_Ref
+                    }
+                }
+            }
+            if(NSS_NSO_YRC_Volunteer_Ref){
+                ref_data.person_reference_table_person_reference_tableTostudent_NSS_NSO_YRC_Volunteer_Ref={
+                    connect:{
+                        Reference_ID:NSS_NSO_YRC_Volunteer_Ref
                     }
                 }
             }
@@ -101,4 +200,4 @@ module.exports={
 }
 
 
-//Gender_Ref, Community_Ref, Residential_Type_Ref, Programme_Ref, Branch_Ref, Registration_Mode_Ref, Blood_Group_Ref, Admission_Category_Ref, Scholarship_Received_Ref, NSO_NSS_YRC_Volunteer_Ref
+//Gender_Ref, Community_Ref, Residential_Type_Ref, Programme_Ref, Branch_Ref, Registration_Mode_Ref, Blood_Group_Ref, Admission_Category_Ref, Scholarship_Received_Ref, NSS_NSO_YRC_Volunteer_Ref

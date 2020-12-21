@@ -18,14 +18,14 @@ type Student{
     Community_Ref: Int
     Caste: String
     MailID: String
-    Aadhar_Card: Float
+    Aadhar_Card: String
     Primary_ContactNumber: String
     Secondary_ContactNumber: String
     Address_Line1: String
     Address_Line2: String
     Address_Line3: String
     Address_Line4: String
-    Correspondance_Address: String
+    Correspondence_Address: String
     #Photo
     Residential_Type_Ref: Int
     FA: Int
@@ -56,14 +56,14 @@ input createStudentInput {
     Community_Ref: Int
     Caste: String
     MailID: String
-    Aadhar_Card: Float
+    Aadhar_Card: String
     Primary_ContactNumber: String
     Secondary_ContactNumber: String
     Address_Line1: String
     Address_Line2: String
     Address_Line3: String
     Address_Line4: String
-    Correspondance_Address: String
+    Correspondence_Address: String
     #Photo
     Residential_Type_Ref: Int
     FA: Int
@@ -90,14 +90,14 @@ input updateStudentInput {
     Community_Ref: Int
     Caste: String
     MailID: String
-    Aadhar_Card: Float
+    Aadhar_Card: String
     Primary_ContactNumber: String
     Secondary_ContactNumber: String
     Address_Line1: String
     Address_Line2: String
     Address_Line3: String
     Address_Line4: String
-    Correspondance_Address: String
+    Correspondence_Address: String
     #Photo
     Residential_Type_Ref: Int
     FA: Int

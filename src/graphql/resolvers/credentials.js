@@ -15,7 +15,6 @@ module.exports= {
             throw "invalid password"
             
             const token = await jwt.sign({Register_No:user.Register_No},"ct_admin")
-            //console.log(token)
             return ({
                 token
             })

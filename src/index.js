@@ -1,5 +1,4 @@
 import {ApolloServer, gql} from 'apollo-server'
-
 import {readFileSync} from 'fs'
 import {join} from 'path'
 import getRegNo from './graphql/auth/getRegNo'
