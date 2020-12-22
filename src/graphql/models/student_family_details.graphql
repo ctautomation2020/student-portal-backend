@@ -1,0 +1,74 @@
+type Query {
+    studentFamilyDetails: Student_Family_Details!
+}
+
+type Mutation {
+    createStudentFamilyDetails(data: createStudentFamilyDetailsInput!): Student_Family_Details!
+    updateStudentFamilyDetails(data: updateStudentFamilyDetailsInput!): Student_Family_Details!
+}
+
+type Student_Family_Details {
+    Family_ID: Int!
+    Register_No: Int!
+    Father_Name: String
+    Mother_Name: String
+    Father_ContactNumber: String
+    Mother_ContactNumber: String
+    Father_MailID: String
+    Mother_MailID: String
+    Father_Occupation: String
+    Mother_Occupation: String
+    Father_Affilation: String
+    Mother_Affilation: String
+    Father_Company: String
+    Mother_Company: String
+    Parents_Annual_Income: Int
+    Local_Guardian_Name: String
+    Local_Guardian_Address: String
+    Local_Guardian_Contact_Number: String
+
+}
+
+input createStudentFamilyDetailsInput {
+    Family_ID: Int!
+    Register_No: Int!
+    Father_Name: String
+    Mother_Name: String
+    Father_ContactNumber: String
+    Mother_ContactNumber: String
+    Father_MailID: String
+    Mother_MailID: String
+    Father_Occupation: String
+    Mother_Occupation: String
+    Father_Affilation: String
+    Mother_Affilation: String
+    Father_Company: String
+    Mother_Company: String
+    Parents_Annual_Income: Int
+    Local_Guardian_Name: String
+    Local_Guardian_Address: String
+    Local_Guardian_Contact_Number: String
+
+}
+
+input updateStudentFamilyDetailsInput {
+    Family_ID: Int!
+    Register_No: Int!
+    Father_Name: String
+    Mother_Name: String
+    Father_ContactNumber: String
+    Mother_ContactNumber: String
+    Father_MailID: String
+    Mother_MailID: String
+    Father_Occupation: String
+    Mother_Occupation: String
+    Father_Affilation: String
+    Mother_Affilation: String
+    Father_Company: String
+    Mother_Company: String
+    Parents_Annual_Income: Int
+    Local_Guardian_Name: String
+    Local_Guardian_Address: String
+    Local_Guardian_Contact_Number: String
+
+}
