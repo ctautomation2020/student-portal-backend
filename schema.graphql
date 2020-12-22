@@ -14,6 +14,7 @@ type Mutation {
   updatePerson(data: updatePersonInput!): Person!
   createStudent(data: createStudentInput!): Student!
   updateStudent(data: updateStudentInput!): Student!
+  uploadPhoto(file: Upload): Boolean
 }
 
 type credentials {

@@ -1,4 +1,6 @@
 import getRegNo from "../auth/getRegNo"
+let fs = require('fs')
+let path = require('path')
 
 module.exports={
     Query:{
@@ -9,7 +11,7 @@ module.exports={
 
         async student(parent, args, {prisma,req}, info){
             const Register_No = getRegNo(req)
-            console.log(Register_No);
+            //console.log(Register_No);
             return await prisma.student.findOne({
                 where: {
                     Register_No
@@ -184,19 +186,22 @@ module.exports={
                 }
             })
         },
+        uploadPhoto: async (_, { file }) => {
+            const { createReadStream, filename } = await file;
+            await new Promise(res =>
+                createReadStream()
+                .pipe(fs.createWriteStream(path.join(__dirname, "../photos", filename)))
+                .on("close", res)
+            );
+      
+            //files.push(filename);
+            console.log(createReadStream)
 
+
+            return true;
+          }
     },
-    /*
-    Student: {
-
-        async Person_Qualification(parent, {data}, {prisma}, info) {
-            return await prisma.person_qualification.findMany({
-                where: {
-                    Person_ID: parent.Person_ID
-                }
-            })
-        }
-    }*/
+    
 }
 
 
