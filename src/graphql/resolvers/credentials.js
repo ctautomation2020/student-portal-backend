@@ -13,10 +13,11 @@ module.exports= {
             const isMatch=await bcrypt.compare(data.Password,user.Password)
             if(!isMatch)
             throw "invalid password"
-            
+            const Register_No = user.Register_No
             const token = await jwt.sign({Register_No:user.Register_No},"ct_admin")
             return ({
-                token
+                token,
+                Register_No
             })
         }
 

@@ -53,6 +53,7 @@ input credentialQueryInput {
 
 type loginPayload {
   token: String!
+  Register_No: String!
 }
 
 type Person {
