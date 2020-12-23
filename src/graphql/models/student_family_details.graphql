@@ -30,8 +30,6 @@ type Student_Family_Details {
 }
 
 input createStudentFamilyDetailsInput {
-    Family_ID: Int!
-    Register_No: Int!
     Father_Name: String
     Mother_Name: String
     Father_ContactNumber: String
@@ -53,7 +51,6 @@ input createStudentFamilyDetailsInput {
 
 input updateStudentFamilyDetailsInput {
     Family_ID: Int!
-    Register_No: Int!
     Father_Name: String
     Mother_Name: String
     Father_ContactNumber: String

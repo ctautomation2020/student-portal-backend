@@ -17,14 +17,14 @@ module.exports={
 
     Mutation: {
         
-        async createStudentFamilyDetails(parent, {data}, {prisma}, info) {
-            const {Family_ID,Register_No,...refdata} = data;
-            console.log(refdata);
+        async createStudentFamilyDetails(parent, {data}, {prisma,req}, info) {
+            const {...refdata} = data;
+            const Register_No = getRegNo(req);
             return await prisma.student_family_details.create({
                 data:{
                     student:{
                         connect:{
-                            Register_No:data.Register_No
+                            Register_No:Register_No
                         }
                     },
                     ...refdata
@@ -32,8 +32,7 @@ module.exports={
             })
         },
         async updateStudentFamilyDetails(parent, {data}, {prisma}, info) {
-            const {Family_ID,Register_No,...ref_data} = data;
-            console.log(ref_data);
+            const {Family_ID,...ref_data} = data;
             return await prisma.student_family_details.update({
                 where:{
                     Family_ID:data.Family_ID
