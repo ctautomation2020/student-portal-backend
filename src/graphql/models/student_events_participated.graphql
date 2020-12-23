@@ -1,0 +1,58 @@
+type Query {
+    studentEventsParticipated(data: studentEventsParticipatedQueryInput!): [StudentEventsParticipated!]!
+    eventParticipated(data: eventParticipatedQueryInput!): StudentEventsParticipated!
+}
+
+type Mutation {
+    createEventParticipated(data: createEventParticipatedInput!): StudentEventsParticipated!
+    updateEventParticipated(data: updateEventParticipatedInput!): StudentEventsParticipated!
+    deleteEventParticipated(data: deleteEventParticipatedInput!): StudentEventsParticipated!
+}
+
+input studentEventsParticipatedQueryInput{
+    Register_No: Int!
+}
+
+input eventParticipatedQueryInput{
+    Event_ID: Int!
+}
+
+type StudentEventsParticipated {
+    Event_ID: Int!
+    Register_No: Int!
+    Event_Name: String
+    Event_Type_Ref: Int
+    Participation_Type_Ref: Int
+    Team_Size: Int
+    Event_Organizer: String
+    Event_Date: String
+    Prize_Won_Details: String
+    Certificate_Copy: String
+}
+
+input createEventParticipatedInput{
+    Event_Name: String
+    Event_Type_Ref: Int
+    Participation_Type_Ref: Int
+    Team_Size: Int
+    Event_Organizer: String
+    Event_Date: String
+    Prize_Won_Details: String
+    Certificate_Copy: String 
+}
+
+input updateEventParticipatedInput{
+    Event_ID: Int!
+    Event_Name: String
+    Event_Type_Ref: Int
+    Participation_Type_Ref: Int
+    Team_Size: Int
+    Event_Organizer: String
+    Event_Date: String
+    Prize_Won_Details: String
+    Certificate_Copy: String 
+}
+
+input deleteEventParticipatedInput{
+    Event_ID: Int!
+}
