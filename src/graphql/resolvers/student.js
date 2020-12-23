@@ -186,11 +186,14 @@ module.exports={
                 }
             })
         },
-        uploadPhoto: async (_, { file }) => {
+        uploadPhoto: async (_, { file },{req}) => {
+            
             const { createReadStream, filename } = await file;
+            const ext = filename.substr(filename.lastIndexOf('.') + 1);
+            const fileName = getRegNo(req)+"."+ext;
             await new Promise(res =>
                 createReadStream()
-                .pipe(fs.createWriteStream(path.join(__dirname, "../photos", filename)))
+                .pipe(fs.createWriteStream(path.join(__dirname, "../../files/profile-photos", fileName)))
                 .on("close", res)
             );
       
