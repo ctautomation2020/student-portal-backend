@@ -4,22 +4,20 @@ let path = require('path')
 
 module.exports={
     Query:{
-        async studentFamilyDetails(parent, args, {prisma,req}, info){
-            const Register_No = getRegNo(req)
+        async studentFamilyDetails(parent, {data}, {prisma,req}, info){
+            const Register_No = data.Register_No
             return await prisma.student_family_details.findOne({
                 where: {
                     Register_No
                 }
             })
         }
-
     },
 
     Mutation: {
         
         async createStudentFamilyDetails(parent, {data}, {prisma,req}, info) {
-            const {...refdata} = data;
-            const Register_No = getRegNo(req);
+            const {Register_No,...ref_data} = data;
             return await prisma.student_family_details.create({
                 data:{
                     student:{
@@ -27,7 +25,7 @@ module.exports={
                             Register_No:Register_No
                         }
                     },
-                    ...refdata
+                    ...ref_data
                 }
             })
         },
@@ -35,7 +33,7 @@ module.exports={
             const {Family_ID,...ref_data} = data;
             return await prisma.student_family_details.update({
                 where:{
-                    Family_ID:data.Family_ID
+                    Family_ID
                 },
                 data:{
                     ...ref_data
