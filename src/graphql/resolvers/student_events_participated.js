@@ -30,7 +30,7 @@ module.exports={
             const Register_No = getRegNo(req);
 
             if(Event_Type_Ref){
-                ref_data.person_reference_table_person_reference_tableTostudent_Event_Type_Ref={
+                ref_data.person_reference_table_person_reference_tableTostudent_events_participated_Event_Type_Ref={
                     connect:{
                         Reference_ID:Event_Type_Ref
                     }
@@ -38,7 +38,7 @@ module.exports={
             }
 
             if(Participation_Type_Ref){
-                ref_data.person_reference_table_person_reference_tableTostudent_Participation_Type_Ref={
+                ref_data.person_reference_table_person_reference_tableTostudent_events_participated_Participation_Type_Ref={
                     connect:{
                         Reference_ID:Participation_Type_Ref
                     }
@@ -59,9 +59,8 @@ module.exports={
 
         async updateEventParticipated(parent, {data}, {prisma}, info) {
             const {Event_ID,Event_Type_Ref,Participation_Type_Ref,...ref_data} = data;
-
             if(Event_Type_Ref){
-                ref_data.person_reference_table_person_reference_tableTostudent_Event_Type_Ref={
+                ref_data.person_reference_table_person_reference_tableTostudent_events_participated_Event_Type_Ref={
                     connect:{
                         Reference_ID:Event_Type_Ref
                     }
@@ -69,7 +68,7 @@ module.exports={
             }
 
             if(Participation_Type_Ref){
-                ref_data.person_reference_table_person_reference_tableTostudent_Participation_Type_Ref={
+                ref_data.person_reference_table_person_reference_tableTostudent_events_participated_Participation_Type_Ref={
                     connect:{
                         Reference_ID:Participation_Type_Ref
                     }
