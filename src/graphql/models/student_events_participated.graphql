@@ -1,23 +1,23 @@
 type Query {
-    studentEventsParticipated(data: studentEventsParticipatedQueryInput!): [StudentEventsParticipated!]!
-    eventParticipated(data: eventParticipatedQueryInput!): StudentEventsParticipated!
+    studentEventsParticipated(data: studentEventsParticipatedQueryInput!): [StudentEventParticipated!]!
+    studentEventParticipated(data: studentEventParticipatedQueryInput!): StudentEventParticipated!
 }
 
 type Mutation {
-    createEventParticipated(data: createEventParticipatedInput!): StudentEventsParticipated!
-    updateEventParticipated(data: updateEventParticipatedInput!): StudentEventsParticipated!
-    deleteEventParticipated(data: deleteEventParticipatedInput!): StudentEventsParticipated!
+    createEventParticipated(data: createEventParticipatedInput!): StudentEventParticipated!
+    updateEventParticipated(data: updateEventParticipatedInput!): StudentEventParticipated!
+    deleteEventParticipated(data: deleteEventParticipatedInput!): StudentEventParticipated!
 }
 
 input studentEventsParticipatedQueryInput{
     Register_No: Int!
 }
 
-input eventParticipatedQueryInput{
+input studentEventParticipatedQueryInput{
     Event_ID: Int!
 }
 
-type StudentEventsParticipated {
+type StudentEventParticipated {
     Event_ID: Int!
     Register_No: Int!
     Event_Name: String

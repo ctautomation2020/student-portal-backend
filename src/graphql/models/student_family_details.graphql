@@ -1,13 +1,13 @@
 type Query {
-    studentFamilyDetails(data:studentFamilyDetailsInput): Student_Family_Details!
+    studentFamilyDetails(data:studentFamilyDetailsQueryInput): StudentFamilyDetails!
 }
 
 type Mutation {
-    createStudentFamilyDetails(data: createStudentFamilyDetailsInput!): Student_Family_Details!
-    updateStudentFamilyDetails(data: updateStudentFamilyDetailsInput!): Student_Family_Details!
+    createStudentFamilyDetails(data: createStudentFamilyDetailsInput!): StudentFamilyDetails!
+    updateStudentFamilyDetails(data: updateStudentFamilyDetailsInput!): StudentFamilyDetails!
 }
 
-type Student_Family_Details {
+type StudentFamilyDetails {
     Family_ID: Int!
     Register_No: Int!
     Father_Name: String
@@ -29,7 +29,7 @@ type Student_Family_Details {
 
 }
 
-input studentFamilyDetailsInput{
+input studentFamilyDetailsQueryInput{
     Register_No:  Int!
 }
 

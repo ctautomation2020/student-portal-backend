@@ -13,7 +13,7 @@ module.exports={
             })
         },
         
-        async eventParticipated(parent,{data}, {prisma,req}, info){
+        async studentEventParticipated(parent,{data}, {prisma,req}, info){
             const Event_ID = data.Event_ID
             return await prisma.student_events_participated.findOne({
                 where: {
