@@ -1,0 +1,51 @@
+type Query{
+    studentHigherStudies(data: studentHigherStudiesQueryInput!): StudentHigherStudies!
+}
+
+type Mutation{
+    createStudentHigherStudies(data: createStudentHigherStudiesInput!): StudentHigherStudies!
+    updateStudentHigherStudies(data: updateStudentHigherStudiesInput!): StudentHigherStudies!
+}
+
+type StudentHigherStudies{
+    HigherStudies_ID: Int!
+    Register_No: Int!
+    University: String
+    Degree: String
+    Specialization: String
+    Admission_Mode_Ref: Int
+    Score: Float
+    Country: String
+    Location: String
+    LOR_Details: String
+    Score_Card_Copy: String
+}
+
+input studentHigherStudiesQueryInput{
+    Register_No: Int!
+}
+
+input createStudentHigherStudiesInput{
+    University: String
+    Degree: String
+    Specialization: String
+    Admission_Mode_Ref: Int
+    Score: Float
+    Country: String
+    Location: String
+    LOR_Details: String
+    Score_Card_Copy: String
+}
+
+input updateStudentHigherStudiesInput{
+    HigherStudies_ID: Int!
+    University: String
+    Degree: String
+    Specialization: String
+    Admission_Mode_Ref: Int
+    Score: Float
+    Country: String
+    Location: String
+    LOR_Details: String
+    Score_Card_Copy: String
+}

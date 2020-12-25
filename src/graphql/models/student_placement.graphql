@@ -1,0 +1,51 @@
+type Query{
+    studentPlacement(data:studentPlacementQueryInput!): StudentPlacement!
+}
+
+type Mutation{
+    createStudentPlacement(data:createStudentPlacementInput!): StudentPlacement!
+    updateStudentPlacement(data:updateStudentPlacementInput!): StudentPlacement!
+}
+
+type StudentPlacement{
+    Placement_ID: Int!
+    Register_No: Int!
+    Company: String
+    Package: Float
+    Appointment_Order_Copy: String
+    Location: String
+    Designation: String
+    Appointment_OrderNum: String
+    Appointment_Letter_IssueDate: String
+    Joining_Date: String
+    Placement_Type_Ref: Int
+}
+
+input studentPlacementQueryInput{
+    Register_No: Int!
+}
+
+input createStudentPlacementInput{
+    Company: String
+    Package: Float
+    Appointment_Order_Copy: String
+    Location: String
+    Designation: String
+    Appointment_OrderNum: String
+    Appointment_Letter_IssueDate: String
+    Joining_Date: String
+    Placement_Type_Ref: Int
+}
+
+input updateStudentPlacementInput{
+    Placement_ID: Int!
+    Company: String
+    Package: Float
+    Appointment_Order_Copy: String
+    Location: String
+    Designation: String
+    Appointment_OrderNum: String
+    Appointment_Letter_IssueDate: String
+    Joining_Date: String
+    Placement_Type_Ref: Int
+}
