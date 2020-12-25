@@ -1,0 +1,57 @@
+type Query {
+    studentAwards(data: studentAwardsQueryInput!): [StudentAward!]!
+    studentAward(data: studentAwardQueryInput!): StudentAward!
+}
+
+type Mutation {
+    createStudentAward(data: createStudentAwardInput!): StudentAward!
+    updateStudentAward(data: updateStudentAwardInput!): StudentAward!
+    deleteStudentAward(data: deleteStudentAwardInput!): StudentAward!
+}
+
+input studentAwardsQueryInput{
+    Register_No: Int!
+}
+
+input studentAwardQueryInput{
+    Award_ID: Int!
+}
+
+type StudentAward{
+    Award_ID: Int!
+    Register_No: Int!
+    Award_Name: String
+    Organizer_Name: String
+    Award_Type_Ref: Int
+    Award_Category_Ref: Int
+    Place_of_Event: String
+    Certificate_Copy: String
+    Award_Date: String
+}
+
+input createStudentAwardInput{
+
+    Award_Name: String
+    Organizer_Name: String
+    Award_Type_Ref: Int
+    Award_Category_Ref: Int
+    Place_of_Event: String
+    Certificate_Copy: String
+    Award_Date: String
+}
+
+input updateStudentAwardInput{
+
+    Award_ID: Int!
+    Award_Name: String
+    Organizer_Name: String
+    Award_Type_Ref: Int
+    Award_Category_Ref: Int
+    Place_of_Event: String
+    Certificate_Copy: String
+    Award_Date: String
+}
+
+input deleteStudentAwardInput{
+    Award_ID: Int!
+}
