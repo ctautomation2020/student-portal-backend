@@ -5,7 +5,13 @@ type Query {
   personReference(data: Person_Reference_Input): [Person_Reference_Table]
   allStudents: [Student!]!
   student: Student!
-  studentFamilyDetails: Student_Family_Details!
+  studentEventsParticipated(data: studentEventsParticipatedQueryInput!): [StudentEventParticipated!]!
+  studentEventParticipated(data: studentEventParticipatedQueryInput!): StudentEventParticipated!
+  studentFamilyDetails(data: studentFamilyDetailsQueryInput): StudentFamilyDetails!
+  studentHigherStudies(data: studentHigherStudiesQueryInput!): StudentHigherStudies!
+  studentInternships(data: studentInternshipsQueryInput!): [StudentInternship!]!
+  studentInternship(data: studentInternshipQueryInput!): StudentInternship!
+  studentPlacement(data: studentPlacementQueryInput!): StudentPlacement!
 }
 
 type Mutation {
@@ -16,8 +22,18 @@ type Mutation {
   createStudent(data: createStudentInput!): Student!
   updateStudent(data: updateStudentInput!): Student!
   uploadPhoto(file: Upload): Boolean
-  createStudentFamilyDetails(data: createStudentFamilyDetailsInput!): Student_Family_Details!
-  updateStudentFamilyDetails(data: updateStudentFamilyDetailsInput!): Student_Family_Details!
+  createEventParticipated(data: createEventParticipatedInput!): StudentEventParticipated!
+  updateEventParticipated(data: updateEventParticipatedInput!): StudentEventParticipated!
+  deleteEventParticipated(data: deleteEventParticipatedInput!): StudentEventParticipated!
+  createStudentFamilyDetails(data: createStudentFamilyDetailsInput!): StudentFamilyDetails!
+  updateStudentFamilyDetails(data: updateStudentFamilyDetailsInput!): StudentFamilyDetails!
+  createStudentHigherStudies(data: createStudentHigherStudiesInput!): StudentHigherStudies!
+  updateStudentHigherStudies(data: updateStudentHigherStudiesInput!): StudentHigherStudies!
+  createStudentInternship(data: createStudentInternshipInput!): StudentInternship!
+  updateStudentInternship(data: updateStudentInternshipInput!): StudentInternship!
+  deleteStudentInternship(data: deleteStudentInternshipInput!): StudentInternship!
+  createStudentPlacement(data: createStudentPlacementInput!): StudentPlacement!
+  updateStudentPlacement(data: updateStudentPlacementInput!): StudentPlacement!
 }
 
 type credentials {
@@ -254,7 +270,55 @@ input updateStudentInput {
   Hostel_Block_Room: String
 }
 
-type Student_Family_Details {
+input studentEventsParticipatedQueryInput {
+  Register_No: Int!
+}
+
+input studentEventParticipatedQueryInput {
+  Event_ID: Int!
+}
+
+type StudentEventParticipated {
+  Event_ID: Int!
+  Register_No: Int!
+  Event_Name: String
+  Event_Type_Ref: Int
+  Participation_Type_Ref: Int
+  Team_Size: Int
+  Event_Organizer: String
+  Event_Date: String
+  Prize_Won_Details: String
+  Certificate_Copy: String
+}
+
+input createEventParticipatedInput {
+  Event_Name: String
+  Event_Type_Ref: Int
+  Participation_Type_Ref: Int
+  Team_Size: Int
+  Event_Organizer: String
+  Event_Date: String
+  Prize_Won_Details: String
+  Certificate_Copy: String
+}
+
+input updateEventParticipatedInput {
+  Event_ID: Int!
+  Event_Name: String
+  Event_Type_Ref: Int
+  Participation_Type_Ref: Int
+  Team_Size: Int
+  Event_Organizer: String
+  Event_Date: String
+  Prize_Won_Details: String
+  Certificate_Copy: String
+}
+
+input deleteEventParticipatedInput {
+  Event_ID: Int!
+}
+
+type StudentFamilyDetails {
   Family_ID: Int!
   Register_No: Int!
   Father_Name: String
@@ -275,8 +339,11 @@ type Student_Family_Details {
   Local_Guardian_Contact_Number: String
 }
 
+input studentFamilyDetailsQueryInput {
+  Register_No: Int!
+}
+
 input createStudentFamilyDetailsInput {
-  Family_ID: Int!
   Register_No: Int!
   Father_Name: String
   Mother_Name: String
@@ -298,7 +365,6 @@ input createStudentFamilyDetailsInput {
 
 input updateStudentFamilyDetailsInput {
   Family_ID: Int!
-  Register_No: Int!
   Father_Name: String
   Mother_Name: String
   Father_ContactNumber: String
@@ -315,6 +381,143 @@ input updateStudentFamilyDetailsInput {
   Local_Guardian_Name: String
   Local_Guardian_Address: String
   Local_Guardian_Contact_Number: String
+}
+
+type StudentHigherStudies {
+  HigherStudies_ID: Int!
+  Register_No: Int!
+  University: String
+  Degree: String
+  Specialization: String
+  Admission_Mode_Ref: Int
+  Score: Float
+  Country: String
+  Location: String
+  LOR_Details: String
+  Score_Card_Copy: String
+}
+
+input studentHigherStudiesQueryInput {
+  Register_No: Int!
+}
+
+input createStudentHigherStudiesInput {
+  University: String
+  Degree: String
+  Specialization: String
+  Admission_Mode_Ref: Int
+  Score: Float
+  Country: String
+  Location: String
+  LOR_Details: String
+  Score_Card_Copy: String
+}
+
+input updateStudentHigherStudiesInput {
+  HigherStudies_ID: Int!
+  University: String
+  Degree: String
+  Specialization: String
+  Admission_Mode_Ref: Int
+  Score: Float
+  Country: String
+  Location: String
+  LOR_Details: String
+  Score_Card_Copy: String
+}
+
+type StudentInternship {
+  Internship_ID: Int!
+  Register_No: Int!
+  Company: String
+  Title: String
+  Order_Copy: String
+  Address: String
+  Start_Date: String
+  End_Date: String
+  Stiphend_Option_Ref: Int
+  Stiphend_Amount: Float
+  Selection_Mode_Ref: Int
+}
+
+input studentInternshipsQueryInput {
+  Register_No: Int!
+}
+
+input studentInternshipQueryInput {
+  Internship_ID: Int!
+}
+
+input createStudentInternshipInput {
+  Company: String
+  Title: String
+  Order_Copy: String
+  Address: String
+  Start_Date: String
+  End_Date: String
+  Stiphend_Option_Ref: Int
+  Stiphend_Amount: Float
+  Selection_Mode_Ref: Int
+}
+
+input updateStudentInternshipInput {
+  Internship_ID: Int!
+  Company: String
+  Title: String
+  Order_Copy: String
+  Address: String
+  Start_Date: String
+  End_Date: String
+  Stiphend_Option_Ref: Int
+  Stiphend_Amount: Float
+  Selection_Mode_Ref: Int
+}
+
+input deleteStudentInternshipInput {
+  Internship_ID: Int!
+}
+
+type StudentPlacement {
+  Placement_ID: Int!
+  Register_No: Int!
+  Company: String
+  Package: Float
+  Appointment_Order_Copy: String
+  Location: String
+  Designation: String
+  Appointment_OrderNum: String
+  Appointment_Letter_IssueDate: String
+  Joining_Date: String
+  Placement_Type_Ref: Int
+}
+
+input studentPlacementQueryInput {
+  Register_No: Int!
+}
+
+input createStudentPlacementInput {
+  Company: String
+  Package: Float
+  Appointment_Order_Copy: String
+  Location: String
+  Designation: String
+  Appointment_OrderNum: String
+  Appointment_Letter_IssueDate: String
+  Joining_Date: String
+  Placement_Type_Ref: Int
+}
+
+input updateStudentPlacementInput {
+  Placement_ID: Int!
+  Company: String
+  Package: Float
+  Appointment_Order_Copy: String
+  Location: String
+  Designation: String
+  Appointment_OrderNum: String
+  Appointment_Letter_IssueDate: String
+  Joining_Date: String
+  Placement_Type_Ref: Int
 }
 
 schema {
