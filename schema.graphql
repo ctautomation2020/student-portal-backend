@@ -7,13 +7,23 @@ type Query {
   student: Student!
   studentAwards(data: studentAwardsQueryInput!): [StudentAward!]!
   studentAward(data: studentAwardQueryInput!): StudentAward!
+  studentCourses(data: studentCoursesQueryInput!): [StudentCourse!]!
+  studentCourse(data: studentCourseQueryInput!): StudentCourse!
+  studentEndsemMarks(data: studentEndsemMarksQueryInput!): [StudentEndsemMark!]!
+  studentEndsemMark(data: studentEndsemMarkQueryInput!): StudentEndsemMark!
   studentEventsParticipated(data: studentEventsParticipatedQueryInput!): [StudentEventParticipated!]!
   studentEventParticipated(data: studentEventParticipatedQueryInput!): StudentEventParticipated!
   studentFamilyDetails(data: studentFamilyDetailsQueryInput): StudentFamilyDetails!
+  studentGpas(data: studentGpasQueryInput!): [StudentGpa!]!
+  studentGpa(data: studentGpaQueryInput!): StudentGpa!
   studentHigherStudies(data: studentHigherStudiesQueryInput!): StudentHigherStudies!
+  studentInternalMarks(data: studentInternalMarksQueryInput!): [StudentInternalMark!]!
+  studentInternalMark(data: studentInternalMarkQueryInput!): StudentInternalMark!
   studentInternships(data: studentInternshipsQueryInput!): [StudentInternship!]!
   studentInternship(data: studentInternshipQueryInput!): StudentInternship!
   studentPlacement(data: studentPlacementQueryInput!): StudentPlacement!
+  studentPlacements(data: studentPlacementsQueryInput!): [[StudentPlacement!]]
+  studentTcourse(data: studentTcourseQueryInput!): StudentTcourse!
 }
 
 type Mutation {
@@ -27,18 +37,31 @@ type Mutation {
   createStudentAward(data: createStudentAwardInput!): StudentAward!
   updateStudentAward(data: updateStudentAwardInput!): StudentAward!
   deleteStudentAward(data: deleteStudentAwardInput!): StudentAward!
+  createStudentCourse(data: createStudentCourseInput!): StudentCourse!
+  updateStudentCourse(data: updateStudentCourseInput!): StudentCourse!
+  deleteStudentCourse(data: deleteStudentCourseInput!): StudentCourse!
+  createStudentEndsemMark(data: createStudentEndsemMarkInput!): StudentEndsemMark!
+  updateStudentEndsemMark(data: updateStudentEndsemMarkInput!): StudentEndsemMark!
+  deleteStudentEndsemMark(data: deleteStudentEndsemMarkInput!): StudentEndsemMark!
   createEventParticipated(data: createEventParticipatedInput!): StudentEventParticipated!
   updateEventParticipated(data: updateEventParticipatedInput!): StudentEventParticipated!
   deleteEventParticipated(data: deleteEventParticipatedInput!): StudentEventParticipated!
   createStudentFamilyDetails(data: createStudentFamilyDetailsInput!): StudentFamilyDetails!
   updateStudentFamilyDetails(data: updateStudentFamilyDetailsInput!): StudentFamilyDetails!
+  createStudentGpa(data: createStudentGpaInput!): StudentGpa!
+  updateStudentGpa(data: updateStudentGpaInput!): StudentGpa!
+  deleteStudentGpa(data: deleteStudentGpaInput!): StudentGpa!
   createStudentHigherStudies(data: createStudentHigherStudiesInput!): StudentHigherStudies!
   updateStudentHigherStudies(data: updateStudentHigherStudiesInput!): StudentHigherStudies!
+  createStudentInternalMark(data: createStudentInternalMarkInput!): StudentInternalMark!
+  updateStudentInternalMark(data: updateStudentInternalMarkInput!): StudentInternalMark!
+  deleteStudentInternalMark(data: deleteStudentInternalMarkInput!): StudentInternalMark!
   createStudentInternship(data: createStudentInternshipInput!): StudentInternship!
   updateStudentInternship(data: updateStudentInternshipInput!): StudentInternship!
   deleteStudentInternship(data: deleteStudentInternshipInput!): StudentInternship!
   createStudentPlacement(data: createStudentPlacementInput!): StudentPlacement!
   updateStudentPlacement(data: updateStudentPlacementInput!): StudentPlacement!
+  deleteStudentPlacement(data: deleteStudentPlacementInput!): StudentPlacement!
 }
 
 type credentials {
@@ -320,6 +343,93 @@ input deleteStudentAwardInput {
   Award_ID: Int!
 }
 
+input studentCoursesQueryInput {
+  Register_No: Int!
+}
+
+input studentCourseQueryInput {
+  Academic_ID: Int!
+}
+
+type StudentCourse {
+  Academic_ID: Int!
+  Register_No: Int!
+  Course_Code: String
+  Staff_ID: Int
+  Session_Ref: Int
+  Semester_Ref: Int
+  Group_Ref: Int
+  Class_Type_Ref: Int
+}
+
+input createStudentCourseInput {
+  Course_Code: String
+  Staff_ID: Int
+  Session_Ref: Int
+  Semester_Ref: Int
+  Group_Ref: Int
+  Class_Type_Ref: Int
+}
+
+input updateStudentCourseInput {
+  Academic_ID: Int!
+  Course_Code: String
+  Staff_ID: Int
+  Session_Ref: Int
+  Semester_Ref: Int
+  Group_Ref: Int
+  Class_Type_Ref: Int
+}
+
+input deleteStudentCourseInput {
+  Academic_ID: Int!
+}
+
+input studentEndsemMarksQueryInput {
+  Register_No: Int!
+}
+
+input studentEndsemMarkQueryInput {
+  Mark_ID: Int!
+}
+
+type StudentEndsemMark {
+  Mark_ID: Int!
+  Register_No: Int!
+  Couse_Code: String
+  Session_Ref: Int
+  Grade: Int
+  Internal_Mark: Int
+  GPA: Float
+  CGPA: Float
+  Entry_Date: String
+}
+
+input createStudentEndsemMarkInput {
+  Couse_Code: String
+  Session_Ref: Int
+  Grade: Int
+  Internal_Mark: Int
+  GPA: Float
+  CGPA: Float
+  Entry_Date: String
+}
+
+input updateStudentEndsemMarkInput {
+  Mark_ID: Int!
+  Couse_Code: String
+  Session_Ref: Int
+  Grade: Int
+  Internal_Mark: Int
+  GPA: Float
+  CGPA: Float
+  Entry_Date: String
+}
+
+input deleteStudentEndsemMarkInput {
+  Mark_ID: Int!
+}
+
 input studentEventsParticipatedQueryInput {
   Register_No: Int!
 }
@@ -433,6 +543,39 @@ input updateStudentFamilyDetailsInput {
   Local_Guardian_Contact_Number: String
 }
 
+input studentGpasQueryInput {
+  Register_No: Int!
+}
+
+input studentGpaQueryInput {
+  Gpa_ID: Int!
+}
+
+type StudentGpa {
+  Gpa_ID: Int!
+  Register_No: Int!
+  Semester: Int
+  GPA: Int
+  Grade_Sheet: String
+}
+
+input createStudentGpaInput {
+  Semester: Int
+  GPA: Int
+  Grade_Sheet: String
+}
+
+input updateStudentGpaInput {
+  Gpa_ID: Int!
+  Semester: Int
+  GPA: Int
+  Grade_Sheet: String
+}
+
+input deleteStudentGpaInput {
+  Gpa_ID: Int!
+}
+
 type StudentHigherStudies {
   HigherStudies_ID: Int!
   Register_No: Int!
@@ -474,6 +617,57 @@ input updateStudentHigherStudiesInput {
   Location: String
   LOR_Details: String
   Score_Card_Copy: String
+}
+
+input studentInternalMarksQueryInput {
+  Register_No: Int!
+}
+
+input studentInternalMarkQueryInput {
+  InternalMark_ID: Int!
+}
+
+type StudentInternalMark {
+  InternalMark_ID: Int!
+  Register_No: Int!
+  Course_Code: String
+  Session: String
+  Staff_ID: Int
+  Evaluation_Type_Ref: Int
+  Max_Mark: Int
+  Entry_Date: String
+  Mark_Scored: Int
+  Weightage: Float
+  Total: Float
+}
+
+input createStudentInternalMarkInput {
+  Course_Code: String
+  Session: String
+  Staff_ID: Int
+  Evaluation_Type_Ref: Int
+  Max_Mark: Int
+  Entry_Date: String
+  Mark_Scored: Int
+  Weightage: Float
+  Total: Float
+}
+
+input updateStudentInternalMarkInput {
+  InternalMark_ID: Int!
+  Course_Code: String
+  Session: String
+  Staff_ID: Int
+  Evaluation_Type_Ref: Int
+  Max_Mark: Int
+  Entry_Date: String
+  Mark_Scored: Int
+  Weightage: Float
+  Total: Float
+}
+
+input deleteStudentInternalMarkInput {
+  InternalMark_ID: Int!
 }
 
 type StudentInternship {
@@ -542,6 +736,10 @@ type StudentPlacement {
 }
 
 input studentPlacementQueryInput {
+  Placement_ID: Int!
+}
+
+input studentPlacementsQueryInput {
   Register_No: Int!
 }
 
@@ -568,6 +766,23 @@ input updateStudentPlacementInput {
   Appointment_Letter_IssueDate: String
   Joining_Date: String
   Placement_Type_Ref: Int
+}
+
+input deleteStudentPlacementInput {
+  Placement_ID: Int!
+}
+
+input studentTcourseQueryInput {
+  Tcourse_ID: Int!
+}
+
+type StudentTcourse {
+  Tcourse_ID: Int!
+  Degree: String
+  Semester: Int
+  Code: String
+  Title: String
+  Credit: Int
 }
 
 schema {
