@@ -1,0 +1,52 @@
+type Query{
+    studentCourses(data: studentCoursesQueryInput!): [StudentCourse!]!
+    studentCourse(data: studentCourseQueryInput!): StudentCourse!
+}
+
+type Mutation {
+    createStudentCourse(data: createStudentCourseInput!): StudentCourse!
+    updateStudentCourse(data: updateStudentCourseInput!): StudentCourse!
+    deleteStudentCourse(data: deleteStudentCourseInput!): StudentCourse!
+}
+
+input studentCoursesQueryInput{
+    Register_No: Int!
+}
+
+input studentCourseQueryInput{
+    Academic_ID: Int!
+}
+
+type StudentCourse{
+    Academic_ID: Int!
+    Register_No: Int!
+    Course_Code: String
+    Staff_ID: Int
+    Session_Ref: Int
+    Semester_Ref: Int
+    Group_Ref: Int
+    Class_Type_Ref: Int
+}
+
+input createStudentCourseInput{
+    Course_Code: String
+    Staff_ID: Int
+    Session_Ref: Int
+    Semester_Ref: Int
+    Group_Ref: Int
+    Class_Type_Ref: Int
+}
+
+input updateStudentCourseInput{
+    Academic_ID: Int!
+    Course_Code: String
+    Staff_ID: Int
+    Session_Ref: Int
+    Semester_Ref: Int
+    Group_Ref: Int
+    Class_Type_Ref: Int
+}
+
+input deleteStudentCourseInput{
+    Academic_ID: Int!
+}

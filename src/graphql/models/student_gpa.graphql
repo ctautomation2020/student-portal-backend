@@ -1,0 +1,43 @@
+type Query {
+    studentGpas(data: studentGpasQueryInput!): [StudentGpa!]!
+    studentGpa(data: studentGpaQueryInput!): StudentGpa!
+}
+
+type Mutation {
+    createStudentGpa(data: createStudentGpaInput!): StudentGpa!
+    updateStudentGpa(data: updateStudentGpaInput!): StudentGpa!
+    deleteStudentGpa(data: deleteStudentGpaInput!): StudentGpa!
+}
+
+input studentGpasQueryInput{
+    Register_No: Int!
+}
+
+input studentGpaQueryInput{
+    Gpa_ID: Int!
+}
+
+type StudentGpa{
+    Gpa_ID: Int!
+    Register_No: Int!
+    Semester: Int
+    GPA: Int
+    Grade_Sheet: String
+}
+
+input createStudentGpaInput {
+    Semester: Int
+    GPA: Int
+    Grade_Sheet: String
+}
+
+input updateStudentGpaInput {
+    Gpa_ID: Int!
+    Semester: Int
+    GPA: Int
+    Grade_Sheet: String
+}
+
+input deleteStudentGpaInput {
+    Gpa_ID: Int!
+}
