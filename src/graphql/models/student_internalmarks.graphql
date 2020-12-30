@@ -1,0 +1,60 @@
+type Query {
+    studentInternalMarks(data: studentInternalMarksQueryInput!): [StudentInternalMark!]!
+    studentInternalMark(data: studentInternalMarkQueryInput!): StudentInternalMark!
+}
+
+type Mutation {
+    createStudentInternalMark(data: createStudentInternalMarkInput!): StudentInternalMark!
+    updateStudentInternalMark(data: updateStudentInternalMarkInput!): StudentInternalMark!
+    deleteStudentInternalMark(data: deleteStudentInternalMarkInput!): StudentInternalMark!
+}
+
+input studentInternalMarksQueryInput{
+    Register_No: Int!
+}
+
+input studentInternalMarkQueryInput{
+    InternalMark_ID: Int!
+}
+type StudentInternalMark{
+    InternalMark_ID: Int!
+    Register_No: Int!
+    Course_Code: String
+    Session: String
+    Staff_ID: Int
+    Evaluation_Type_Ref: Int
+    Max_Mark: Int
+    Entry_Date: String
+    Mark_Scored: Int
+    Weightage: Float
+    Total: Float
+}
+
+input createStudentInternalMarkInput{
+    Course_Code: String
+    Session: String
+    Staff_ID: Int
+    Evaluation_Type_Ref: Int
+    Max_Mark: Int
+    Entry_Date: String
+    Mark_Scored: Int
+    Weightage: Float
+    Total: Float
+}
+
+input updateStudentInternalMarkInput {
+    InternalMark_ID: Int!
+    Course_Code: String
+    Session: String
+    Staff_ID: Int
+    Evaluation_Type_Ref: Int
+    Max_Mark: Int
+    Entry_Date: String
+    Mark_Scored: Int
+    Weightage: Float
+    Total: Float
+}
+
+input deleteStudentInternalMarkInput {
+    InternalMark_ID: Int!
+}

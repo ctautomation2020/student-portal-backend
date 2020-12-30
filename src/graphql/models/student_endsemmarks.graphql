@@ -1,0 +1,55 @@
+type Query {
+    studentEndsemMarks(data: studentEndsemMarksQueryInput!): [StudentEndsemMark!]!
+    studentEndsemMark(data: studentEndsemMarkQueryInput!): StudentEndsemMark!
+}
+
+type Mutation {
+    createStudentEndsemMark(data: createStudentEndsemMarkInput!): StudentEndsemMark!
+    updateStudentEndsemMark(data: updateStudentEndsemMarkInput!): StudentEndsemMark!
+    deleteStudentEndsemMark(data: deleteStudentEndsemMarkInput!): StudentEndsemMark!
+}
+
+input studentEndsemMarksQueryInput{
+    Register_No: Int!
+}
+
+input studentEndsemMarkQueryInput{
+    Mark_ID: Int!
+}
+
+type StudentEndsemMark{
+    Mark_ID: Int!
+    Register_No: Int!
+    Couse_Code: String
+    Session_Ref: Int
+    Grade: Int
+    Internal_Mark: Int
+    GPA: Float
+    CGPA: Float
+    Entry_Date: String
+}
+
+input createStudentEndsemMarkInput {
+    Couse_Code: String
+    Session_Ref: Int
+    Grade: Int
+    Internal_Mark: Int
+    GPA: Float
+    CGPA: Float
+    Entry_Date: String
+}
+
+input updateStudentEndsemMarkInput{
+    Mark_ID: Int!
+    Couse_Code: String
+    Session_Ref: Int
+    Grade: Int
+    Internal_Mark: Int
+    GPA: Float
+    CGPA: Float
+    Entry_Date: String
+}
+
+input deleteStudentEndsemMarkInput{
+    Mark_ID: Int!
+}
