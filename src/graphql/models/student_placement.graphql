@@ -1,10 +1,12 @@
 type Query{
     studentPlacement(data:studentPlacementQueryInput!): StudentPlacement!
+    studentPlacements(data:studentPlacementsQueryInput!): [[StudentPlacement!]]
 }
 
 type Mutation{
     createStudentPlacement(data:createStudentPlacementInput!): StudentPlacement!
     updateStudentPlacement(data:updateStudentPlacementInput!): StudentPlacement!
+    deleteStudentPlacement(data: deleteStudentPlacementInput!): StudentPlacement! 
 }
 
 type StudentPlacement{
@@ -22,6 +24,10 @@ type StudentPlacement{
 }
 
 input studentPlacementQueryInput{
+    Placement_ID: Int!
+}
+
+input studentPlacementsQueryInput{
     Register_No: Int!
 }
 
@@ -48,4 +54,8 @@ input updateStudentPlacementInput{
     Appointment_Letter_IssueDate: String
     Joining_Date: String
     Placement_Type_Ref: Int
+}
+
+input deleteStudentPlacementInput{
+    Placement_ID: Int!
 }

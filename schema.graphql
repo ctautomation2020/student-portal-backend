@@ -5,6 +5,8 @@ type Query {
   personReference(data: Person_Reference_Input): [Person_Reference_Table]
   allStudents: [Student!]!
   student: Student!
+  studentAwards(data: studentAwardsQueryInput!): [StudentAward!]!
+  studentAward(data: studentAwardQueryInput!): StudentAward!
   studentEventsParticipated(data: studentEventsParticipatedQueryInput!): [StudentEventParticipated!]!
   studentEventParticipated(data: studentEventParticipatedQueryInput!): StudentEventParticipated!
   studentFamilyDetails(data: studentFamilyDetailsQueryInput): StudentFamilyDetails!
@@ -22,6 +24,9 @@ type Mutation {
   createStudent(data: createStudentInput!): Student!
   updateStudent(data: updateStudentInput!): Student!
   uploadPhoto(file: Upload): Boolean
+  createStudentAward(data: createStudentAwardInput!): StudentAward!
+  updateStudentAward(data: updateStudentAwardInput!): StudentAward!
+  deleteStudentAward(data: deleteStudentAwardInput!): StudentAward!
   createEventParticipated(data: createEventParticipatedInput!): StudentEventParticipated!
   updateEventParticipated(data: updateEventParticipatedInput!): StudentEventParticipated!
   deleteEventParticipated(data: deleteEventParticipatedInput!): StudentEventParticipated!
@@ -268,6 +273,51 @@ input updateStudentInput {
   Scholarship_Details: String
   NSS_NSO_YRC_Volunteer_Ref: Int
   Hostel_Block_Room: String
+}
+
+input studentAwardsQueryInput {
+  Register_No: Int!
+}
+
+input studentAwardQueryInput {
+  Award_ID: Int!
+}
+
+type StudentAward {
+  Award_ID: Int!
+  Register_No: Int!
+  Award_Name: String
+  Organizer_Name: String
+  Award_Type_Ref: Int
+  Award_Category_Ref: Int
+  Place_of_Event: String
+  Certificate_Copy: String
+  Award_Date: String
+}
+
+input createStudentAwardInput {
+  Award_Name: String
+  Organizer_Name: String
+  Award_Type_Ref: Int
+  Award_Category_Ref: Int
+  Place_of_Event: String
+  Certificate_Copy: String
+  Award_Date: String
+}
+
+input updateStudentAwardInput {
+  Award_ID: Int!
+  Award_Name: String
+  Organizer_Name: String
+  Award_Type_Ref: Int
+  Award_Category_Ref: Int
+  Place_of_Event: String
+  Certificate_Copy: String
+  Award_Date: String
+}
+
+input deleteStudentAwardInput {
+  Award_ID: Int!
 }
 
 input studentEventsParticipatedQueryInput {

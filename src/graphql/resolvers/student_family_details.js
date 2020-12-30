@@ -1,6 +1,4 @@
 import getRegNo from "../auth/getRegNo"
-let fs = require('fs')
-let path = require('path')
 
 module.exports={
     Query:{

@@ -11,6 +11,14 @@ module.exports={
                     Register_No
                 }
             })
+        },
+        async studentPlacements(parent, {data}, {prisma,req}, info){
+            const Register_No = data.Register_No;
+            return await prisma.student_placement.findMany({
+                where: {
+                    Register_No
+                }
+            })
         }
     },
 
@@ -52,6 +60,14 @@ module.exports={
                 },
                 data:{
                     ...ref_data
+                }
+            })
+        },
+        async deleteStudentPlacement(parent, {data}, {prisma}, info) {
+            
+            return await prisma.student_placement.delete({
+                where:{
+                    Placement_ID: data.Placement_ID
                 }
             })
         }
