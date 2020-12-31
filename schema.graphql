@@ -16,7 +16,8 @@ type Query {
   studentFamilyDetails(data: studentFamilyDetailsQueryInput): StudentFamilyDetails!
   studentGpas(data: studentGpasQueryInput!): [StudentGpa!]!
   studentGpa(data: studentGpaQueryInput!): StudentGpa!
-  studentHigherStudies(data: studentHigherStudiesQueryInput!): StudentHigherStudies!
+  studentHigherStudy(data: studentHigherStudyQueryInput!): StudentHigherStudy!
+  studentHigherStudies(data: studentHigherStudiesQueryInput!): [StudentHigherStudy!]!
   studentInternalMarks(data: studentInternalMarksQueryInput!): [StudentInternalMark!]!
   studentInternalMark(data: studentInternalMarkQueryInput!): StudentInternalMark!
   studentInternships(data: studentInternshipsQueryInput!): [StudentInternship!]!
@@ -51,8 +52,9 @@ type Mutation {
   createStudentGpa(data: createStudentGpaInput!): StudentGpa!
   updateStudentGpa(data: updateStudentGpaInput!): StudentGpa!
   deleteStudentGpa(data: deleteStudentGpaInput!): StudentGpa!
-  createStudentHigherStudies(data: createStudentHigherStudiesInput!): StudentHigherStudies!
-  updateStudentHigherStudies(data: updateStudentHigherStudiesInput!): StudentHigherStudies!
+  createStudentHigherStudy(data: createStudentHigherStudyInput!): StudentHigherStudy!
+  updateStudentHigherStudy(data: updateStudentHigherStudyInput!): StudentHigherStudy!
+  deleteStudentHigherStudy(data: deleteStudentHigherStudyInput!): StudentHigherStudy!
   createStudentInternalMark(data: createStudentInternalMarkInput!): StudentInternalMark!
   updateStudentInternalMark(data: updateStudentInternalMarkInput!): StudentInternalMark!
   deleteStudentInternalMark(data: deleteStudentInternalMarkInput!): StudentInternalMark!
@@ -576,7 +578,7 @@ input deleteStudentGpaInput {
   Gpa_ID: Int!
 }
 
-type StudentHigherStudies {
+type StudentHigherStudy {
   HigherStudies_ID: Int!
   Register_No: Int!
   University: String
@@ -588,13 +590,17 @@ type StudentHigherStudies {
   Location: String
   LOR_Details: String
   Score_Card_Copy: String
+}
+
+input studentHigherStudyQueryInput {
+  HigherStudies_ID: Int!
 }
 
 input studentHigherStudiesQueryInput {
   Register_No: Int!
 }
 
-input createStudentHigherStudiesInput {
+input createStudentHigherStudyInput {
   University: String
   Degree: String
   Specialization: String
@@ -606,7 +612,7 @@ input createStudentHigherStudiesInput {
   Score_Card_Copy: String
 }
 
-input updateStudentHigherStudiesInput {
+input updateStudentHigherStudyInput {
   HigherStudies_ID: Int!
   University: String
   Degree: String
@@ -617,6 +623,10 @@ input updateStudentHigherStudiesInput {
   Location: String
   LOR_Details: String
   Score_Card_Copy: String
+}
+
+input deleteStudentHigherStudyInput {
+  HigherStudies_ID: Int!
 }
 
 input studentInternalMarksQueryInput {

@@ -1,6 +1,6 @@
 type Query{
     studentPlacement(data:studentPlacementQueryInput!): StudentPlacement!
-    studentPlacements(data:studentPlacementsQueryInput!): [[StudentPlacement!]]
+    studentPlacements(data:studentPlacementsQueryInput!): [StudentPlacement!]!
 }
 
 type Mutation{

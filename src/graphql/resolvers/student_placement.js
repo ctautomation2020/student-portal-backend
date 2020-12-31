@@ -5,10 +5,10 @@ let path = require('path')
 module.exports={
     Query:{
         async studentPlacement(parent, {data}, {prisma,req}, info){
-            const Register_No = data.Register_No
+            const Placement_ID = data.Placement_ID
             return await prisma.student_placement.findOne({
                 where: {
-                    Register_No
+                    Placement_ID
                 }
             })
         },
