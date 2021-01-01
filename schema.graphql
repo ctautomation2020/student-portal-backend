@@ -23,7 +23,7 @@ type Query {
   studentInternships(data: studentInternshipsQueryInput!): [StudentInternship!]!
   studentInternship(data: studentInternshipQueryInput!): StudentInternship!
   studentPlacement(data: studentPlacementQueryInput!): StudentPlacement!
-  studentPlacements(data: studentPlacementsQueryInput!): [[StudentPlacement!]]
+  studentPlacements(data: studentPlacementsQueryInput!): [StudentPlacement!]!
   studentTcourse(data: studentTcourseQueryInput!): StudentTcourse!
 }
 

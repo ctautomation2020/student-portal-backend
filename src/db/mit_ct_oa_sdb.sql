@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2020 at 08:56 PM
+-- Generation Time: Jan 01, 2021 at 07:08 AM
 -- Server version: 8.0.22
 -- PHP Version: 7.4.9
 
@@ -50,7 +50,8 @@ CREATE TABLE `credentials` (
 --
 
 INSERT INTO `credentials` (`Credentials_ID`, `Register_No`, `Username`, `Password`) VALUES
-(1, 2018503557, 'admin', '$2b$08$U0VES/hQqaNBzeM90mijUuzEEd.8alRIq9nRZJbF54KCLL4ljSxG.');
+(1, 2018503557, 'admin', '$2b$08$U0VES/hQqaNBzeM90mijUuzEEd.8alRIq9nRZJbF54KCLL4ljSxG.'),
+(2, 2018503556, 'user2', '$2b$08$OzucEPKeSZbyPAnQA9vyh.GlVb4HgsBzeEzM638VwzshSSrwqTHD.');
 
 -- --------------------------------------------------------
 
@@ -135,16 +136,16 @@ INSERT INTO `person_reference_table` (`Reference_ID`, `Ref_Code`, `Category`, `R
 (2, 2, 'Prefix', 'Mrs.', NULL),
 (3, 3, 'Prefix', 'Dr.', NULL),
 (4, 4, 'Prefix', 'Ms.', NULL),
-(5, 5, 'Community', 'BACKWARD CLASSES MUSLIMS', NULL),
-(6, 6, 'Community', 'SCHEDULED TRIBES', NULL),
-(7, 7, 'Community', 'SCHEDULED CASTES', NULL),
-(8, 8, 'Community', 'MOST BACKWARD CLASSES', NULL),
-(9, 9, 'Community', 'BACKWARD CLASSES', NULL),
-(10, 10, 'Community', 'DENOTIFIED COMMUNITIES', NULL),
-(11, 11, 'Community', 'OTHERS', NULL),
-(12, 12, 'Qualification_Level', 'UNDER GRADUATE', NULL),
-(13, 13, 'Qualification_Level', 'POST GRADUATE', NULL),
-(14, 14, 'Qualification_Level', 'DOCTORATE', NULL),
+(5, 5, 'Community', 'Backward Classes Muslims', NULL),
+(6, 6, 'Community', 'Scheduled Tribes', NULL),
+(7, 7, 'Community', 'Scheduled Castes', NULL),
+(8, 8, 'Community', 'Most Backward Classes', NULL),
+(9, 9, 'Community', 'Backward Classes', NULL),
+(10, 10, 'Community', 'Denotified Communities', NULL),
+(11, 11, 'Community', 'Others', NULL),
+(12, 12, 'Qualification_Level', 'Under Graduate', NULL),
+(13, 13, 'Qualification_Level', 'Post Graduate', NULL),
+(14, 14, 'Qualification_Level', 'Doctorate', NULL),
 (15, 15, 'Degree', 'B.C.A', NULL),
 (16, 16, 'Degree', 'B.E.', NULL),
 (17, 17, 'Degree', 'B.Sc.', NULL),
@@ -156,13 +157,13 @@ INSERT INTO `person_reference_table` (`Reference_ID`, `Ref_Code`, `Category`, `R
 (23, 23, 'Degree', 'M.S.', NULL),
 (24, 24, 'Degree', 'Ph.D.', NULL),
 (25, 25, 'Degree', 'Postdoctoral Research', NULL),
-(26, 26, 'Branch', 'COMPUTER SCIENCE AND ENGINEERING', NULL),
-(27, 27, 'Branch', 'COMPUTER SCIENCE', NULL),
-(28, 28, 'Branch', 'ELECTRICAL AND ELECTRONICS ENGINEERING', NULL),
-(29, 29, 'Branch', 'ELECTRONICS AND COMMUNICATION ENGINEERING', NULL),
-(30, 30, 'Branch', 'ELECTRONICS AND INSTRUMENTATION ENGINEERING', NULL),
-(31, 31, 'Branch', 'INFORMATION TECHNOLOGY', NULL),
-(32, 32, 'Branch', 'OTHERS', NULL),
+(26, 26, 'Branch', 'Computer Science and Engineering', NULL),
+(27, 27, 'Branch', 'Computer Science', NULL),
+(28, 28, 'Branch', 'Electrical and Electronics Engineering', NULL),
+(29, 29, 'Branch', 'Electronics and Communication Engineering', NULL),
+(30, 30, 'Branch', 'Electronics and Instrumentation Engineering', NULL),
+(31, 31, 'Branch', 'Information Technology', NULL),
+(32, 32, 'Branch', 'Others', NULL),
 (33, 33, 'Class_Obtained', 'Honors', NULL),
 (34, 34, 'Class_Obtained', 'First Class with Distinction', NULL),
 (35, 35, 'Class_Obtained', 'First Class', NULL),
@@ -272,7 +273,8 @@ INSERT INTO `person_reference_table` (`Reference_ID`, `Ref_Code`, `Category`, `R
 (139, 138, 'Session', 'N18', NULL),
 (140, 139, 'Session', 'A19', NULL),
 (141, 140, 'Session', 'N19', NULL),
-(142, 141, 'Session', 'A20', NULL);
+(142, 141, 'Session', 'A20', NULL),
+(143, 142, 'Gender', 'Others', NULL);
 
 -- --------------------------------------------------------
 
@@ -322,7 +324,7 @@ INSERT INTO `student` (`Register_No`, `First_Name`, `Middle_Name`, `Last_Name`, 
 (4000, 'Anitha', '', 's', 67, '2020-10-02', 7, 'xxx', 'anithacse@gmail.com', 'adf333', 'zzz', '', 'zzz', 'zzz', 'zzz', 'zzz', 'zzz', 'photos/AULogo11601882158.jpg', 97, 5001, 99, 26, 88, 121, 345.55, '2020-10-09', 90, 87, 'zzz', 129, 'zzz'),
 (6000, 'sss', '', 'sss', 67, '2020-10-10', 6, 'asasd', 'anithacse@gmail.com', '123456789123', '1234567890', '', 'yyy', 'yyy', 'yyy', 'sdfds', 'yyy', 'photos/Anitha_Photo1602148254.jpg', 96, 5001, 99, 26, 88, 121, 192, '2020-11-04', 91, -1, '', 129, 'fdgfdg'),
 (2018503556, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2018503557, 'Sivaganesh', '', 'B', 66, '2000-03-19', 11, 'yyy', 'sivaganesh1903@gmail.com', '123456789012', '9876543210', '1234567890', 'House No', 'Street', 'City', '600001', '', '', 97, 123, 99, 26, 88, 121, 197, '2018-08-31', 90, 87, '', 131, ''),
+(2018503557, 'Sivaganesh', '', 'B', 66, '2000-03-22', 11, 'yyyxx', 'sivaganesh1903@gmail.com', '123456789000', '9876543210', '1234567890', 'House No', 'Street', 'City', '600001', 'House No, Street, City, 600001', '', 97, 123, 99, 26, 88, 124, 197, '2024-05-01', 90, 87, '', 131, ''),
 (2018615001, 'yyy', '', 'yyy', 67, '2020-10-09', 5, 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'photos/AULogo11602068816.jpg', 96, 5001, 99, 26, 88, 122, 0, '2020-10-21', 90, 86, 'yyy', -1, 'yyy');
 
 -- --------------------------------------------------------
@@ -348,7 +350,7 @@ CREATE TABLE `student_awards` (
 --
 
 INSERT INTO `student_awards` (`Award_ID`, `Register_No`, `Award_Name`, `Organizer_Name`, `Award_Type_Ref`, `Award_Category_Ref`, `Place_of_Event`, `Certificate_Copy`, `Award_Date`) VALUES
-(4, 4000, 'sasdsa', 'asdasdsa', 112, 115, 'sadsa', 'awardcertificates/Class TT-20201601888563.pdf', '2020-10-27');
+(4, 2018503557, 'sasdsa', 'asdasdsa', 112, 115, 'sadsa', 'awardcertificates/Class TT-20201601888563.pdf', '2020-10-27');
 
 -- --------------------------------------------------------
 
@@ -436,7 +438,8 @@ CREATE TABLE `student_events_participated` (
 --
 
 INSERT INTO `student_events_participated` (`Event_ID`, `Register_No`, `Event_Name`, `Event_Type_Ref`, `Participation_Type_Ref`, `Team_Size`, `Event_Organizer`, `Event_Date`, `Prize_Won_Details`, `Certificate_Copy`) VALUES
-(22, 4000, 'xxx', 132, 119, 1, 'xxx', '2020-10-21', 'xxx', 'eventcertificates/Class TT-20201602042817.pdf');
+(22, 2018503557, 'event1b', 55, 119, 1, 'org1', '2020-10-31', 'prize1', ''),
+(23, 2018503557, 'evec', 54, 119, 5, 'MITaa', '2020-10-23', 'xxx', '');
 
 -- --------------------------------------------------------
 
@@ -470,7 +473,7 @@ CREATE TABLE `student_family_details` (
 --
 
 INSERT INTO `student_family_details` (`Family_ID`, `Register_No`, `Father_Name`, `Mother_Name`, `Father_ContactNumber`, `Mother_ContactNumber`, `Father_MailID`, `Mother_MailID`, `Father_Occupation`, `Mother_Occupation`, `Father_Affilation`, `Mother_Affilation`, `Father_Company`, `Mother_Company`, `Parents_Annual_Income`, `Local_Guardian_Name`, `Local_Guardian_Address`, `Local_Guardian_Contact_Number`) VALUES
-(1, 4000, 'aaa', 'asdsa', '23432', '', '', '', 'asdsad', '', '', '', '', '  ', 0, '', '', '');
+(1, 2018503557, 'father', 'moher', '9876543217', '1111111111', 'father@gmail.co', 'mother@gmail.co', 'Occupationf', 'Occupationm', 'Affilationf', 'Affilationm', 'CompanyF', 'CompanyM', 6000000, 'Guardian', 'Guard1,Road1,City1,560077', '7890123459');
 
 -- --------------------------------------------------------
 
@@ -514,6 +517,14 @@ CREATE TABLE `student_higherstudies` (
   `LOR_Details` varchar(255) DEFAULT NULL,
   `Score_Card_Copy` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `student_higherstudies`
+--
+
+INSERT INTO `student_higherstudies` (`HigherStudies_ID`, `Register_No`, `University`, `Degree`, `Specialization`, `Admission_Mode_Ref`, `Score`, `Country`, `Location`, `LOR_Details`, `Score_Card_Copy`) VALUES
+(2, 2018503557, 'IISC', 'M.Sc', 'Data Science', 104, 335, 'India', 'Bangalore', 'abcd', ''),
+(4, 2018503557, 'IIM', 'MBA', 'General Management', 111, 1100, 'India', 'Delhi', 'None', '');
 
 -- --------------------------------------------------------
 
@@ -560,8 +571,8 @@ CREATE TABLE `student_internship` (
 --
 
 INSERT INTO `student_internship` (`Internship_ID`, `Register_No`, `Company`, `Title`, `Order_Copy`, `Address`, `Start_Date`, `End_Date`, `Stiphend_Option_Ref`, `Stiphend_Amount`, `Selection_Mode_Ref`) VALUES
-(4, 4000, 'xxx', '', 'interncertificates/ASmartChatbotArchitectureb', 'yyy', '2020-10-29', '2020-10-23', 86, 234, 117),
-(5, 6000, 'xx', 'xxx', 'interncertificates/TimeComplexity1602151235.p', 'xxx', '2020-10-09', '2020-10-10', 87, 0, 117);
+(4, 2018503557, 'CE', 'postal', '', '19 DOOR Chenna', '2020-10-14', '2020-10-30', 86, 234, 118),
+(5, 2018503557, 'Wipro1', 'Systems Intern', 'interncertificates/TimeComplexity1602151235.p', 'xxx', '2020-10-20', '2020-10-14', 87, 0, 117);
 
 -- --------------------------------------------------------
 
@@ -588,8 +599,9 @@ CREATE TABLE `student_placement` (
 --
 
 INSERT INTO `student_placement` (`Placement_ID`, `Register_No`, `Company`, `Package`, `Appointment_Order_Copy`, `Location`, `Designation`, `Appointment_OrderNum`, `Appointment_Letter_IssueDate`, `Joining_Date`, `Placement_Type_Ref`) VALUES
-(4, 4000, 'xxx', 1111, 'placementorder/AULogo11601891148.jpg', 'xss', 'rrr', 'AS2345', '2020-10-07', '2020-10-06', 102),
-(5, 6000, 'xxx', 2233, 'placementorder/TimeComplexity1602151683.pdf', '', 'rrr', '3r33', '2020-10-09', '0000-00-00', 102);
+(4, 2018503557, 'yyyxx', 11.5, '', 'xss', 'rrr', 'AS2345', '2020-10-07', '2020-10-30', 103),
+(5, 2018503557, 'xxx', 12.99, '', 'hello', 'rrr', '3r33', '2020-10-09', '2020-12-01', 102),
+(7, 2018503557, 'yybbb', 13.4, '', 'chennai', 'sys engineer', 'AEorder', '2021-01-29', '2021-01-11', 103);
 
 -- --------------------------------------------------------
 
@@ -892,7 +904,7 @@ ALTER TABLE `user_info`
 -- AUTO_INCREMENT for table `credentials`
 --
 ALTER TABLE `credentials`
-  MODIFY `Credentials_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Credentials_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `person_guestlecture`
@@ -904,7 +916,7 @@ ALTER TABLE `person_guestlecture`
 -- AUTO_INCREMENT for table `person_reference_table`
 --
 ALTER TABLE `person_reference_table`
-  MODIFY `Reference_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
+  MODIFY `Reference_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
 
 --
 -- AUTO_INCREMENT for table `student_awards`
@@ -928,7 +940,7 @@ ALTER TABLE `student_endsemmarks`
 -- AUTO_INCREMENT for table `student_events_participated`
 --
 ALTER TABLE `student_events_participated`
-  MODIFY `Event_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `Event_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `student_family_details`
@@ -946,7 +958,7 @@ ALTER TABLE `student_gpa`
 -- AUTO_INCREMENT for table `student_higherstudies`
 --
 ALTER TABLE `student_higherstudies`
-  MODIFY `HigherStudies_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `HigherStudies_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `student_internalmarks`
@@ -958,13 +970,13 @@ ALTER TABLE `student_internalmarks`
 -- AUTO_INCREMENT for table `student_internship`
 --
 ALTER TABLE `student_internship`
-  MODIFY `Internship_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Internship_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `student_placement`
 --
 ALTER TABLE `student_placement`
-  MODIFY `Placement_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Placement_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `student_tcourses`
