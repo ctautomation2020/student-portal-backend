@@ -1,0 +1,16 @@
+type Query{
+    courseRegisteredStudent(data: courseRegisteredStudentQueryInput!): [CourseRegisteredStudent!]!
+}
+
+type CourseRegisteredStudent{
+    cregst_id: Int!
+    course_code: String
+    reg_no: Int
+    semester: Int
+    group_ref: Int
+    session_ref: Int
+}
+
+input courseRegisteredStudentQueryInput{
+    reg_no: Int!
+}
