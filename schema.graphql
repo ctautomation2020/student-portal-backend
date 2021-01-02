@@ -26,6 +26,7 @@ type Query {
   studentInternship(data: studentInternshipQueryInput!): StudentInternship!
   studentPlacement(data: studentPlacementQueryInput!): StudentPlacement!
   studentPlacements(data: studentPlacementsQueryInput!): [StudentPlacement!]!
+  studentRegisteredCourses(data: studentRegisteredCoursesQueryInput): [StudentRegisteredCourses!]!
   studentTcourse(data: studentTcourseQueryInput!): StudentTcourse!
 }
 
@@ -438,33 +439,30 @@ input studentEndsemMarkQueryInput {
 type StudentEndsemMark {
   Mark_ID: Int!
   Register_No: Int!
-  Couse_Code: String
+  Semester: Int
+  Course_Code: String
   Session_Ref: Int
-  Grade: Int
-  Internal_Mark: Int
-  GPA: Float
-  CGPA: Float
+  Grade: String
+  Credits: Int
   Entry_Date: String
 }
 
 input createStudentEndsemMarkInput {
-  Couse_Code: String
+  Semester: Int
+  Course_Code: String
   Session_Ref: Int
-  Grade: Int
-  Internal_Mark: Int
-  GPA: Float
-  CGPA: Float
+  Grade: String
+  Credits: Int
   Entry_Date: String
 }
 
 input updateStudentEndsemMarkInput {
   Mark_ID: Int!
-  Couse_Code: String
+  Semester: Int
+  Course_Code: String
   Session_Ref: Int
-  Grade: Int
-  Internal_Mark: Int
-  GPA: Float
-  CGPA: Float
+  Grade: String
+  Credits: Int
   Entry_Date: String
 }
 
@@ -602,20 +600,20 @@ type StudentGpa {
   Gpa_ID: Int!
   Register_No: Int!
   Semester: Int
-  GPA: Int
+  GPA: Float
   Grade_Sheet: String
 }
 
 input createStudentGpaInput {
   Semester: Int
-  GPA: Int
+  GPA: Float
   Grade_Sheet: String
 }
 
 input updateStudentGpaInput {
   Gpa_ID: Int!
   Semester: Int
-  GPA: Int
+  GPA: Float
   Grade_Sheet: String
 }
 
@@ -845,6 +843,20 @@ input deleteStudentPlacementInput {
 input uploadStudentPlacementInput {
   Placement_ID: Int!
   file: Upload!
+}
+
+type StudentRegisteredCourses {
+  cregst_id: Int!
+  course_code: String
+  reg_no: Int
+  semester: Int
+  group_ref: Int
+  session_ref: Int
+  course_list: CourseList
+}
+
+input studentRegisteredCoursesQueryInput {
+  Register_No: Int!
 }
 
 input studentTcourseQueryInput {

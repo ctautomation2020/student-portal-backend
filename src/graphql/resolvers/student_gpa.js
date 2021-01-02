@@ -42,7 +42,7 @@ module.exports={
         },
 
         async updateStudentGpa(parent, {data}, {prisma}, info) {
-            const {...ref_data} = data;
+            const {Gpa_ID,...ref_data} = data;
             return await prisma.student_gpa.update({
                 where:{
                     Gpa_ID
@@ -63,7 +63,8 @@ module.exports={
         },
 
         uploadStudentGpa: async (_, { data },{req}) => {
-            const{file,Gpa_ID} = data;
+            console.log(data);
+            const{Gpa_ID,file} = data;
             const { createReadStream, filename } = await file;
             const ext = filename.substr(filename.lastIndexOf('.') + 1);
             const fileName = "StudentGradeSheet_"+getRegNo(req)+"_"+Gpa_ID+"."+ext;

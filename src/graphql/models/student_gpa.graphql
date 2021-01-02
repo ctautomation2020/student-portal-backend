@@ -22,20 +22,20 @@ type StudentGpa{
     Gpa_ID: Int!
     Register_No: Int!
     Semester: Int
-    GPA: Int
+    GPA: Float
     Grade_Sheet: String
 }
 
 input createStudentGpaInput {
     Semester: Int
-    GPA: Int
+    GPA: Float
     Grade_Sheet: String
 }
 
 input updateStudentGpaInput {
     Gpa_ID: Int!
     Semester: Int
-    GPA: Int
+    GPA: Float
     Grade_Sheet: String
 }
 

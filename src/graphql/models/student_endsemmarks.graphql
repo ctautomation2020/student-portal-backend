@@ -20,33 +20,30 @@ input studentEndsemMarkQueryInput{
 type StudentEndsemMark{
     Mark_ID: Int!
     Register_No: Int!
-    Couse_Code: String
+    Semester: Int
+    Course_Code: String
     Session_Ref: Int
-    Grade: Int
-    Internal_Mark: Int
-    GPA: Float
-    CGPA: Float
+    Grade: String
+    Credits: Int
     Entry_Date: String
 }
 
 input createStudentEndsemMarkInput {
-    Couse_Code: String
+    Semester: Int
+    Course_Code: String
     Session_Ref: Int
-    Grade: Int
-    Internal_Mark: Int
-    GPA: Float
-    CGPA: Float
+    Grade: String
+    Credits: Int
     Entry_Date: String
 }
 
 input updateStudentEndsemMarkInput{
     Mark_ID: Int!
-    Couse_Code: String
+    Semester: Int
+    Course_Code: String
     Session_Ref: Int
-    Grade: Int
-    Internal_Mark: Int
-    GPA: Float
-    CGPA: Float
+    Grade: String
+    Credits: Int
     Entry_Date: String
 }
 

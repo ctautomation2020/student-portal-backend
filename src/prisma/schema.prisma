@@ -145,6 +145,7 @@ model student {
   person_reference_table_person_reference_tableTostudent_Registration_Mode_Ref     person_reference_table?       @relation("person_reference_tableTostudent_Registration_Mode_Ref", fields: [Registration_Mode_Ref], references: [Ref_Code])
   person_reference_table_person_reference_tableTostudent_Residential_Type_Ref      person_reference_table?       @relation("person_reference_tableTostudent_Residential_Type_Ref", fields: [Residential_Type_Ref], references: [Ref_Code])
   person_reference_table_person_reference_tableTostudent_Scholarship_Received_Ref  person_reference_table?       @relation("person_reference_tableTostudent_Scholarship_Received_Ref", fields: [Scholarship_Received_Ref], references: [Ref_Code])
+  course_registered_students                                                       course_registered_students[]
   credentials                                                                      credentials[]
   person_guestlecture                                                              person_guestlecture[]
   student_awards                                                                   student_awards[]
@@ -152,6 +153,7 @@ model student {
   student_endsemmarks                                                              student_endsemmarks[]
   student_events_participated                                                      student_events_participated[]
   student_family_details                                                           student_family_details[]
+  student_gpa                                                                      student_gpa[]
   student_higherstudies                                                            student_higherstudies[]
   student_internalmarks                                                            student_internalmarks[]
   student_internship                                                               student_internship[]
@@ -271,11 +273,14 @@ model student_family_details {
 }
 
 model student_gpa {
-  Gpa_ID      Int    @default(autoincrement()) @id
+  Gpa_ID      Int     @default(autoincrement()) @id
   Register_No Int
   Semester    Int
   GPA         Float
   Grade_Sheet String
+  student     student @relation(fields: [Register_No], references: [Register_No])
+
+  @@index([Register_No], name: "Register_No")
 }
 
 model student_higherstudies {
@@ -370,4 +375,31 @@ model user_info {
   password    String?
   status      String?
   create_time DateTime? @default(now())
+}
+
+model course_list {
+  course_code                String                       @id
+  stream                     Int
+  regulation                 Int
+  semester                   Int
+  title                      String
+  credit                     Int
+  objectives                 String?
+  course_registered_students course_registered_students[]
+}
+
+model course_registered_students {
+  cregst_id   Int         @default(autoincrement()) @id
+  course_code String
+  reg_no      Int
+  semester    Int
+  group_ref   Int
+  session_ref Int
+  course_list course_list @relation(fields: [course_code], references: [course_code])
+  student     student     @relation(fields: [reg_no], references: [Register_No])
+
+  @@index([course_code], name: "code_fk_idx")
+  @@index([group_ref], name: "group_fk_idx")
+  @@index([reg_no], name: "regno_fk_idx")
+  @@index([session_ref], name: "session_fk_idx")
 }
