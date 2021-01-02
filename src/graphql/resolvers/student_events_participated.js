@@ -91,6 +91,24 @@ module.exports={
                     Event_ID: data.Event_ID
                 }
             })
+        },
+
+        uploadEventParticipated: async (_, { data },{req}) => {
+            const{file,Event_ID} = data;
+            const { createReadStream, filename } = await file;
+            const ext = filename.substr(filename.lastIndexOf('.') + 1);
+            const fileName = "StudentEventParticipated_"+getRegNo(req)+"_"+Event_ID+"."+ext;
+            await new Promise(res =>
+                createReadStream()
+                .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-events-participated", fileName)))
+                .on("close", res)
+            );
+      
+            //files.push(filename);
+            console.log(createReadStream)
+
+
+            return true;
         }
     }
     

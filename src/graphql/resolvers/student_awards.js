@@ -91,6 +91,24 @@ module.exports={
                     Award_ID: data.Award_ID
                 }
             })
+        },
+
+        uploadStudentAward: async (_, { data },{req}) => {
+            const{file,Award_ID} = data;
+            const { createReadStream, filename } = await file;
+            const ext = filename.substr(filename.lastIndexOf('.') + 1);
+            const fileName = "StudentAward_"+getRegNo(req)+"_"+Award_ID+"."+ext;
+            await new Promise(res =>
+                createReadStream()
+                .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-awards", fileName)))
+                .on("close", res)
+            );
+      
+            //files.push(filename);
+            console.log(createReadStream)
+
+
+            return true;
         }
     }
     

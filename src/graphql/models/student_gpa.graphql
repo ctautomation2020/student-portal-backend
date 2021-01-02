@@ -7,6 +7,7 @@ type Mutation {
     createStudentGpa(data: createStudentGpaInput!): StudentGpa!
     updateStudentGpa(data: updateStudentGpaInput!): StudentGpa!
     deleteStudentGpa(data: deleteStudentGpaInput!): StudentGpa!
+    uploadStudentGpa(data: uploadStudentGpaInput!): Boolean
 }
 
 input studentGpasQueryInput{
@@ -40,4 +41,9 @@ input updateStudentGpaInput {
 
 input deleteStudentGpaInput {
     Gpa_ID: Int!
+}
+
+input uploadStudentGpaInput{
+    Gpa_ID: Int!
+    file: Upload!
 }

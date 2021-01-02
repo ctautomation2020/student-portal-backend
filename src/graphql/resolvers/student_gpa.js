@@ -60,6 +60,24 @@ module.exports={
                     Gpa_ID: data.Gpa_ID
                 }
             })
+        },
+
+        uploadStudentGpa: async (_, { data },{req}) => {
+            const{file,Gpa_ID} = data;
+            const { createReadStream, filename } = await file;
+            const ext = filename.substr(filename.lastIndexOf('.') + 1);
+            const fileName = "StudentGradeSheet_"+getRegNo(req)+"_"+Gpa_ID+"."+ext;
+            await new Promise(res =>
+                createReadStream()
+                .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-grade-sheets", fileName)))
+                .on("close", res)
+            );
+      
+            //files.push(filename);
+            console.log(createReadStream)
+
+
+            return true;
         }
     }
     

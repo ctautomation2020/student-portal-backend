@@ -77,6 +77,23 @@ module.exports={
             })
         },
         
+        uploadStudentHigherStudy: async (_, { data },{req}) => {
+            const{file,HigherStudies_ID} = data;
+            const { createReadStream, filename } = await file;
+            const ext = filename.substr(filename.lastIndexOf('.') + 1);
+            const fileName = "StudentHigherStudies_"+getRegNo(req)+"_"+HigherStudies_ID+"."+ext;
+            await new Promise(res =>
+                createReadStream()
+                .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-higher-studies", fileName)))
+                .on("close", res)
+            );
+      
+            //files.push(filename);
+            console.log(createReadStream)
+
+
+            return true;
+        }
     }
     
 }

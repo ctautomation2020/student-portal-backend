@@ -70,6 +70,24 @@ module.exports={
                     Placement_ID: data.Placement_ID
                 }
             })
+        },
+
+        uploadStudentPlacement: async (_, { data },{req}) => {
+            const{file,Placement_ID} = data;
+            const { createReadStream, filename } = await file;
+            const ext = filename.substr(filename.lastIndexOf('.') + 1);
+            const fileName = "StudentPlacement_"+getRegNo(req)+"_"+Placement_ID+"."+ext;
+            await new Promise(res =>
+                createReadStream()
+                .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-placements", fileName)))
+                .on("close", res)
+            );
+      
+            //files.push(filename);
+            console.log(createReadStream)
+
+
+            return true;
         }
     }
     

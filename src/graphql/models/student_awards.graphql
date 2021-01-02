@@ -7,6 +7,7 @@ type Mutation {
     createStudentAward(data: createStudentAwardInput!): StudentAward!
     updateStudentAward(data: updateStudentAwardInput!): StudentAward!
     deleteStudentAward(data: deleteStudentAwardInput!): StudentAward!
+    uploadStudentAward(data: uploadStudentAwardInput!): Boolean
 }
 
 input studentAwardsQueryInput{
@@ -54,4 +55,9 @@ input updateStudentAwardInput{
 
 input deleteStudentAwardInput{
     Award_ID: Int!
+}
+
+input uploadStudentAwardInput{
+    Award_ID: Int!
+    file: Upload!
 }
