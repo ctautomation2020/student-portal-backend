@@ -6,8 +6,8 @@ type Query {
 type Mutation {
     createStudent(data: createStudentInput!): Student!
     updateStudent(data: updateStudentInput!): Student!
-    uploadPhoto(file: Upload): Boolean
-    deletePhoto: Student!
+    uploadPhoto(file: Upload): String!
+    deletePhoto: String!
 }
 
 type Student{

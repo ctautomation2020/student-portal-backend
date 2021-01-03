@@ -11,6 +11,7 @@ type Mutation {
 
 input studentEndsemMarksQueryInput{
     Register_No: Int!
+    Semester: Int!
 }
 
 input studentEndsemMarkQueryInput{

@@ -7,7 +7,7 @@ type Mutation {
     createEventParticipated(data: createEventParticipatedInput!): StudentEventParticipated!
     updateEventParticipated(data: updateEventParticipatedInput!): StudentEventParticipated!
     deleteEventParticipated(data: deleteEventParticipatedInput!): StudentEventParticipated!
-    uploadEventParticipated(data: uploadEventParticipatedInput!): Boolean
+    uploadEventParticipated(data: uploadEventParticipatedInput!): String!
 }
 
 input studentEventsParticipatedQueryInput{

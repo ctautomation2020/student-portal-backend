@@ -7,7 +7,7 @@ type Mutation {
     createStudentGpa(data: createStudentGpaInput!): StudentGpa!
     updateStudentGpa(data: updateStudentGpaInput!): StudentGpa!
     deleteStudentGpa(data: deleteStudentGpaInput!): StudentGpa!
-    uploadStudentGpa(data: uploadStudentGpaInput!): Boolean
+    uploadStudentGpa(data: uploadStudentGpaInput!): String!
 }
 
 input studentGpasQueryInput{

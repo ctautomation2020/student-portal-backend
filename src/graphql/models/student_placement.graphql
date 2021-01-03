@@ -7,7 +7,7 @@ type Mutation{
     createStudentPlacement(data: createStudentPlacementInput!): StudentPlacement!
     updateStudentPlacement(data: updateStudentPlacementInput!): StudentPlacement!
     deleteStudentPlacement(data: deleteStudentPlacementInput!): StudentPlacement! 
-    uploadStudentPlacement(data: uploadStudentPlacementInput!): Boolean
+    uploadStudentPlacement(data: uploadStudentPlacementInput!): String!
 }
 
 type StudentPlacement{

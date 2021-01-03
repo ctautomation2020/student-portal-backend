@@ -7,7 +7,7 @@ type Mutation{
     createStudentHigherStudy(data: createStudentHigherStudyInput!): StudentHigherStudy!
     updateStudentHigherStudy(data: updateStudentHigherStudyInput!): StudentHigherStudy!
     deleteStudentHigherStudy(data: deleteStudentHigherStudyInput!): StudentHigherStudy!
-    uploadStudentHigherStudy(data: uploadStudentHigherStudyInput!): Boolean
+    uploadStudentHigherStudy(data: uploadStudentHigherStudyInput!): String!
 }
 
 type StudentHigherStudy{

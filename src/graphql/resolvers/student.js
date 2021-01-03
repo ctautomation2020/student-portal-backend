@@ -212,7 +212,7 @@ module.exports={
             console.log(createReadStream)
 
 
-            return true;
+            return path.join("files/profile-photos", fileName);
         },
         async deletePhoto(parent, args, {prisma,req}, info) {
             let fName = getRegNo(req);
@@ -226,7 +226,7 @@ module.exports={
                     fs.unlinkSync(file);
                 })
             })
-            return await prisma.student.update({
+            await prisma.student.update({
                 where:{
                     Register_No:fName
                 },
@@ -234,6 +234,7 @@ module.exports={
                     Photo:""
                 }
             });
+            return "";
         }
     },
     

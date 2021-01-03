@@ -5,10 +5,11 @@ let path = require('path')
 module.exports={
     Query:{
         async studentEndsemMarks(parent, {data}, {prisma,req}, info){
-            const Register_No = data.Register_No;
+            const {Register_No,Semester}= data;
             return await prisma.student_endsemmarks.findMany({
                 where: {
-                    Register_No
+                    Register_No,
+                    Semester
                 }
             })
         },
