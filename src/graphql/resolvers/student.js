@@ -1,7 +1,7 @@
 import getRegNo from "../auth/getRegNo"
 let fs = require('fs')
 let path = require('path')
-
+let glob = require('glob')
 module.exports={
     Query:{
 
@@ -190,7 +190,18 @@ module.exports={
             
             const { createReadStream, filename } = await file;
             const ext = filename.substr(filename.lastIndexOf('.') + 1);
-            const fileName = getRegNo(req)+"."+ext;
+            let fName = getRegNo(req);
+            const fileName = fName+"."+ext;
+
+            var fPath = path.join(__dirname, "../../files/profile-photos",fName.toString());
+            fPath += ".*";
+
+            glob(fPath, function (er, files) {
+                console.log(files)
+                files.forEach(file=>{
+                    fs.unlinkSync(file);
+                })
+            })
             await new Promise(res =>
                 createReadStream()
                 .pipe(fs.createWriteStream(path.join(__dirname, "../../files/profile-photos", fileName)))
@@ -202,7 +213,28 @@ module.exports={
 
 
             return true;
-          }
+        },
+        async deletePhoto(parent, args, {prisma,req}, info) {
+            let fName = getRegNo(req);
+
+            var fPath = path.join(__dirname, "../../files/profile-photos",fName.toString());
+            fPath += ".*";
+
+            glob(fPath, function (er, files) {
+                console.log(files)
+                files.forEach(file=>{
+                    fs.unlinkSync(file);
+                })
+            })
+            return await prisma.student.update({
+                where:{
+                    Register_No:fName
+                },
+                data:{
+                    Photo:""
+                }
+            });
+        }
     },
     
 }

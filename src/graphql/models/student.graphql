@@ -7,6 +7,7 @@ type Mutation {
     createStudent(data: createStudentInput!): Student!
     updateStudent(data: updateStudentInput!): Student!
     uploadPhoto(file: Upload): Boolean
+    deletePhoto: Student!
 }
 
 type Student{
@@ -27,7 +28,7 @@ type Student{
     Address_Line3: String
     Address_Line4: String
     Correspondence_Address: String
-    #Photo
+    Photo: String
     Residential_Type_Ref: Int
     FA: Int
     Programme_Ref: Int

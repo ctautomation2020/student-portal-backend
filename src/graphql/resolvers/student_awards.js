@@ -98,6 +98,9 @@ module.exports={
             const { createReadStream, filename } = await file;
             const ext = filename.substr(filename.lastIndexOf('.') + 1);
             const fileName = "StudentAward_"+getRegNo(req)+"_"+Award_ID+"."+ext;
+            
+            fs.unlinkSync(path.join(__dirname, "../../files/student-awards", fileName))
+  
             await new Promise(res =>
                 createReadStream()
                 .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-awards", fileName)))

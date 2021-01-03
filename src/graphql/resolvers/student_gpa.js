@@ -63,11 +63,13 @@ module.exports={
         },
 
         uploadStudentGpa: async (_, { data },{req}) => {
-            console.log(data);
             const{Gpa_ID,file} = data;
             const { createReadStream, filename } = await file;
             const ext = filename.substr(filename.lastIndexOf('.') + 1);
             const fileName = "StudentGradeSheet_"+getRegNo(req)+"_"+Gpa_ID+"."+ext;
+
+            fs.unlinkSync(path.join(__dirname, "../../files/student-grade-sheets", fileName));
+
             await new Promise(res =>
                 createReadStream()
                 .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-grade-sheets", fileName)))
