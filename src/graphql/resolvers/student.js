@@ -194,26 +194,32 @@ module.exports={
             const fileName = fName+"."+ext;
 
             var fPath = path.join(__dirname, "../../files/profile-photos",fName.toString());
-            fPath += ".*";
+            fPath += ".[^"+ext+"]*";
 
             glob(fPath, function (er, files) {
                 console.log(files)
                 files.forEach(file=>{
+                    if(fs.existsSync(file))
                     fs.unlinkSync(file);
                 })
             })
+            if(fs.existsSync(path.join(__dirname, "../../files/profile-photos", fileName)))
+            {
+                fs.unlinkSync(path.join(__dirname, "../../files/profile-photos", fileName))
+            }
+            
             await new Promise(res =>
                 createReadStream()
                 .pipe(fs.createWriteStream(path.join(__dirname, "../../files/profile-photos", fileName)))
                 .on("close", res)
             );
-            const Photo = path.join("files/profile-photos", fileName);
+            const Photo = path.join("profile-photos", fileName);
             await prisma.student.update({
                 where:{
-                    Register_No
+                    Register_No : fName
                 },
                 data:{
-                    Photo
+                    Photo:Photo
                 }
             })
             //files.push(filename);
