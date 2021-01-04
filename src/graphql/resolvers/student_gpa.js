@@ -62,7 +62,7 @@ module.exports={
             })
         },
 
-        uploadStudentGpa: async (_, { data },{req}) => {
+        uploadStudentGpa: async (_, { data },{prisma,req}) => {
             const{Gpa_ID,file} = data;
             const { createReadStream, filename } = await file;
             const ext = filename.substr(filename.lastIndexOf('.') + 1);
@@ -77,8 +77,8 @@ module.exports={
                 .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-grade-sheets", fileName)))
                 .on("close", res)
             );
-            const Grade_Sheet =  path.join("files/student-grade-sheets", fileName);
-            await prisma.student_gpa.delete({
+            const Grade_Sheet =  path.join("student-grade-sheets", fileName);
+            await prisma.student_gpa.update({
                 where:{
                     Gpa_ID
                 },

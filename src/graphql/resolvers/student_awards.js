@@ -93,7 +93,7 @@ module.exports={
             })
         },
 
-        uploadStudentAward: async (_, { data },{req}) => {
+        uploadStudentAward: async (_, { data },{prisma,req}) => {
             const{file,Award_ID} = data;
             const { createReadStream, filename } = await file;
             const ext = filename.substr(filename.lastIndexOf('.') + 1);
@@ -107,7 +107,7 @@ module.exports={
                 .on("close", res)
             );
             
-            const Certificate_Copy = path.join("files/student-awards", fileName);
+            const Certificate_Copy = path.join("student-awards", fileName);
             await prisma.student_awards.update({
                 where: {
                     Award_ID

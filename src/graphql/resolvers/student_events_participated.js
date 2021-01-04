@@ -93,7 +93,7 @@ module.exports={
             })
         },
 
-        uploadEventParticipated: async (_, { data },{req}) => {
+        uploadEventParticipated: async (_, { data },{prisma,req}) => {
             const{file,Event_ID} = data;
             const { createReadStream, filename } = await file;
             const ext = filename.substr(filename.lastIndexOf('.') + 1);
@@ -103,27 +103,22 @@ module.exports={
             {
                 fs.unlinkSync(path.join(__dirname, "../../files/student-events-participated", fileName));
             }
-                        
             await new Promise(res =>
                 createReadStream()
                 .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-events-participated", fileName)))
                 .on("close", res)
             );
                 
-            const Certificate_copy = path.join("files/student-events-participated", fileName);
+            const Certificate_Copy = path.join("student-events-participated", fileName);
             await prisma.student_events_participated.update({
                 where:{
                     Event_ID
                 },
                 data:{
-                    Certificate_copy
+                    Certificate_Copy: Certificate_Copy
                 }
-            })
-            //files.push(filename);
-            console.log(createReadStream)
-
-
-            return Certificate_Copy;
+            });
+           return Certificate_Copy
         }
     }
     

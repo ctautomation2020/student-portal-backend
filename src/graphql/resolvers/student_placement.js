@@ -72,7 +72,7 @@ module.exports={
             })
         },
 
-        uploadStudentPlacement: async (_, { data },{req}) => {
+        uploadStudentPlacement: async (_, { data },{prisma,req}) => {
             const{file,Placement_ID} = data;
             const { createReadStream, filename } = await file;
             const ext = filename.substr(filename.lastIndexOf('.') + 1);
@@ -86,7 +86,7 @@ module.exports={
                 .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-placements", fileName)))
                 .on("close", res)
             );
-            const Appointment_Order_Copy = path.join("files/student-placements", fileName);
+            const Appointment_Order_Copy = path.join("student-placements", fileName);
             await prisma.student_placement.update({
                 where:{
                     Placement_ID

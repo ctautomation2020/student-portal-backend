@@ -94,7 +94,7 @@ module.exports={
             })
         },
 
-        uploadStudentInternship: async (_, { data },{req}) => {
+        uploadStudentInternship: async (_, { data },{prisma,req}) => {
             const{file,Internship_ID} = data;
             const { createReadStream, filename } = await file;
             const ext = filename.substr(filename.lastIndexOf('.') + 1);
@@ -109,7 +109,7 @@ module.exports={
                 .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-internships", fileName)))
                 .on("close", res)
             );
-            const Order_Copy = path.join("files/student-internships", fileName);
+            const Order_Copy = path.join("student-internships", fileName);
             await prisma.student_internship.update({
                 where:{
                     Internship_ID
