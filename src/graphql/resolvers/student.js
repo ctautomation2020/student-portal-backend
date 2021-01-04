@@ -186,7 +186,7 @@ module.exports={
                 }
             })
         },
-        uploadPhoto: async (_, { file },{req}) => {
+        uploadPhoto: async (_, { file },{prisma,req}) => {
             
             const { createReadStream, filename } = await file;
             const ext = filename.substr(filename.lastIndexOf('.') + 1);
