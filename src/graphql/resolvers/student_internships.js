@@ -100,19 +100,29 @@ module.exports={
             const ext = filename.substr(filename.lastIndexOf('.') + 1);
             const fileName = "StudentInternship_"+getRegNo(req)+"_"+Internship_ID+"."+ext;
 
-            fs.unlinkSync(path.join(__dirname, "../../files/student-internships", fileName));
+            if(fs.existsSync(path.join(__dirname, "../../files/student-internships", fileName))){
+                fs.unlinkSync(path.join(__dirname, "../../files/student-internships", fileName))
+            }
             
             await new Promise(res =>
                 createReadStream()
                 .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-internships", fileName)))
                 .on("close", res)
             );
-      
+            const Order_Copy = path.join("files/student-internships", fileName);
+            await prisma.student_internship.update({
+                where:{
+                    Internship_ID
+                },
+                data:{
+                    Order_Copy
+                }
+            })
             //files.push(filename);
             console.log(createReadStream)
 
 
-            return path.join("files/student-internships", fileName);
+            return Order_Copy ;
         }
     }
     

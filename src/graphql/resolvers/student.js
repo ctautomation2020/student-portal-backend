@@ -207,12 +207,20 @@ module.exports={
                 .pipe(fs.createWriteStream(path.join(__dirname, "../../files/profile-photos", fileName)))
                 .on("close", res)
             );
-      
+            const Photo = path.join("files/profile-photos", fileName);
+            await prisma.student.update({
+                where:{
+                    Register_No
+                },
+                data:{
+                    Photo
+                }
+            })
             //files.push(filename);
             console.log(createReadStream)
 
 
-            return path.join("files/profile-photos", fileName);
+            return Photo; 
         },
         async deletePhoto(parent, args, {prisma,req}, info) {
             let fName = getRegNo(req);

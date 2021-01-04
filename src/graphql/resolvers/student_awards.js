@@ -98,20 +98,29 @@ module.exports={
             const { createReadStream, filename } = await file;
             const ext = filename.substr(filename.lastIndexOf('.') + 1);
             const fileName = "StudentAward_"+getRegNo(req)+"_"+Award_ID+"."+ext;
-            
-            fs.unlinkSync(path.join(__dirname, "../../files/student-awards", fileName))
-  
+            if(fs.existsSync(path.join(__dirname, "../../files/student-awards", fileName))){
+                fs.unlinkSync(path.join(__dirname, "../../files/student-awards", fileName))
+            }  
             await new Promise(res =>
                 createReadStream()
                 .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-awards", fileName)))
                 .on("close", res)
             );
-      
+            
+            const Certificate_Copy = path.join("files/student-awards", fileName);
+            await prisma.student_awards.update({
+                where: {
+                    Award_ID
+                },
+                data:{
+                    Certificate_Copy
+                }
+            })
             //files.push(filename);
             console.log(createReadStream)
 
 
-            return path.join("files/student-awards", fileName);
+            return Certificate_Copy;
         }
     }
     

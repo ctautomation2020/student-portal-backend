@@ -83,19 +83,30 @@ module.exports={
             const ext = filename.substr(filename.lastIndexOf('.') + 1);
             const fileName = "StudentHigherStudies_"+getRegNo(req)+"_"+HigherStudies_ID+"."+ext;
 
-            fs.unlinkSync(path.join(__dirname, "../../files/student-higher-studies", fileName))
+            if(fs.existsSync(path.join(__dirname, "../../files/student-higher-studies", fileName))){
+                fs.unlinkSync(path.join(__dirname, "../../files/student-higher-studies", fileName))
+            }
             
             await new Promise(res =>
                 createReadStream()
                 .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-higher-studies", fileName)))
                 .on("close", res)
             );
-      
+            const Score_Card_Copy = path.join("files/student-higher-studies", fileName);
+
+            await prisma.student_higherstudies.update({
+                where:{
+                    HigherStudies_ID
+                },
+                data:{
+                    Score_Card_Copy
+                }
+            })
             //files.push(filename);
             console.log(createReadStream)
 
 
-            return path.join("files/student-higher-studies", fileName);
+            return Score_Card_Copy;
         }
     }
     

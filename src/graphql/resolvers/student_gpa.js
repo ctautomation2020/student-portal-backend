@@ -68,19 +68,29 @@ module.exports={
             const ext = filename.substr(filename.lastIndexOf('.') + 1);
             const fileName = "StudentGradeSheet_"+getRegNo(req)+"_"+Gpa_ID+"."+ext;
 
-            fs.unlinkSync(path.join(__dirname, "../../files/student-grade-sheets", fileName));
+            if(fs.existsSync(path.join(__dirname, "../../files/student-grade-sheets", fileName))){
+                fs.unlinkSync(path.join(__dirname, "../../files/student-grade-sheets", fileName));
+            }
 
             await new Promise(res =>
                 createReadStream()
                 .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-grade-sheets", fileName)))
                 .on("close", res)
             );
-      
+            const Grade_Sheet =  path.join("files/student-grade-sheets", fileName);
+            await prisma.student_gpa.delete({
+                where:{
+                    Gpa_ID
+                },
+                data:{
+                    Grade_Sheet
+                }
+            })
             //files.push(filename);
             console.log(createReadStream)
 
 
-            return path.join("files/student-grade-sheets", fileName);
+            return Grade_Sheet;
         }
     }
     
