@@ -1,4 +1,5 @@
 type Query {
+    studentEndsemsMarks(data: studentEndsemsMarksQueryInput!): [StudentEndsemMark!]!
     studentEndsemMarks(data: studentEndsemMarksQueryInput!): [StudentEndsemMark!]!
     studentEndsemMark(data: studentEndsemMarkQueryInput!): StudentEndsemMark!
 }
@@ -7,6 +8,10 @@ type Mutation {
     createStudentEndsemMark(data: createStudentEndsemMarkInput!): StudentEndsemMark!
     updateStudentEndsemMark(data: updateStudentEndsemMarkInput!): StudentEndsemMark!
     deleteStudentEndsemMark(data: deleteStudentEndsemMarkInput!): StudentEndsemMark!
+}
+
+input studentEndsemsMarksQueryInput{
+    Register_No: Int!
 }
 
 input studentEndsemMarksQueryInput{
