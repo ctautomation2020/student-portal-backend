@@ -64,11 +64,12 @@ type Mutation {
   updatePerson(data: updatePersonInput!): Person!
   createStudent(data: createStudentInput!): Student!
   updateStudent(data: updateStudentInput!): Student!
-  uploadPhoto(file: Upload): Boolean
+  uploadPhoto(file: Upload): String!
+  deletePhoto: String!
   createStudentAward(data: createStudentAwardInput!): StudentAward!
   updateStudentAward(data: updateStudentAwardInput!): StudentAward!
   deleteStudentAward(data: deleteStudentAwardInput!): StudentAward!
-  uploadStudentAward(data: uploadStudentAwardInput!): Boolean
+  uploadStudentAward(data: uploadStudentAwardInput!): String!
   createStudentCourse(data: createStudentCourseInput!): StudentCourse!
   updateStudentCourse(data: updateStudentCourseInput!): StudentCourse!
   deleteStudentCourse(data: deleteStudentCourseInput!): StudentCourse!
@@ -78,28 +79,28 @@ type Mutation {
   createEventParticipated(data: createEventParticipatedInput!): StudentEventParticipated!
   updateEventParticipated(data: updateEventParticipatedInput!): StudentEventParticipated!
   deleteEventParticipated(data: deleteEventParticipatedInput!): StudentEventParticipated!
-  uploadEventParticipated(data: uploadEventParticipatedInput!): Boolean
+  uploadEventParticipated(data: uploadEventParticipatedInput!): String!
   createStudentFamilyDetails(data: createStudentFamilyDetailsInput!): StudentFamilyDetails!
   updateStudentFamilyDetails(data: updateStudentFamilyDetailsInput!): StudentFamilyDetails!
   createStudentGpa(data: createStudentGpaInput!): StudentGpa!
   updateStudentGpa(data: updateStudentGpaInput!): StudentGpa!
   deleteStudentGpa(data: deleteStudentGpaInput!): StudentGpa!
-  uploadStudentGpa(data: uploadStudentGpaInput!): Boolean
+  uploadStudentGpa(data: uploadStudentGpaInput!): String!
   createStudentHigherStudy(data: createStudentHigherStudyInput!): StudentHigherStudy!
   updateStudentHigherStudy(data: updateStudentHigherStudyInput!): StudentHigherStudy!
   deleteStudentHigherStudy(data: deleteStudentHigherStudyInput!): StudentHigherStudy!
-  uploadStudentHigherStudy(data: uploadStudentHigherStudyInput!): Boolean
+  uploadStudentHigherStudy(data: uploadStudentHigherStudyInput!): String!
   createStudentInternalMark(data: createStudentInternalMarkInput!): StudentInternalMark!
   updateStudentInternalMark(data: updateStudentInternalMarkInput!): StudentInternalMark!
   deleteStudentInternalMark(data: deleteStudentInternalMarkInput!): StudentInternalMark!
   createStudentInternship(data: createStudentInternshipInput!): StudentInternship!
   updateStudentInternship(data: updateStudentInternshipInput!): StudentInternship!
   deleteStudentInternship(data: deleteStudentInternshipInput!): StudentInternship!
-  uploadStudentInternship(data: uploadStudentInternshipInput!): Boolean
+  uploadStudentInternship(data: uploadStudentInternshipInput!): String!
   createStudentPlacement(data: createStudentPlacementInput!): StudentPlacement!
   updateStudentPlacement(data: updateStudentPlacementInput!): StudentPlacement!
   deleteStudentPlacement(data: deleteStudentPlacementInput!): StudentPlacement!
-  uploadStudentPlacement(data: uploadStudentPlacementInput!): Boolean
+  uploadStudentPlacement(data: uploadStudentPlacementInput!): String!
 }
 
 type credentials {
@@ -251,6 +252,7 @@ type Student {
   Address_Line3: String
   Address_Line4: String
   Correspondence_Address: String
+  Photo: String
   Residential_Type_Ref: Int
   FA: Int
   Programme_Ref: Int
@@ -430,6 +432,7 @@ input deleteStudentCourseInput {
 
 input studentEndsemMarksQueryInput {
   Register_No: Int!
+  Semester: Int!
 }
 
 input studentEndsemMarkQueryInput {

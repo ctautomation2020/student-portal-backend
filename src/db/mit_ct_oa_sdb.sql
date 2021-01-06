@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 01, 2021 at 07:08 AM
+-- Generation Time: Jan 04, 2021 at 09:48 AM
 -- Server version: 8.0.22
 -- PHP Version: 7.4.9
 
@@ -31,6 +31,101 @@ CREATE TABLE `category` (
   `category_id` int NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_list`
+--
+
+CREATE TABLE `course_list` (
+  `course_code` varchar(15) NOT NULL,
+  `stream` int NOT NULL,
+  `regulation` int NOT NULL,
+  `semester` int NOT NULL,
+  `title` varchar(55) NOT NULL,
+  `credit` int NOT NULL,
+  `objectives` mediumtext
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `course_list`
+--
+
+INSERT INTO `course_list` (`course_code`, `stream`, `regulation`, `semester`, `title`, `credit`, `objectives`) VALUES
+('CS6101', 0, 0, 0, 'Programming with C', 6, ''),
+('CS6102', 0, 0, 0, 'Computational Thinking', 3, ''),
+('CS6103', 0, 0, 0, 'Application Development Practices', 4, ''),
+('CS6104', 0, 0, 0, 'Data Structures and Algorithms', 7, ''),
+('CS6105', 0, 0, 0, 'Digital Fundamentals and Computer Organization', 7, ''),
+('CS6106', 0, 0, 0, 'Database Management Systems', 6, ''),
+('CS6107', 0, 0, 0, 'Computer Architecture', 5, ''),
+('CS6108', 0, 0, 0, 'Operating Systems', 6, ''),
+('CS6109', 0, 0, 0, 'Compiler Design', 6, ''),
+('CS6110', 0, 0, 0, 'Object Oriented Analysis and Design', 6, ''),
+('CS6111', 0, 0, 0, 'Computer Networks', 6, ''),
+('CS6201', 0, 0, 0, 'Graph Theory', 5, ''),
+('CS6202', 0, 0, 0, 'Theory of Computation', 5, ''),
+('CS6308', 0, 0, 0, 'Java Programming', 6, ''),
+('CY6251', 0, 0, 0, 'Engineering Chemistry', 5, ''),
+('EE6351', 0, 0, 0, 'Basics of Electrical and Electronics Engineering', 7, ''),
+('GE6251', 0, 0, 0, 'Engineering Graphics', 5, ''),
+('HS6151', 0, 0, 0, 'Technical English I', 5, ''),
+('HS6251', 0, 0, 0, 'Technical English II', 5, ''),
+('MA6151', 0, 0, 0, 'Mathematics I', 5, ''),
+('MA6201', 0, 0, 0, 'Linear Algebra', 5, ''),
+('MA6251', 0, 0, 0, 'Discrete Mathematics', 5, ''),
+('MA6351', 0, 0, 0, 'Probability and Statistics', 5, ''),
+('OE6392', 0, 0, 0, 'Critical Thinking Skills', 3, ''),
+('OE6394', 0, 0, 0, 'Environmental Science And Engineering', 3, ''),
+('PH6151', 0, 0, 0, 'Engineering Physics', 5, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_registered_students`
+--
+
+CREATE TABLE `course_registered_students` (
+  `cregst_id` int NOT NULL,
+  `course_code` varchar(15) NOT NULL,
+  `reg_no` int NOT NULL,
+  `semester` int NOT NULL,
+  `group_ref` int NOT NULL,
+  `session_ref` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `course_registered_students`
+--
+
+INSERT INTO `course_registered_students` (`cregst_id`, `course_code`, `reg_no`, `semester`, `group_ref`, `session_ref`) VALUES
+(1, 'HS6151', 2018503557, 1, 0, 0),
+(2, 'PH6151', 2018503557, 1, 0, 0),
+(3, 'MA6151', 2018503557, 1, 0, 0),
+(4, 'CS6101', 2018503557, 1, 0, 0),
+(5, 'CS6102', 2018503557, 1, 0, 0),
+(6, 'HS6251', 2018503557, 2, 0, 0),
+(7, 'CY6251', 2018503557, 2, 0, 0),
+(8, 'MA6251', 2018503557, 2, 0, 0),
+(9, 'GE6251', 2018503557, 2, 0, 0),
+(10, 'CS6103', 2018503557, 2, 0, 0),
+(11, 'CS6104', 2018503557, 3, 0, 0),
+(12, 'CS6105', 2018503557, 3, 0, 0),
+(13, 'MA6351', 2018503557, 3, 0, 0),
+(14, 'EE6351', 2018503557, 3, 0, 0),
+(15, 'OE6392', 2018503557, 3, 0, 0),
+(16, 'CS6106', 2018503557, 4, 0, 0),
+(17, 'CS6107', 2018503557, 4, 0, 0),
+(18, 'CS6108', 2018503557, 4, 0, 0),
+(19, 'CS6202', 2018503557, 4, 0, 0),
+(20, 'OE6394', 2018503557, 4, 0, 0),
+(21, 'CS6109', 2018503557, 5, 0, 0),
+(22, 'CS6110', 2018503557, 5, 0, 0),
+(23, 'CS6111', 2018503557, 5, 0, 0),
+(24, 'MA6201', 2018503557, 5, 0, 0),
+(25, 'CS6308', 2018503557, 5, 0, 0),
+(26, 'CS6201', 2018503557, 5, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -186,7 +281,7 @@ INSERT INTO `person_reference_table` (`Reference_ID`, `Ref_Code`, `Category`, `R
 (52, 52, 'Event_Type', 'Conference', NULL),
 (53, 53, 'Event_Type', 'Seminar', NULL),
 (54, 54, 'Event_Type', 'Workshop', NULL),
-(55, 55, 'Event_Type', 'Guest_Lecture', NULL),
+(55, 55, 'Event_Type', 'Guest Lecture', NULL),
 (56, 56, 'Event_Type', 'Short Course', NULL),
 (57, 57, 'Project_Type', 'Research', NULL),
 (58, 58, 'Project_Type', 'Infra Structure', NULL),
@@ -324,7 +419,7 @@ INSERT INTO `student` (`Register_No`, `First_Name`, `Middle_Name`, `Last_Name`, 
 (4000, 'Anitha', '', 's', 67, '2020-10-02', 7, 'xxx', 'anithacse@gmail.com', 'adf333', 'zzz', '', 'zzz', 'zzz', 'zzz', 'zzz', 'zzz', 'photos/AULogo11601882158.jpg', 97, 5001, 99, 26, 88, 121, 345.55, '2020-10-09', 90, 87, 'zzz', 129, 'zzz'),
 (6000, 'sss', '', 'sss', 67, '2020-10-10', 6, 'asasd', 'anithacse@gmail.com', '123456789123', '1234567890', '', 'yyy', 'yyy', 'yyy', 'sdfds', 'yyy', 'photos/Anitha_Photo1602148254.jpg', 96, 5001, 99, 26, 88, 121, 192, '2020-11-04', 91, -1, '', 129, 'fdgfdg'),
 (2018503556, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2018503557, 'Sivaganesh', '', 'B', 66, '2000-03-22', 11, 'yyyxx', 'sivaganesh1903@gmail.com', '123456789000', '9876543210', '1234567890', 'House No', 'Street', 'City', '600001', 'House No, Street, City, 600001', '', 97, 123, 99, 26, 88, 124, 197, '2024-05-01', 90, 87, '', 131, ''),
+(2018503557, 'Sivaganesh', '', 'B', 66, '2000-03-22', 11, 'yyyxx', 'sivaganesh1903@gmail.com', '3322 9103 9280', '9876543210', '1234567890', 'House No', 'Street', 'City', '600001', 'House No, Street, City, 600001', 'profile-photos/2018503557.png', 97, 123, 99, 26, 88, 122, 197, '2024-05-01', 90, 87, '', 131, ''),
 (2018615001, 'yyy', '', 'yyy', 67, '2020-10-09', 5, 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'photos/AULogo11602068816.jpg', 96, 5001, 99, 26, 88, 122, 0, '2020-10-21', 90, 86, 'yyy', -1, 'yyy');
 
 -- --------------------------------------------------------
@@ -350,7 +445,8 @@ CREATE TABLE `student_awards` (
 --
 
 INSERT INTO `student_awards` (`Award_ID`, `Register_No`, `Award_Name`, `Organizer_Name`, `Award_Type_Ref`, `Award_Category_Ref`, `Place_of_Event`, `Certificate_Copy`, `Award_Date`) VALUES
-(4, 2018503557, 'sasdsa', 'asdasdsa', 112, 115, 'sadsa', 'awardcertificates/Class TT-20201601888563.pdf', '2020-10-27');
+(4, 2018503557, '100m', 'CEG', 113, 114, '2nd', 'student-awards/StudentAward_2018503557_4.pdf', '2020-10-28'),
+(6, 2018503557, 'Data Hackathon', 'MIT', 112, 115, '1st', '', '2021-01-18');
 
 -- --------------------------------------------------------
 
@@ -391,21 +487,21 @@ CREATE TABLE `student_endsemmarks` (
 --
 
 INSERT INTO `student_endsemmarks` (`Mark_ID`, `Register_No`, `Semester`, `Course_Code`, `Session_Ref`, `Grade`, `Credits`, `Entry_Date`) VALUES
-(228, 4000, 1, 'HS7151', 134, 'A', 4, '2020-10-07'),
-(229, 4000, 1, 'MA7151', 134, 'A', 4, '2020-10-07'),
-(230, 4000, 1, 'PH7151', 134, 'B', 3, '2020-10-07'),
-(231, 4000, 1, 'CY7151', 135, 'B', 3, '2020-10-07'),
-(232, 4000, 1, 'GE7151', 134, 'A', 3, '2020-10-07'),
-(233, 4000, 1, 'BS7161', 134, 'A', 2, '2020-10-07'),
-(234, 4000, 1, 'GE7161', 136, 'A', 2, '2020-10-07'),
-(235, 4000, 2, 'HS7251', 135, 'A', 4, '2020-10-07'),
-(236, 4000, 2, 'MA7251', 135, 'A', 4, '2020-10-07'),
-(237, 4000, 2, 'GE7251', 135, 'A', 3, '2020-10-07'),
-(238, 4000, 2, 'GE7152', 135, 'A', 4, '2020-10-07'),
-(239, 4000, 2, 'EC7253', 135, 'A', 3, '2020-10-07'),
-(240, 4000, 2, 'CS7251', 135, 'A', 3, '2020-10-07'),
-(241, 4000, 2, 'GE7162', 135, 'A', 2, '2020-10-07'),
-(242, 4000, 2, 'CS7211', 137, 'A', 2, '2020-10-07'),
+(228, 2018503557, 1, 'HS7151', 134, 'A', 4, '2020-10-07'),
+(229, 2018503557, 1, 'MA7151', 134, 'A', 4, '2020-10-07'),
+(230, 2018503557, 1, 'PH7151', 134, 'B', 3, '2020-10-07'),
+(231, 2018503557, 1, 'CY7151', 135, 'B', 3, '2020-10-07'),
+(232, 2018503557, 1, 'GE7151', 134, 'A', 3, '2020-10-07'),
+(233, 2018503557, 1, 'BS7161', 134, 'A', 2, '2020-10-07'),
+(234, 2018503557, 1, 'GE7161', 136, 'A', 2, '2020-10-07'),
+(235, 2018503557, 2, 'HS7251', 135, 'A', 4, '2020-10-07'),
+(236, 2018503557, 2, 'MA7251', 135, 'A', 4, '2020-10-07'),
+(237, 2018503557, 2, 'GE7251', 135, 'A', 3, '2020-10-07'),
+(238, 2018503557, 2, 'GE7152', 135, 'A', 4, '2020-10-07'),
+(239, 2018503557, 2, 'EC7253', 135, 'A', 3, '2020-10-07'),
+(240, 2018503557, 2, 'CS7251', 135, 'A', 3, '2020-10-07'),
+(241, 2018503557, 2, 'GE7162', 135, 'A', 2, '2020-10-07'),
+(242, 2018503557, 2, 'CS7211', 137, 'A', 2, '2020-10-07'),
 (243, 6000, 1, 'HS7151', 134, 'O', 4, '2020-10-08'),
 (244, 6000, 1, 'MA7151', 134, 'A+', 4, '2020-10-08'),
 (245, 6000, 1, 'PH7151', 134, 'O', 3, '2020-10-08'),
@@ -430,7 +526,7 @@ CREATE TABLE `student_events_participated` (
   `Event_Organizer` varchar(50) DEFAULT NULL,
   `Event_Date` date DEFAULT NULL,
   `Prize_Won_Details` varchar(255) DEFAULT NULL,
-  `Certificate_Copy` varchar(50) DEFAULT NULL
+  `Certificate_Copy` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -438,7 +534,7 @@ CREATE TABLE `student_events_participated` (
 --
 
 INSERT INTO `student_events_participated` (`Event_ID`, `Register_No`, `Event_Name`, `Event_Type_Ref`, `Participation_Type_Ref`, `Team_Size`, `Event_Organizer`, `Event_Date`, `Prize_Won_Details`, `Certificate_Copy`) VALUES
-(22, 2018503557, 'event1b', 55, 119, 1, 'org1', '2020-10-31', 'prize1', ''),
+(22, 2018503557, 'event1b', 55, 119, 1, 'org1', '2020-10-31', 'prize1', 'student-events-participated/StudentEventParticipated_2018503557_22.pdf'),
 (23, 2018503557, 'evec', 54, 119, 5, 'MITaa', '2020-10-23', 'xxx', '');
 
 -- --------------------------------------------------------
@@ -496,7 +592,12 @@ CREATE TABLE `student_gpa` (
 INSERT INTO `student_gpa` (`Gpa_ID`, `Register_No`, `Semester`, `GPA`, `Grade_Sheet`) VALUES
 (10, 4000, 1, 7, 'gradesheets/dynamicarray1602054854.pdf'),
 (11, 4000, 2, 8, 'gradesheets/Class TT-20201602054920.pdf'),
-(12, 6000, 1, 7, 'gradesheets/dynamicarray1602153412.pdf');
+(12, 6000, 1, 7, 'gradesheets/dynamicarray1602153412.pdf'),
+(13, 2018503557, 1, 0, ''),
+(14, 2018503557, 2, 0, ''),
+(15, 2018503557, 3, 7.9, ''),
+(16, 2018503557, 4, 0, ''),
+(17, 2018503557, 5, 9.7, '');
 
 -- --------------------------------------------------------
 
@@ -523,7 +624,7 @@ CREATE TABLE `student_higherstudies` (
 --
 
 INSERT INTO `student_higherstudies` (`HigherStudies_ID`, `Register_No`, `University`, `Degree`, `Specialization`, `Admission_Mode_Ref`, `Score`, `Country`, `Location`, `LOR_Details`, `Score_Card_Copy`) VALUES
-(2, 2018503557, 'IISC', 'M.Sc', 'Data Science', 104, 335, 'India', 'Bangalore', 'abcd', ''),
+(2, 2018503557, 'IISC', 'M.Sc', 'Data Science', 104, 331, 'India', 'Bangalore', 'abcd', 'student-higher-studies/StudentHigherStudies_2018503557_2.pdf'),
 (4, 2018503557, 'IIM', 'MBA', 'General Management', 111, 1100, 'India', 'Delhi', 'None', '');
 
 -- --------------------------------------------------------
@@ -557,7 +658,7 @@ CREATE TABLE `student_internship` (
   `Register_No` int NOT NULL,
   `Company` varchar(255) DEFAULT NULL,
   `Title` varchar(255) NOT NULL,
-  `Order_Copy` varchar(45) DEFAULT NULL,
+  `Order_Copy` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `Address` varchar(255) DEFAULT NULL,
   `Start_Date` date DEFAULT NULL,
   `End_Date` date DEFAULT NULL,
@@ -571,8 +672,8 @@ CREATE TABLE `student_internship` (
 --
 
 INSERT INTO `student_internship` (`Internship_ID`, `Register_No`, `Company`, `Title`, `Order_Copy`, `Address`, `Start_Date`, `End_Date`, `Stiphend_Option_Ref`, `Stiphend_Amount`, `Selection_Mode_Ref`) VALUES
-(4, 2018503557, 'CE', 'postal', '', '19 DOOR Chenna', '2020-10-14', '2020-10-30', 86, 234, 118),
-(5, 2018503557, 'Wipro1', 'Systems Intern', 'interncertificates/TimeComplexity1602151235.p', 'xxx', '2020-10-20', '2020-10-14', 87, 0, 117);
+(4, 2018503557, 'CE', 'postal', 'student-internships/StudentInternship_2018503557_4.pdf', '19 DOOR Chenna', '2020-10-14', '2020-10-30', 86, 234, 118),
+(5, 2018503557, 'Wipro1', 'Systems Intern', '', 'xxx', '2020-10-20', '2020-10-14', 87, 0, 117);
 
 -- --------------------------------------------------------
 
@@ -585,7 +686,7 @@ CREATE TABLE `student_placement` (
   `Register_No` int NOT NULL,
   `Company` varchar(255) DEFAULT NULL,
   `Package` float DEFAULT NULL,
-  `Appointment_Order_Copy` varchar(45) DEFAULT NULL,
+  `Appointment_Order_Copy` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `Location` varchar(45) DEFAULT NULL,
   `Designation` varchar(45) DEFAULT NULL,
   `Appointment_OrderNum` varchar(45) DEFAULT NULL,
@@ -599,7 +700,7 @@ CREATE TABLE `student_placement` (
 --
 
 INSERT INTO `student_placement` (`Placement_ID`, `Register_No`, `Company`, `Package`, `Appointment_Order_Copy`, `Location`, `Designation`, `Appointment_OrderNum`, `Appointment_Letter_IssueDate`, `Joining_Date`, `Placement_Type_Ref`) VALUES
-(4, 2018503557, 'yyyxx', 11.5, '', 'xss', 'rrr', 'AS2345', '2020-10-07', '2020-10-30', 103),
+(4, 2018503557, 'yyyxx', 11.5, 'student-placements/StudentPlacement_2018503557_4.pdf', 'xss', 'rrr', 'AS2345', '2020-10-07', '2020-10-30', 103),
 (5, 2018503557, 'xxx', 12.99, '', 'hello', 'rrr', '3r33', '2020-10-09', '2020-12-01', 102),
 (7, 2018503557, 'yybbb', 13.4, '', 'chennai', 'sys engineer', 'AEorder', '2021-01-29', '2021-01-11', 103);
 
@@ -740,6 +841,23 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`category_id`);
 
 --
+-- Indexes for table `course_list`
+--
+ALTER TABLE `course_list`
+  ADD PRIMARY KEY (`course_code`);
+
+--
+-- Indexes for table `course_registered_students`
+--
+ALTER TABLE `course_registered_students`
+  ADD PRIMARY KEY (`cregst_id`),
+  ADD UNIQUE KEY `cregst_id_UNIQUE` (`cregst_id`),
+  ADD KEY `code_fk_idx` (`course_code`),
+  ADD KEY `regno_fk_idx` (`reg_no`),
+  ADD KEY `group_fk_idx` (`group_ref`),
+  ADD KEY `session_fk_idx` (`session_ref`);
+
+--
 -- Indexes for table `credentials`
 --
 ALTER TABLE `credentials`
@@ -845,7 +963,8 @@ ALTER TABLE `student_family_details`
 -- Indexes for table `student_gpa`
 --
 ALTER TABLE `student_gpa`
-  ADD PRIMARY KEY (`Gpa_ID`);
+  ADD PRIMARY KEY (`Gpa_ID`),
+  ADD KEY `Register_No` (`Register_No`);
 
 --
 -- Indexes for table `student_higherstudies`
@@ -901,6 +1020,12 @@ ALTER TABLE `user_info`
 --
 
 --
+-- AUTO_INCREMENT for table `course_registered_students`
+--
+ALTER TABLE `course_registered_students`
+  MODIFY `cregst_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
 -- AUTO_INCREMENT for table `credentials`
 --
 ALTER TABLE `credentials`
@@ -922,7 +1047,7 @@ ALTER TABLE `person_reference_table`
 -- AUTO_INCREMENT for table `student_awards`
 --
 ALTER TABLE `student_awards`
-  MODIFY `Award_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Award_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `student_courses`
@@ -952,7 +1077,7 @@ ALTER TABLE `student_family_details`
 -- AUTO_INCREMENT for table `student_gpa`
 --
 ALTER TABLE `student_gpa`
-  MODIFY `Gpa_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `Gpa_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `student_higherstudies`
@@ -993,6 +1118,13 @@ ALTER TABLE `user_info`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `course_registered_students`
+--
+ALTER TABLE `course_registered_students`
+  ADD CONSTRAINT `course_registered_students_ibfk_1` FOREIGN KEY (`course_code`) REFERENCES `course_list` (`course_code`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `course_registered_students_ibfk_2` FOREIGN KEY (`reg_no`) REFERENCES `student` (`Register_No`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `credentials`
@@ -1060,6 +1192,12 @@ ALTER TABLE `student_events_participated`
 --
 ALTER TABLE `student_family_details`
   ADD CONSTRAINT `Register_Num_FK` FOREIGN KEY (`Register_No`) REFERENCES `student` (`Register_No`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `student_gpa`
+--
+ALTER TABLE `student_gpa`
+  ADD CONSTRAINT `student_gpa_ibfk_1` FOREIGN KEY (`Register_No`) REFERENCES `student` (`Register_No`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `student_higherstudies`
