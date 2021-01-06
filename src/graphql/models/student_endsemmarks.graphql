@@ -6,7 +6,7 @@ type Query {
 
 type Mutation {
     createStudentEndsemMark(data: createStudentEndsemMarkInput!): StudentEndsemMark!
-    updateStudentEndsemMark(data: updateStudentEndsemMarkInput!): StudentEndsemMark!
+    updateStudentEndsemMark(data: [updateStudentEndsemMarkInput!]!): [StudentEndsemMark!]!
     deleteStudentEndsemMark(data: deleteStudentEndsemMarkInput!): StudentEndsemMark!
 }
 

@@ -61,23 +61,28 @@ module.exports={
         },
 
         async updateStudentEndsemMark(parent, {data}, {prisma}, info) {
-            const {Session_Ref,...ref_data} = data;
-            if(Session_Ref){
-                ref_data.person_reference_table={
-                    connect:{
-                        Reference_ID:Session_Ref
+            const studentEndsemsMarks = [];
+            for(var i=0;i<data.length;i++)
+            {
+                    const {Mark_ID,Session_Ref,...ref_data} = data[i];
+                if(Session_Ref){
+                    ref_data.person_reference_table={
+                        connect:{
+                            Reference_ID:Session_Ref
+                        }
                     }
                 }
-            }
 
-            return await prisma.student_endsemmarks.update({
-                where:{
-                    Mark_ID
-                },
-                data:{
-                    ...ref_data
-                }
-            })
+                studentEndsemsMarks[i] =  await prisma.student_endsemmarks.update({
+                    where:{
+                        Mark_ID
+                    },
+                    data:{
+                        ...ref_data
+                    }
+                })
+            }
+            return studentEndsemsMarks;
         },
 
         async deleteStudentEndsemMark(parent, {data}, {prisma}, info) {

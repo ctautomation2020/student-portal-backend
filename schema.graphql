@@ -11,6 +11,7 @@ type Query {
   studentAward(data: studentAwardQueryInput!): StudentAward!
   studentCourses(data: studentCoursesQueryInput!): [StudentCourse!]!
   studentCourse(data: studentCourseQueryInput!): StudentCourse!
+  studentEndsemsMarks(data: studentEndsemsMarksQueryInput!): [StudentEndsemMark!]!
   studentEndsemMarks(data: studentEndsemMarksQueryInput!): [StudentEndsemMark!]!
   studentEndsemMark(data: studentEndsemMarkQueryInput!): StudentEndsemMark!
   studentEventsParticipated(data: studentEventsParticipatedQueryInput!): [StudentEventParticipated!]!
@@ -74,7 +75,7 @@ type Mutation {
   updateStudentCourse(data: updateStudentCourseInput!): StudentCourse!
   deleteStudentCourse(data: deleteStudentCourseInput!): StudentCourse!
   createStudentEndsemMark(data: createStudentEndsemMarkInput!): StudentEndsemMark!
-  updateStudentEndsemMark(data: updateStudentEndsemMarkInput!): StudentEndsemMark!
+  updateStudentEndsemMark(data: [updateStudentEndsemMarkInput!]!): [StudentEndsemMark!]!
   deleteStudentEndsemMark(data: deleteStudentEndsemMarkInput!): StudentEndsemMark!
   createEventParticipated(data: createEventParticipatedInput!): StudentEventParticipated!
   updateEventParticipated(data: updateEventParticipatedInput!): StudentEventParticipated!
@@ -428,6 +429,10 @@ input updateStudentCourseInput {
 
 input deleteStudentCourseInput {
   Academic_ID: Int!
+}
+
+input studentEndsemsMarksQueryInput {
+  Register_No: Int!
 }
 
 input studentEndsemMarksQueryInput {
