@@ -453,6 +453,7 @@ type StudentEndsemMark {
   Grade: String
   Credits: Int
   Entry_Date: String
+  course_list: CourseList
 }
 
 input createStudentEndsemMarkInput {

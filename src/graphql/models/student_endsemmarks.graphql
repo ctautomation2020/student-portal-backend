@@ -23,6 +23,16 @@ input studentEndsemMarkQueryInput{
     Mark_ID: Int!
 }
 
+type CourseList{
+    course_code: String!
+    stream: Int
+    regulation: Int
+    semester: Int
+    title: String
+    credit: Int
+    objectives: String
+}
+
 type StudentEndsemMark{
     Mark_ID: Int!
     Register_No: Int!
@@ -32,6 +42,7 @@ type StudentEndsemMark{
     Grade: String
     Credits: Int
     Entry_Date: String
+    course_list: CourseList
 }
 
 input createStudentEndsemMarkInput {
