@@ -509,6 +509,7 @@ input createEventParticipatedInput {
   Event_Date: String
   Prize_Won_Details: String
   Certificate_Copy: String
+  file: Upload
 }
 
 input updateEventParticipatedInput {
@@ -521,6 +522,7 @@ input updateEventParticipatedInput {
   Event_Date: String
   Prize_Won_Details: String
   Certificate_Copy: String
+  file: Upload
 }
 
 input deleteEventParticipatedInput {
