@@ -221,9 +221,11 @@ model student_endsemmarks {
   Grade                  String
   Credits                Int?
   Entry_Date             DateTime?
+  course_list            course_list?            @relation(fields: [Course_Code], references: [course_code])
   student                student                 @relation(fields: [Register_No], references: [Register_No])
   person_reference_table person_reference_table? @relation(fields: [Session_Ref], references: [Ref_Code])
 
+  @@index([Course_Code], name: "Course_Code")
   @@index([Register_No], name: "Person_ID_FK219")
   @@index([Session_Ref], name: "Session_FK_idx2")
 }
@@ -386,6 +388,7 @@ model course_list {
   credit                     Int
   objectives                 String?
   course_registered_students course_registered_students[]
+  student_endsemmarks        student_endsemmarks[]
 }
 
 model course_registered_students {
