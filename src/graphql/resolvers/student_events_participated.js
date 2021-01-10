@@ -26,7 +26,7 @@ module.exports={
     Mutation: {
         
         async createEventParticipated(parent, {data}, {prisma,req}, info) {
-            const {Event_Type_Ref,Participation_Type_Ref,...ref_data} = data;
+            const {Event_Type_Ref,Participation_Type_Ref,file,...ref_data} = data;
             const Register_No = getRegNo(req);
 
             if(Event_Type_Ref){
@@ -45,7 +45,7 @@ module.exports={
                 }
             }
 
-            return await prisma.student_events_participated.create({
+            const student_event_participated = await prisma.student_events_participated.create({
                 data:{
                     student:{
                         connect:{
@@ -55,10 +55,30 @@ module.exports={
                     ...ref_data
                 }
             })
+            const Event_ID = student_event_participated.Event_ID;
+            console.log(student_event_participated);
+            console.log(data)
+            const { createReadStream, filename } = await data.file;
+            console.log(data.file)
+            const ext = filename.substr(filename.lastIndexOf('.') + 1);
+            console.log(createReadStream,filename); 
+            const fileName = "StudentEventParticipated_"+getRegNo(req)+"_"+Event_ID+"."+ext;
+
+            if(fs.existsSync(path.join(__dirname, "../../files/student-events-participated", fileName)))
+            {
+                fs.unlinkSync(path.join(__dirname, "../../files/student-events-participated", fileName));
+            }
+            await new Promise(res =>
+                createReadStream()
+                .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-events-participated", fileName)))
+                .on("close", res)
+            );    
+            return student_event_participated;
+
         },
 
-        async updateEventParticipated(parent, {data}, {prisma}, info) {
-            const {Event_ID,Event_Type_Ref,Participation_Type_Ref,...ref_data} = data;
+        async updateEventParticipated(parent, {data}, {prisma,req}, info) {
+            const {Event_ID,Event_Type_Ref,Participation_Type_Ref,file,...ref_data} = data;
             if(Event_Type_Ref){
                 ref_data.person_reference_table_person_reference_tableTostudent_events_participated_Event_Type_Ref={
                     connect:{
@@ -66,7 +86,7 @@ module.exports={
                     }
                 }
             }
-
+                                    
             if(Participation_Type_Ref){
                 ref_data.person_reference_table_person_reference_tableTostudent_events_participated_Participation_Type_Ref={
                     connect:{
@@ -74,7 +94,7 @@ module.exports={
                     }
                 }
             }
-            return await prisma.student_events_participated.update({
+            const student_event_participated = await prisma.student_events_participated.update({
                 where:{
                     Event_ID
                 },
@@ -82,6 +102,23 @@ module.exports={
                     ...ref_data
                 }
             })
+
+            console.log(data)
+            const { createReadStream, filename } = await file;
+            console.log(data.file)
+            const ext = filename.substr(filename.lastIndexOf('.') + 1);
+            const fileName = "StudentEventParticipated_"+getRegNo(req)+"_"+Event_ID+"."+ext;
+
+            if(fs.existsSync(path.join(__dirname, "../../files/student-events-participated", fileName)))
+            {
+                fs.unlinkSync(path.join(__dirname, "../../files/student-events-participated", fileName));
+            }
+            await new Promise(res =>
+                createReadStream()
+                .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-events-participated", fileName)))
+                .on("close", res)
+            );
+            return student_event_participated;
         },
 
         async deleteEventParticipated(parent, {data}, {prisma}, info) {
@@ -95,10 +132,13 @@ module.exports={
 
         uploadEventParticipated: async (_, { data },{prisma,req}) => {
             const{file,Event_ID} = data;
+            console.log(data)
             const { createReadStream, filename } = await file;
+            console.log(file)
+            console.log(data.file)
             const ext = filename.substr(filename.lastIndexOf('.') + 1);
             const fileName = "StudentEventParticipated_"+getRegNo(req)+"_"+Event_ID+"."+ext;
-
+            
             if(fs.existsSync(path.join(__dirname, "../../files/student-events-participated", fileName)))
             {
                 fs.unlinkSync(path.join(__dirname, "../../files/student-events-participated", fileName));
