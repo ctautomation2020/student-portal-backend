@@ -26,10 +26,10 @@ module.exports={
     Mutation: {
         
         async createStudentGpa(parent, {data}, {prisma,req}, info) {
-            const {...ref_data} = data;
+            const {file,...ref_data} = data;
             const Register_No = getRegNo(req);
 
-            return await prisma.student_gpa.create({
+            const student_gpa = await prisma.student_gpa.create({
                 data:{
                     student:{
                         connect:{
@@ -39,11 +39,37 @@ module.exports={
                     ...ref_data
                 }
             })
+            const Gpa_ID = student_gpa.Gpa_ID;
+            const { createReadStream, filename } = await file;
+            const ext = filename.substr(filename.lastIndexOf('.') + 1);
+            const fileName = "StudentGradeSheet_"+Register_No+"_"+Gpa_ID+"."+ext;
+
+            if(fs.existsSync(path.join(__dirname, "../../files/student-grade-sheets", fileName))){
+                fs.unlinkSync(path.join(__dirname, "../../files/student-grade-sheets", fileName));
+            }
+
+            await new Promise(res =>
+                createReadStream()
+                .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-grade-sheets", fileName)))
+                .on("close", res)
+            );
+            const Grade_Sheet =  path.join("student-grade-sheets", fileName);
+            await prisma.student_gpa.update({
+                where:{
+                    Gpa_ID
+                },
+                data:{
+                    Grade_Sheet
+                }
+            })
+            student_gpa.Grade_Sheet = Grade_Sheet;
+            return student_gpa;
         },
 
-        async updateStudentGpa(parent, {data}, {prisma}, info) {
-            const {Gpa_ID,...ref_data} = data;
-            return await prisma.student_gpa.update({
+        async updateStudentGpa(parent, {data}, {prisma,req}, info) {
+            const {Gpa_ID,file,...ref_data} = data;
+            const Register_No = getRegNo(req);
+            const student_gpa = await prisma.student_gpa.update({
                 where:{
                     Gpa_ID
                 },
@@ -51,15 +77,34 @@ module.exports={
                     ...ref_data
                 }
             })
+            const Gpa_ID = student_gpa.Gpa_ID;
+            const { createReadStream, filename } = await file;
+            const ext = filename.substr(filename.lastIndexOf('.') + 1);
+            const fileName = "StudentGradeSheet_"+Register_No+"_"+Gpa_ID+"."+ext;
+
+            if(fs.existsSync(path.join(__dirname, "../../files/student-grade-sheets", fileName))){
+                fs.unlinkSync(path.join(__dirname, "../../files/student-grade-sheets", fileName));
+            }
+
+            await new Promise(res =>
+                createReadStream()
+                .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-grade-sheets", fileName)))
+                .on("close", res)
+            );
+            return student_gpa;
         },
 
         async deleteStudentGpa(parent, {data}, {prisma}, info) {
             
-            return await prisma.student_gpa.delete({
+            const student_gpa = await prisma.student_gpa.delete({
                 where:{
                     Gpa_ID: data.Gpa_ID
                 }
             })
+            if(fs.existsSync(path.join(__dirname, "../../files",student_gpa.Grade_Sheet))){
+                fs.unlinkSync(path.join(__dirname, "../../files",student_gpa.Grade_Sheet));
+            }
+            return student_gpa;
         },
 
         uploadStudentGpa: async (_, { data },{prisma,req}) => {

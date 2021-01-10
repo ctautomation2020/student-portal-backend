@@ -39,6 +39,7 @@ input createStudentAwardInput{
     Place_of_Event: String
     Certificate_Copy: String
     Award_Date: String
+    file: Upload
 }
 
 input updateStudentAwardInput{
@@ -51,6 +52,7 @@ input updateStudentAwardInput{
     Place_of_Event: String
     Certificate_Copy: String
     Award_Date: String
+    file: Upload
 }
 
 input deleteStudentAwardInput{

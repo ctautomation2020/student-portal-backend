@@ -62,7 +62,7 @@ module.exports={
             console.log(data.file)
             const ext = filename.substr(filename.lastIndexOf('.') + 1);
             console.log(createReadStream,filename); 
-            const fileName = "StudentEventParticipated_"+getRegNo(req)+"_"+Event_ID+"."+ext;
+            const fileName = "StudentEventParticipated_"+Register_No+"_"+Event_ID+"."+ext;
 
             if(fs.existsSync(path.join(__dirname, "../../files/student-events-participated", fileName)))
             {
@@ -72,13 +72,24 @@ module.exports={
                 createReadStream()
                 .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-events-participated", fileName)))
                 .on("close", res)
-            );    
+            );
+            const Certificate_Copy = path.join("student-events-participated", fileName);
+            await prisma.student_events_participated.update({
+                where:{
+                    Event_ID
+                },
+                data:{
+                    Certificate_Copy: Certificate_Copy
+                }
+            });
+            student_event_participated.Certificate_Copy = Certificate_Copy;
             return student_event_participated;
 
         },
 
         async updateEventParticipated(parent, {data}, {prisma,req}, info) {
             const {Event_ID,Event_Type_Ref,Participation_Type_Ref,file,...ref_data} = data;
+            const Register_No = getRegNo(req)
             if(Event_Type_Ref){
                 ref_data.person_reference_table_person_reference_tableTostudent_events_participated_Event_Type_Ref={
                     connect:{
@@ -107,7 +118,7 @@ module.exports={
             const { createReadStream, filename } = await file;
             console.log(data.file)
             const ext = filename.substr(filename.lastIndexOf('.') + 1);
-            const fileName = "StudentEventParticipated_"+getRegNo(req)+"_"+Event_ID+"."+ext;
+            const fileName = "StudentEventParticipated_"+Register_No+"_"+Event_ID+"."+ext;
 
             if(fs.existsSync(path.join(__dirname, "../../files/student-events-participated", fileName)))
             {
@@ -118,16 +129,23 @@ module.exports={
                 .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-events-participated", fileName)))
                 .on("close", res)
             );
+            const Certificate_Copy = path.join("student-events-participated", fileName);
+            student_event_participated.Certificate_Copy = Certificate_Copy;
             return student_event_participated;
         },
 
         async deleteEventParticipated(parent, {data}, {prisma}, info) {
             
-            return await prisma.student_events_participated.delete({
+            const student_event_participated = await prisma.student_events_participated.delete({
                 where:{
                     Event_ID: data.Event_ID
                 }
             })
+            if(fs.existsSync(path.join(__dirname, "../../files",student_event_participated.Certificate_Copy)))
+            {
+                fs.unlinkSync(path.join(__dirname, "../../files",student_event_participated.Certificate_Copy));
+            }
+            return student_event_participated;
         },
 
         uploadEventParticipated: async (_, { data },{prisma,req}) => {

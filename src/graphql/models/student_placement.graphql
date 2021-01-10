@@ -42,6 +42,7 @@ input createStudentPlacementInput{
     Appointment_Letter_IssueDate: String
     Joining_Date: String
     Placement_Type_Ref: Int
+    file: Upload
 }
 
 input updateStudentPlacementInput{
@@ -55,6 +56,7 @@ input updateStudentPlacementInput{
     Appointment_Letter_IssueDate: String
     Joining_Date: String
     Placement_Type_Ref: Int
+    file: Upload
 }
 
 input deleteStudentPlacementInput{

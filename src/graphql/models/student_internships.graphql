@@ -42,6 +42,7 @@ input createStudentInternshipInput{
     Stiphend_Option_Ref: Int
     Stiphend_Amount: Float
     Selection_Mode_Ref: Int
+    file: Upload
 }
 
 input updateStudentInternshipInput{
@@ -55,6 +56,7 @@ input updateStudentInternshipInput{
     Stiphend_Option_Ref: Int
     Stiphend_Amount: Float
     Selection_Mode_Ref: Int
+    file: Upload
 }
 
 input deleteStudentInternshipInput{

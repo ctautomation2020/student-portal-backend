@@ -367,6 +367,7 @@ input createStudentAwardInput {
   Place_of_Event: String
   Certificate_Copy: String
   Award_Date: String
+  file: Upload
 }
 
 input updateStudentAwardInput {
@@ -378,6 +379,7 @@ input updateStudentAwardInput {
   Place_of_Event: String
   Certificate_Copy: String
   Award_Date: String
+  file: Upload
 }
 
 input deleteStudentAwardInput {
@@ -509,6 +511,7 @@ input createEventParticipatedInput {
   Event_Date: String
   Prize_Won_Details: String
   Certificate_Copy: String
+  file: Upload
 }
 
 input updateEventParticipatedInput {
@@ -521,6 +524,7 @@ input updateEventParticipatedInput {
   Event_Date: String
   Prize_Won_Details: String
   Certificate_Copy: String
+  file: Upload
 }
 
 input deleteEventParticipatedInput {
@@ -617,6 +621,7 @@ input createStudentGpaInput {
   Semester: Int
   GPA: Float
   Grade_Sheet: String
+  file: Upload
 }
 
 input updateStudentGpaInput {
@@ -624,6 +629,7 @@ input updateStudentGpaInput {
   Semester: Int
   GPA: Float
   Grade_Sheet: String
+  file: Upload
 }
 
 input deleteStudentGpaInput {
@@ -667,6 +673,7 @@ input createStudentHigherStudyInput {
   Location: String
   LOR_Details: String
   Score_Card_Copy: String
+  file: Upload
 }
 
 input updateStudentHigherStudyInput {
@@ -680,6 +687,7 @@ input updateStudentHigherStudyInput {
   Location: String
   LOR_Details: String
   Score_Card_Copy: String
+  file: Upload
 }
 
 input deleteStudentHigherStudyInput {
@@ -774,6 +782,7 @@ input createStudentInternshipInput {
   Stiphend_Option_Ref: Int
   Stiphend_Amount: Float
   Selection_Mode_Ref: Int
+  file: Upload
 }
 
 input updateStudentInternshipInput {
@@ -787,6 +796,7 @@ input updateStudentInternshipInput {
   Stiphend_Option_Ref: Int
   Stiphend_Amount: Float
   Selection_Mode_Ref: Int
+  file: Upload
 }
 
 input deleteStudentInternshipInput {
@@ -830,6 +840,7 @@ input createStudentPlacementInput {
   Appointment_Letter_IssueDate: String
   Joining_Date: String
   Placement_Type_Ref: Int
+  file: Upload
 }
 
 input updateStudentPlacementInput {
@@ -843,6 +854,7 @@ input updateStudentPlacementInput {
   Appointment_Letter_IssueDate: String
   Joining_Date: String
   Placement_Type_Ref: Int
+  file: Upload
 }
 
 input deleteStudentPlacementInput {

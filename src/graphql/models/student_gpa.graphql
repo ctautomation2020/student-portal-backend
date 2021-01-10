@@ -30,6 +30,7 @@ input createStudentGpaInput {
     Semester: Int
     GPA: Float
     Grade_Sheet: String
+    file: Upload
 }
 
 input updateStudentGpaInput {
@@ -37,6 +38,7 @@ input updateStudentGpaInput {
     Semester: Int
     GPA: Float
     Grade_Sheet: String
+    file: Upload
 }
 
 input deleteStudentGpaInput {
