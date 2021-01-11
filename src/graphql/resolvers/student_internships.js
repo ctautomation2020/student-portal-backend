@@ -108,7 +108,6 @@ module.exports={
                     ...ref_data
                 }
             })
-            const Internship_ID = student_internship.Internship_ID;
             const { createReadStream, filename } = await file;
             const ext = filename.substr(filename.lastIndexOf('.') + 1);
             const fileName = "StudentInternship_"+Register_No+"_"+Internship_ID+"."+ext;

@@ -87,7 +87,6 @@ module.exports={
                     ...ref_data
                 }
             })
-            const Placement_ID = student_placement.Placement_ID;
             const { createReadStream, filename } = await file;
             const ext = filename.substr(filename.lastIndexOf('.') + 1);
             const fileName = "StudentPlacement_"+Register_No+"_"+Placement_ID+"."+ext;

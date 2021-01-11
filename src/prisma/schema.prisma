@@ -406,3 +406,11 @@ model course_registered_students {
   @@index([reg_no], name: "regno_fk_idx")
   @@index([session_ref], name: "session_fk_idx")
 }
+
+model course_reference_table {
+  reference_id Int     @default(autoincrement()) @id
+  ref_code     Int     @unique
+  category     String?
+  ref_name     String?
+  description  String?
+}

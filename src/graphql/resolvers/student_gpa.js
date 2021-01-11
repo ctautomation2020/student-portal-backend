@@ -77,7 +77,6 @@ module.exports={
                     ...ref_data
                 }
             })
-            const Gpa_ID = student_gpa.Gpa_ID;
             const { createReadStream, filename } = await file;
             const ext = filename.substr(filename.lastIndexOf('.') + 1);
             const fileName = "StudentGradeSheet_"+Register_No+"_"+Gpa_ID+"."+ext;
