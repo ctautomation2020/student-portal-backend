@@ -1,0 +1,8 @@
+type Query{
+    staffAlloted(data:sessionQueryInput): StaffAlloted!
+}
+
+type StaffAlloted{
+  sallot_id: Int    
+  staff_id: Int
+}
