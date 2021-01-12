@@ -10,8 +10,6 @@ type Query {
   student: Student!
   studentAwards(data: studentAwardsQueryInput!): [StudentAward!]!
   studentAward(data: studentAwardQueryInput!): StudentAward!
-  studentCourses(data: studentCoursesQueryInput!): [StudentCourse!]!
-  studentCourse(data: studentCourseQueryInput!): StudentCourse!
   studentEndsemsMarks(data: studentEndsemsMarksQueryInput!): [StudentEndsemMark!]!
   studentEndsemMarks(data: studentEndsemMarksQueryInput!): [StudentEndsemMark!]!
   studentEndsemMark(data: studentEndsemMarkQueryInput!): StudentEndsemMark!
@@ -22,14 +20,11 @@ type Query {
   studentGpa(data: studentGpaQueryInput!): StudentGpa!
   studentHigherStudy(data: studentHigherStudyQueryInput!): StudentHigherStudy!
   studentHigherStudies(data: studentHigherStudiesQueryInput!): [StudentHigherStudy!]!
-  studentInternalMarks(data: studentInternalMarksQueryInput!): [StudentInternalMark!]!
-  studentInternalMark(data: studentInternalMarkQueryInput!): StudentInternalMark!
   studentInternships(data: studentInternshipsQueryInput!): [StudentInternship!]!
   studentInternship(data: studentInternshipQueryInput!): StudentInternship!
   studentPlacement(data: studentPlacementQueryInput!): StudentPlacement!
   studentPlacements(data: studentPlacementsQueryInput!): [StudentPlacement!]!
   studentRegisteredCourses(data: studentRegisteredCoursesQueryInput): [StudentRegisteredCourses!]!
-  studentTcourse(data: studentTcourseQueryInput!): StudentTcourse!
 }
 
 type CourseList {
@@ -85,9 +80,6 @@ type Mutation {
   updateStudentAward(data: updateStudentAwardInput!): StudentAward!
   deleteStudentAward(data: deleteStudentAwardInput!): StudentAward!
   uploadStudentAward(data: uploadStudentAwardInput!): String!
-  createStudentCourse(data: createStudentCourseInput!): StudentCourse!
-  updateStudentCourse(data: updateStudentCourseInput!): StudentCourse!
-  deleteStudentCourse(data: deleteStudentCourseInput!): StudentCourse!
   createStudentEndsemMark(data: createStudentEndsemMarkInput!): StudentEndsemMark!
   updateStudentEndsemMark(data: [updateStudentEndsemMarkInput!]!): [StudentEndsemMark!]!
   deleteStudentEndsemMark(data: deleteStudentEndsemMarkInput!): StudentEndsemMark!
@@ -105,9 +97,6 @@ type Mutation {
   updateStudentHigherStudy(data: updateStudentHigherStudyInput!): StudentHigherStudy!
   deleteStudentHigherStudy(data: deleteStudentHigherStudyInput!): StudentHigherStudy!
   uploadStudentHigherStudy(data: uploadStudentHigherStudyInput!): String!
-  createStudentInternalMark(data: createStudentInternalMarkInput!): StudentInternalMark!
-  updateStudentInternalMark(data: updateStudentInternalMarkInput!): StudentInternalMark!
-  deleteStudentInternalMark(data: deleteStudentInternalMarkInput!): StudentInternalMark!
   createStudentInternship(data: createStudentInternshipInput!): StudentInternship!
   updateStudentInternship(data: updateStudentInternshipInput!): StudentInternship!
   deleteStudentInternship(data: deleteStudentInternshipInput!): StudentInternship!
@@ -405,48 +394,6 @@ input uploadStudentAwardInput {
   file: Upload!
 }
 
-input studentCoursesQueryInput {
-  Register_No: Int!
-}
-
-input studentCourseQueryInput {
-  Academic_ID: Int!
-}
-
-type StudentCourse {
-  Academic_ID: Int!
-  Register_No: Int!
-  Course_Code: String
-  Staff_ID: Int
-  Session_Ref: Int
-  Semester_Ref: Int
-  Group_Ref: Int
-  Class_Type_Ref: Int
-}
-
-input createStudentCourseInput {
-  Course_Code: String
-  Staff_ID: Int
-  Session_Ref: Int
-  Semester_Ref: Int
-  Group_Ref: Int
-  Class_Type_Ref: Int
-}
-
-input updateStudentCourseInput {
-  Academic_ID: Int!
-  Course_Code: String
-  Staff_ID: Int
-  Session_Ref: Int
-  Semester_Ref: Int
-  Group_Ref: Int
-  Class_Type_Ref: Int
-}
-
-input deleteStudentCourseInput {
-  Academic_ID: Int!
-}
-
 input studentEndsemsMarksQueryInput {
   Register_No: Int!
 }
@@ -713,57 +660,6 @@ input uploadStudentHigherStudyInput {
   file: Upload!
 }
 
-input studentInternalMarksQueryInput {
-  Register_No: Int!
-}
-
-input studentInternalMarkQueryInput {
-  InternalMark_ID: Int!
-}
-
-type StudentInternalMark {
-  InternalMark_ID: Int!
-  Register_No: Int!
-  Course_Code: String
-  Session: String
-  Staff_ID: Int
-  Evaluation_Type_Ref: Int
-  Max_Mark: Int
-  Entry_Date: String
-  Mark_Scored: Int
-  Weightage: Float
-  Total: Float
-}
-
-input createStudentInternalMarkInput {
-  Course_Code: String
-  Session: String
-  Staff_ID: Int
-  Evaluation_Type_Ref: Int
-  Max_Mark: Int
-  Entry_Date: String
-  Mark_Scored: Int
-  Weightage: Float
-  Total: Float
-}
-
-input updateStudentInternalMarkInput {
-  InternalMark_ID: Int!
-  Course_Code: String
-  Session: String
-  Staff_ID: Int
-  Evaluation_Type_Ref: Int
-  Max_Mark: Int
-  Entry_Date: String
-  Mark_Scored: Int
-  Weightage: Float
-  Total: Float
-}
-
-input deleteStudentInternalMarkInput {
-  InternalMark_ID: Int!
-}
-
 type StudentInternship {
   Internship_ID: Int!
   Register_No: Int!
@@ -892,19 +788,6 @@ type StudentRegisteredCourses {
 
 input studentRegisteredCoursesQueryInput {
   Register_No: Int!
-}
-
-input studentTcourseQueryInput {
-  Tcourse_ID: Int!
-}
-
-type StudentTcourse {
-  Tcourse_ID: Int!
-  Degree: String
-  Semester: Int
-  Code: String
-  Title: String
-  Credit: Int
 }
 
 schema {

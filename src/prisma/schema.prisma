@@ -90,10 +90,6 @@ model person_reference_table {
   student_person_reference_tableTostudent_Scholarship_Received_Ref                                       student[]                     @relation("person_reference_tableTostudent_Scholarship_Received_Ref")
   student_awards_person_reference_tableTostudent_awards_Award_Category_Ref                               student_awards[]              @relation("person_reference_tableTostudent_awards_Award_Category_Ref")
   student_awards_person_reference_tableTostudent_awards_Award_Type_Ref                                   student_awards[]              @relation("person_reference_tableTostudent_awards_Award_Type_Ref")
-  student_courses_person_reference_tableTostudent_courses_Class_Type_Ref                                 student_courses[]             @relation("person_reference_tableTostudent_courses_Class_Type_Ref")
-  student_courses_person_reference_tableTostudent_courses_Group_Ref                                      student_courses[]             @relation("person_reference_tableTostudent_courses_Group_Ref")
-  student_courses_person_reference_tableTostudent_courses_Semester_Ref                                   student_courses[]             @relation("person_reference_tableTostudent_courses_Semester_Ref")
-  student_courses_person_reference_tableTostudent_courses_Session_Ref                                    student_courses[]             @relation("person_reference_tableTostudent_courses_Session_Ref")
   student_endsemmarks                                                                                    student_endsemmarks[]
   student_events_participated_person_reference_tableTostudent_events_participated_Event_Type_Ref         student_events_participated[] @relation("person_reference_tableTostudent_events_participated_Event_Type_Ref")
   student_events_participated_person_reference_tableTostudent_events_participated_Participation_Type_Ref student_events_participated[] @relation("person_reference_tableTostudent_events_participated_Participation_Type_Ref")
@@ -149,13 +145,11 @@ model student {
   credentials                                                                      credentials[]
   person_guestlecture                                                              person_guestlecture[]
   student_awards                                                                   student_awards[]
-  student_courses                                                                  student_courses[]
   student_endsemmarks                                                              student_endsemmarks[]
   student_events_participated                                                      student_events_participated[]
   student_family_details                                                           student_family_details[]
   student_gpa                                                                      student_gpa[]
   student_higherstudies                                                            student_higherstudies[]
-  student_internalmarks                                                            student_internalmarks[]
   student_internship                                                               student_internship[]
   student_placement                                                                student_placement[]
 
@@ -188,28 +182,6 @@ model student_awards {
   @@index([Award_Category_Ref], name: "Award_Category_FK_idx")
   @@index([Award_Type_Ref], name: "Award_Type_FK_idx")
   @@index([Register_No], name: "Person_ID_FK219")
-}
-
-model student_courses {
-  Academic_ID                                                                   Int                     @default(autoincrement()) @id
-  Register_No                                                                   Int
-  Course_Code                                                                   String?
-  Staff_ID                                                                      Int?
-  Session_Ref                                                                   Int?
-  Semester_Ref                                                                  Int?
-  Group_Ref                                                                     Int?
-  Class_Type_Ref                                                                Int?
-  person_reference_table_person_reference_tableTostudent_courses_Class_Type_Ref person_reference_table? @relation("person_reference_tableTostudent_courses_Class_Type_Ref", fields: [Class_Type_Ref], references: [Ref_Code])
-  person_reference_table_person_reference_tableTostudent_courses_Group_Ref      person_reference_table? @relation("person_reference_tableTostudent_courses_Group_Ref", fields: [Group_Ref], references: [Ref_Code])
-  student                                                                       student                 @relation(fields: [Register_No], references: [Register_No])
-  person_reference_table_person_reference_tableTostudent_courses_Semester_Ref   person_reference_table? @relation("person_reference_tableTostudent_courses_Semester_Ref", fields: [Semester_Ref], references: [Ref_Code])
-  person_reference_table_person_reference_tableTostudent_courses_Session_Ref    person_reference_table? @relation("person_reference_tableTostudent_courses_Session_Ref", fields: [Session_Ref], references: [Ref_Code])
-
-  @@index([Class_Type_Ref], name: "Class_Type_Reference_ID_FK2_idx")
-  @@index([Group_Ref], name: "Group_FK_idx")
-  @@index([Register_No], name: "Person_ID_FK219")
-  @@index([Semester_Ref], name: "Semester_FK_idx")
-  @@index([Session_Ref], name: "Session_FK_idx")
 }
 
 model student_endsemmarks {
@@ -304,23 +276,6 @@ model student_higherstudies {
   @@index([Register_No], name: "Person_ID_FK219")
 }
 
-model student_internalmarks {
-  InternalMark_ID     Int       @default(autoincrement()) @id
-  Register_No         Int
-  Course_Code         String?
-  Session             String?
-  Staff_ID            Int?
-  Evaluation_Type_Ref Int?
-  Max_Mark            Int?
-  Entry_Date          DateTime?
-  Mark_Scored         Int?
-  Weightage           Float?
-  Total               Float?
-  student             student   @relation(fields: [Register_No], references: [Register_No])
-
-  @@index([Register_No], name: "Person_ID_FK219")
-}
-
 model student_internship {
   Internship_ID                                                                         Int                     @default(autoincrement()) @id
   Register_No                                                                           Int
@@ -361,15 +316,6 @@ model student_placement {
   @@index([Placement_Type_Ref], name: "Placement_Type_FK_idx")
 }
 
-model student_tcourses {
-  Tcourse_ID Int    @default(autoincrement()) @id
-  Degree     String
-  Semester   Int
-  Code       String
-  Title      String
-  Credit     Int
-}
-
 model user_info {
   user_ID     Int       @default(autoincrement()) @id
   username    Int
@@ -392,14 +338,15 @@ model course_list {
 }
 
 model course_registered_students {
-  cregst_id   Int         @default(autoincrement()) @id
-  course_code String
-  reg_no      Int
-  semester    Int
-  group_ref   Int
-  session_ref Int
-  course_list course_list @relation(fields: [course_code], references: [course_code])
-  student     student     @relation(fields: [reg_no], references: [Register_No])
+  cregst_id              Int                    @default(autoincrement()) @id
+  course_code            String
+  reg_no                 Int
+  semester               Int
+  group_ref              Int
+  session_ref            Int
+  course_list            course_list            @relation(fields: [course_code], references: [course_code])
+  course_reference_table course_reference_table @relation(fields: [group_ref], references: [reference_id])
+  student                student                @relation(fields: [reg_no], references: [Register_No])
 
   @@index([course_code], name: "code_fk_idx")
   @@index([group_ref], name: "group_fk_idx")
@@ -408,9 +355,10 @@ model course_registered_students {
 }
 
 model course_reference_table {
-  reference_id Int     @default(autoincrement()) @id
-  ref_code     Int     @unique
-  category     String?
-  ref_name     String?
-  description  String?
+  reference_id               Int                          @default(autoincrement()) @id
+  ref_code                   Int                          @unique
+  category                   String?
+  ref_name                   String?
+  description                String?
+  course_registered_students course_registered_students[]
 }
