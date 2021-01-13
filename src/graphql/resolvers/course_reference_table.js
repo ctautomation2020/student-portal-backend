@@ -4,6 +4,9 @@ module.exports = {
             return await prisma.course_reference_table.findMany({
                 where:{
                     ...data
+                },
+                orderBy:{
+                    ref_name:'desc'
                 }
             })
         }

@@ -9,7 +9,7 @@ module.exports={
                     course_list: true
                 },
                 where:{
-                    reg_no
+                    ...data
                 }
             })
         }

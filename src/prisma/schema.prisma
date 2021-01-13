@@ -23,7 +23,7 @@ model credentials {
 }
 
 model person {
-  Person_ID               Int       @id
+  Person_ID               Int          @id
   Prefix_Ref              Int?
   First_Name              String?
   Last_Name               String?
@@ -48,6 +48,7 @@ model person {
   // Photo                binary?
   Marital_Status_Ref      Int?
   Room_Num                String?
+  subj_allot              subj_allot[]
 
   @@index([Community_Ref], name: "Community_Reference_ID_FK_idx")
   @@index([Gender_Ref], name: "Gender_Reference_ID_FK_idx")
@@ -335,18 +336,20 @@ model course_list {
   objectives                 String?
   course_registered_students course_registered_students[]
   student_endsemmarks        student_endsemmarks[]
+  subj_allot                 subj_allot[]
 }
 
 model course_registered_students {
-  cregst_id              Int                    @default(autoincrement()) @id
-  course_code            String
-  reg_no                 Int
-  semester               Int
-  group_ref              Int
-  session_ref            Int
-  course_list            course_list            @relation(fields: [course_code], references: [course_code])
-  course_reference_table course_reference_table @relation(fields: [group_ref], references: [reference_id])
-  student                student                @relation(fields: [reg_no], references: [Register_No])
+  cregst_id                                                                             Int                    @default(autoincrement()) @id
+  course_code                                                                           String
+  reg_no                                                                                Int
+  semester                                                                              Int
+  group_ref                                                                             Int
+  session_ref                                                                           Int
+  course_list                                                                           course_list            @relation(fields: [course_code], references: [course_code])
+  course_reference_table                                                                course_reference_table @relation(fields: [group_ref], references: [reference_id])
+  student                                                                               student                @relation(fields: [reg_no], references: [Register_No])
+  course_reference_table_course_reference_tableTocourse_registered_students_session_ref course_reference_table @relation("course_reference_tableTocourse_registered_students_session_ref", fields: [session_ref], references: [reference_id])
 
   @@index([course_code], name: "code_fk_idx")
   @@index([group_ref], name: "group_fk_idx")
@@ -355,10 +358,120 @@ model course_registered_students {
 }
 
 model course_reference_table {
-  reference_id               Int                          @default(autoincrement()) @id
-  ref_code                   Int                          @unique
-  category                   String?
-  ref_name                   String?
-  description                String?
-  course_registered_students course_registered_students[]
+  reference_id                                                                              Int                          @default(autoincrement()) @id
+  ref_code                                                                                  Int                          @unique
+  category                                                                                  String?
+  ref_name                                                                                  String?
+  description                                                                               String?
+  course_registered_students                                                                course_registered_students[]
+  course_registered_students_course_reference_tableTocourse_registered_students_session_ref course_registered_students[] @relation("course_reference_tableTocourse_registered_students_session_ref")
+  subj_allot_course_reference_tableTosubj_allot_group_ref                                   subj_allot[]                 @relation("course_reference_tableTosubj_allot_group_ref")
+  subj_allot_course_reference_tableTosubj_allot_session_ref                                 subj_allot[]                 @relation("course_reference_tableTosubj_allot_session_ref")
+}
+
+model course_assigneval {
+  cassigneval_id Int    @default(autoincrement()) @id
+  course_code    String
+  group_ref      Int
+  session_ref    Int
+  assign_num     Int
+  question_num   Int
+  reg_no         Int
+  mark           Float
+
+  @@index([course_code], name: "code_fk_idx")
+  @@index([group_ref], name: "group_fk_idx")
+  @@index([reg_no], name: "regnum_fk_idx")
+  @@index([session_ref], name: "session_fk_idx")
+}
+
+model course_assignment {
+  cassign_id       Int      @default(autoincrement()) @id
+  course_code      String
+  group_ref        Int
+  session_ref      Int
+  entry_date       DateTime
+  assign_num       Int
+  question_num     String
+  // This type is currently not supported.
+  // question_stmt binary?
+  question_img     String?
+  co_num           Int
+  marks            Int
+  deadline         DateTime
+
+  @@index([course_code], name: "code_fk_idx")
+  @@index([group_ref], name: "group_fk_idx")
+  @@index([session_ref], name: "session_fk_idx")
+}
+
+model subj_allot {
+  sallot_id                                                             Int                    @default(autoincrement()) @id
+  staff_id                                                              Int
+  course_code                                                           String
+  group_ref                                                             Int
+  session_ref                                                           Int
+  class_room                                                            String?
+  student_count                                                         Int?
+  course_list                                                           course_list            @relation(fields: [course_code], references: [course_code])
+  course_reference_table_course_reference_tableTosubj_allot_group_ref   course_reference_table @relation("course_reference_tableTosubj_allot_group_ref", fields: [group_ref], references: [reference_id])
+  course_reference_table_course_reference_tableTosubj_allot_session_ref course_reference_table @relation("course_reference_tableTosubj_allot_session_ref", fields: [session_ref], references: [reference_id])
+  person                                                                person                 @relation(fields: [staff_id], references: [Person_ID])
+
+  @@index([course_code], name: "course_id_fk_idx")
+  @@index([group_ref], name: "group_fk_idx")
+  @@index([session_ref], name: "session_fk_idx")
+  @@index([staff_id], name: "staff_id_fk_idx")
+}
+
+model course_assesseval {
+  cassesseval_id Int    @default(autoincrement()) @id
+  course_code    String
+  group_ref      Int
+  session_ref    Int
+  assess_num     Int
+  question_num   String
+  reg_no         Int
+  mark           Float
+
+  @@index([course_code], name: "code_fk_idx")
+  @@index([group_ref], name: "group_fk_idx")
+  @@index([reg_no], name: "regnum_fk_idx")
+  @@index([session_ref], name: "session_fk_idx")
+}
+
+model course_assessment {
+  cassess_id       Int      @default(autoincrement()) @id
+  course_code      String
+  group_ref        Int
+  session_ref      Int
+  assess_num       Int
+  question_num     String
+  // This type is currently not supported.
+  // question_stmt binary?
+  question_img     String?
+  blooms_level     Int
+  co_num           Int
+  marks            Int
+  entry_date       DateTime
+
+  @@index([course_code], name: "code_fk_idx")
+  @@index([group_ref], name: "group_fk_idx")
+  @@index([session_ref], name: "session_fk_idx")
+}
+
+model course_attendance {
+  cattend_id  Int      @id
+  course_code String
+  group_ref   Int
+  session_ref Int
+  reg_no      Int
+  date        DateTime
+  period      Int
+  presence    String   @default("P")
+
+  @@index([course_code], name: "code_fk_idx")
+  @@index([group_ref], name: "group_fk_idx")
+  @@index([reg_no], name: "regno_fk_idx")
+  @@index([session_ref], name: "session_fk_idx")
 }
