@@ -5,4 +5,5 @@ type Query{
 type StaffAlloted{
   sallot_id: Int    
   staff_id: Int
+  person: Person
 }
