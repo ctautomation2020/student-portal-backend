@@ -24,4 +24,5 @@ type StudentRegisteredCourses{
 input studentRegisteredCoursesQueryInput{
     reg_no: Int!
     session_ref: Int
+    cregst_id: Int
 }

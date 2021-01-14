@@ -11,7 +11,6 @@ type Query {
   person: Person!
   personReference(data: Person_Reference_Input): [Person_Reference_Table]
   staffAlloted(data: staffAllotedQueryInput): StaffAlloted!
-  studentCourseDetails(data: studentCourseDetailsQueryInput): CourseSearch!
   allStudents: [Student!]!
   student: Student!
   studentAwards(data: studentAwardsQueryInput!): [StudentAward!]!
@@ -339,21 +338,10 @@ type StaffAlloted {
   person: Person
 }
 
-type CourseSearch {
-  sallot_id: Int
-  staff_id: Int
+input staffAllotedQueryInput {
   course_code: String
   group_ref: Int
   session_ref: Int
-}
-
-input staffAllotedQueryInput {
-  course_code: String!
-  group_ref: Int!
-  session_ref: Int!
-}
-
-input studentCourseDetailsQueryInput {
   sallot_id: Int
 }
 
@@ -908,6 +896,7 @@ type StudentRegisteredCourses {
 input studentRegisteredCoursesQueryInput {
   reg_no: Int!
   session_ref: Int
+  cregst_id: Int
 }
 
 schema {

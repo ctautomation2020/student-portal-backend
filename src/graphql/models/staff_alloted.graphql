@@ -1,6 +1,5 @@
 type Query{
   staffAlloted(data:staffAllotedQueryInput): StaffAlloted!
-  studentCourseDetails(data:studentCourseDetailsQueryInput): CourseSearch!
 }
 
 type StaffAlloted{
@@ -11,20 +10,9 @@ type StaffAlloted{
   person: Person
 }
 
-type CourseSearch{
-  sallot_id: Int 
-  staff_id: Int
+input staffAllotedQueryInput { 
   course_code: String
   group_ref: Int
   session_ref: Int
-}
-
-input staffAllotedQueryInput { 
-  course_code: String!
-  group_ref: Int!
-  session_ref: Int!
-}
-
-input studentCourseDetailsQueryInput{
   sallot_id: Int
 }

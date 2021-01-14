@@ -10,13 +10,6 @@ module.exports={
                 }
             })
             return staff[0]
-        },
-        async studentCourseDetails(parent,{data}, {prisma,req}, info){
-            return await prisma.subj_allot.findOne({
-                where: {
-                    ...data
-                }
-            })
         }
     },
 }
