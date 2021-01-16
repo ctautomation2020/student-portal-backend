@@ -1,4 +1,7 @@
 type Query {
+  session_assessments(data: sessionQueryInput!): [Int]
+  assessment(data: assesmentQueryInput!): [course_assessment]
+  assess_evaluation(data: assess_evaluationQueryInput!): [course_assesseval]
   assign_evaluation(data: assign_evaluationQueryInput!): [course_assigneval]
   session_assignments(data: sessionQueryInput!): [Int]
   assignment(data: assignmentQueryInput!): [course_assignment]
@@ -33,6 +36,9 @@ type Query {
 }
 
 type Mutation {
+  createAssessment(data: custom_type!): [course_assessment]
+  createAssess_evaluation(data: assess_evaluationInput!): [course_assesseval]
+  updateAssess_evaluation(data: assess_evaluationInput!): [course_assesseval]
   createAssign_evaluation(data: assign_evaluationInput!): [course_assigneval]
   updateAssign_evaluation(data: assign_evaluationInput!): [course_assigneval]
   createAssignment(data: custom_assignment_type!): [course_assignment]
@@ -73,6 +79,94 @@ type Mutation {
   updateStudentPlacement(data: updateStudentPlacementInput!): StudentPlacement!
   deleteStudentPlacement(data: deleteStudentPlacementInput!): StudentPlacement!
   uploadStudentPlacement(data: uploadStudentPlacementInput!): String!
+}
+
+type course_assessment {
+  cassess_id: Int!
+  course_code: String!
+  group_ref: Int!
+  session_ref: Int!
+  assess_num: Int!
+  question_num: String!
+  question_stmt: String
+  question_img: String
+  blooms_level: Int!
+  co_num: Int!
+  marks: Int!
+  entry_date: String!
+  section: String!
+}
+
+input custom_type {
+  course_code: String!
+  group_ref: Int!
+  session_ref: Int!
+  assess_num: Int!
+  entry_date: String!
+  section: [section]
+}
+
+input section {
+  name: String
+  section_mark: Int
+  q_num: Int
+  type: String
+  questions: [questions]
+}
+
+input questions {
+  question_num: String!
+  question_stmt: String
+  question_img: String
+  blooms_level: Int!
+  co_num: Int!
+  marks: Int!
+}
+
+input assesmentQueryInput {
+  course_code: String!
+  group_ref: Int!
+  session_ref: Int!
+  assess_num: Int!
+}
+
+input sessionQueryInput {
+  course_code: String!
+  group_ref: Int!
+  session_ref: Int!
+}
+
+type course_assesseval {
+  cassesseval_id: Int!
+  course_code: String!
+  group_ref: Int!
+  session_ref: Int!
+  assess_num: Int!
+  question_num: String!
+  reg_no: Int!
+  mark: Float!
+}
+
+input assess_evaluationQueryInput {
+  course_code: String!
+  group_ref: Int!
+  session_ref: Int!
+  assess_num: Int!
+  reg_no: Int!
+}
+
+input assess_evaluationInput {
+  course_code: String!
+  group_ref: Int!
+  session_ref: Int!
+  assess_num: Int!
+  reg_no: Int!
+  questions: [question]
+}
+
+input question {
+  question_num: String!
+  mark: Float!
 }
 
 type course_assigneval {
@@ -146,12 +240,6 @@ input assignmentQueryInput {
   group_ref: Int!
   session_ref: Int!
   assign_num: Int!
-}
-
-input sessionQueryInput {
-  course_code: String!
-  group_ref: Int!
-  session_ref: Int!
 }
 
 type CourseList {

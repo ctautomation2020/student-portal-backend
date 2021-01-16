@@ -1,0 +1,65 @@
+type Query {
+    session_assessments(data: sessionQueryInput!): [Int]
+    assessment(data: assesmentQueryInput!): [course_assessment]
+}
+
+type Mutation {
+    createAssessment(data: custom_type!): [course_assessment]
+}
+
+type course_assessment {
+  cassess_id: Int!                   
+  course_code: String!
+  group_ref: Int!
+  session_ref: Int!
+  assess_num: Int!
+  question_num: String!
+  question_stmt: String
+  question_img: String
+  blooms_level: Int!
+  co_num: Int!
+  marks: Int!
+  entry_date: String!
+  section: String!
+  
+}
+
+input custom_type{
+  course_code: String!
+  group_ref: Int!
+  session_ref: Int!
+  assess_num: Int!
+  entry_date: String!
+  section: [section]
+}
+
+input section {
+    name: String
+    section_mark: Int
+    q_num: Int
+    type: String
+    questions: [questions]
+}
+
+input questions {
+    question_num: String!
+    question_stmt: String
+    question_img: String
+    blooms_level: Int!
+    co_num: Int!
+    marks: Int!
+
+}
+
+input assesmentQueryInput { 
+    course_code: String!
+    group_ref: Int!
+    session_ref: Int!
+    assess_num: Int!
+}
+
+input sessionQueryInput { 
+    course_code: String!
+    group_ref: Int!
+    session_ref: Int!
+}
