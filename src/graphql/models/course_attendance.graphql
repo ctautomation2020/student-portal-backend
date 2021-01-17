@@ -1,0 +1,21 @@
+type Query{
+    studentAttendance(data:studentAttendanceQueryInput):[StudentAttendance!]!
+}
+
+input studentAttendanceQueryInput{
+    reg_no: Int!
+    course_code: String!
+    group_ref: Int!
+    session_ref: Int!
+}
+
+type StudentAttendance{
+    cattend_id: Int
+    course_code: String
+    group_ref: Int
+    session_ref: Int
+    reg_no: Int
+    date: String
+    period: Int
+    presence: String
+}

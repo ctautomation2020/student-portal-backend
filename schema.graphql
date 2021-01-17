@@ -5,6 +5,7 @@ type Query {
   assign_evaluation(data: assign_evaluationQueryInput!): [course_assigneval]
   session_assignments(data: sessionQueryInput!): [Int]
   assignment(data: assignmentQueryInput!): [course_assignment]
+  studentAttendance(data: studentAttendanceQueryInput): [StudentAttendance!]!
   courseList(data: courseListQueryInput!): CourseList!
   courseReference(data: Course_Reference_Input): [Course_Reference_Table]
   studentSessions(data: studentSessions): [Int!]!
@@ -240,6 +241,24 @@ input assignmentQueryInput {
   group_ref: Int!
   session_ref: Int!
   assign_num: Int!
+}
+
+input studentAttendanceQueryInput {
+  reg_no: Int!
+  course_code: String!
+  group_ref: Int!
+  session_ref: Int!
+}
+
+type StudentAttendance {
+  cattend_id: Int
+  course_code: String
+  group_ref: Int
+  session_ref: Int
+  reg_no: Int
+  date: String
+  period: Int
+  presence: String
 }
 
 type CourseList {
