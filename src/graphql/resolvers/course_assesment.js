@@ -5,9 +5,14 @@ module.exports = {
                 where:{
                     ...data
                 },
-                orderBy:{
-                    question_num:'asc'
-                }
+                orderBy:[
+                    {
+                        section:'asc'
+                    },
+                    {
+                        question_num:'asc'
+                    }
+                ]
             })
         },
         async session_assessments(parent, {data}, {prisma}, info){
