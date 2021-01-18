@@ -1,5 +1,6 @@
 type Query {
     assign_evaluation(data: assign_evaluationQueryInput!): [course_assigneval]
+    assignIsEval(data: assignIsEvalQueryInput!): Boolean
 }
 
 type Mutation {
@@ -39,4 +40,12 @@ input assign_evaluationInput {
 input assign_question {
   question_num: Int!
   mark: Float!
+}
+
+input assignIsEvalQueryInput{
+  course_code: String!
+  group_ref: Int!
+  session_ref: Int!
+  assign_num: Int!
+  reg_no: Int!
 }

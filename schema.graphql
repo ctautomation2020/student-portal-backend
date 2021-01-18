@@ -2,7 +2,9 @@ type Query {
   session_assessments(data: sessionQueryInput!): [Int]
   assessment(data: assesmentQueryInput!): [course_assessment]
   assess_evaluation(data: assess_evaluationQueryInput!): [course_assesseval]
+  assessIsEval(data: assesIsEvalQueryInput!): Boolean
   assign_evaluation(data: assign_evaluationQueryInput!): [course_assigneval]
+  assignIsEval(data: assignIsEvalQueryInput!): Boolean
   session_assignments(data: sessionQueryInput!): [Int]
   assignment(data: assignmentQueryInput!): [course_assignment]
   studentAttendance(data: studentAttendanceQueryInput): [StudentAttendance!]!
@@ -170,6 +172,14 @@ input question {
   mark: Float!
 }
 
+input assesIsEvalQueryInput {
+  course_code: String!
+  group_ref: Int!
+  session_ref: Int!
+  assess_num: Int!
+  reg_no: Int!
+}
+
 type course_assigneval {
   cassigneval_id: Int!
   course_code: String!
@@ -201,6 +211,14 @@ input assign_evaluationInput {
 input assign_question {
   question_num: Int!
   mark: Float!
+}
+
+input assignIsEvalQueryInput {
+  course_code: String!
+  group_ref: Int!
+  session_ref: Int!
+  assign_num: Int!
+  reg_no: Int!
 }
 
 type course_assignment {

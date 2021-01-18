@@ -1,5 +1,6 @@
 type Query {
     assess_evaluation(data: assess_evaluationQueryInput!): [course_assesseval]
+    assessIsEval(data:assesIsEvalQueryInput!): Boolean
 }
 
 type Mutation {
@@ -39,4 +40,12 @@ input assess_evaluationInput {
 input question {
   question_num: String!
   mark: Float!
+}
+
+input assesIsEvalQueryInput{
+    course_code: String!
+    group_ref: Int!
+    session_ref: Int!
+    assess_num: Int!
+    reg_no: Int!
 }

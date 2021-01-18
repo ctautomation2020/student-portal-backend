@@ -9,6 +9,27 @@ module.exports = {
                     question_num:'asc'
                 }
             })
+        },
+        async assignIsEval(parent,{data},{prisma},info){
+            const {reg_no,...refData} = data
+            const ques = await prisma.course_assignment.findMany({
+                where:{
+                    ...refData
+                }
+            })
+            const quesEval = await prisma.course_assigneval.findMany({
+                where:{
+                    reg_no,
+                    ...refData
+                }
+            })
+            if(quesEval.length && ques.length)
+            {
+                return quesEval.length === ques.length
+            }
+            else{
+                return false
+            }
         }
     },
 
