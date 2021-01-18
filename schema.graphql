@@ -186,7 +186,7 @@ type course_assigneval {
   group_ref: Int!
   session_ref: Int!
   assign_num: Int!
-  question_num: Int!
+  question_num: String!
   reg_no: Int!
   mark: Float!
 }

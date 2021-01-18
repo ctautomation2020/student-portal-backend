@@ -143,6 +143,8 @@ model student {
   person_reference_table_person_reference_tableTostudent_Residential_Type_Ref      person_reference_table?       @relation("person_reference_tableTostudent_Residential_Type_Ref", fields: [Residential_Type_Ref], references: [Ref_Code])
   person_reference_table_person_reference_tableTostudent_Scholarship_Received_Ref  person_reference_table?       @relation("person_reference_tableTostudent_Scholarship_Received_Ref", fields: [Scholarship_Received_Ref], references: [Ref_Code])
   course_assesseval                                                                course_assesseval[]
+  course_assigneval                                                                course_assigneval[]
+  course_attendance                                                                course_attendance[]
   course_registered_students                                                       course_registered_students[]
   credentials                                                                      credentials[]
   person_guestlecture                                                              person_guestlecture[]
@@ -337,6 +339,9 @@ model course_list {
   objectives                 String?
   course_assesseval          course_assesseval[]
   course_assessment          course_assessment[]
+  course_assigneval          course_assigneval[]
+  course_assignment          course_assignment[]
+  course_attendance          course_attendance[]
   course_registered_students course_registered_students[]
   student_endsemmarks        student_endsemmarks[]
   subj_allot                 subj_allot[]
@@ -370,6 +375,12 @@ model course_reference_table {
   course_assesseval_course_assesseval_session_refTocourse_reference_table                   course_assesseval[]          @relation("course_assesseval_session_refTocourse_reference_table")
   course_assessment_course_assessment_group_refTocourse_reference_table                     course_assessment[]          @relation("course_assessment_group_refTocourse_reference_table")
   course_assessment_course_assessment_session_refTocourse_reference_table                   course_assessment[]          @relation("course_assessment_session_refTocourse_reference_table")
+  course_assigneval_course_assigneval_group_refTocourse_reference_table                     course_assigneval[]          @relation("course_assigneval_group_refTocourse_reference_table")
+  course_assigneval_course_assigneval_session_refTocourse_reference_table                   course_assigneval[]          @relation("course_assigneval_session_refTocourse_reference_table")
+  course_assignment_course_assignment_group_refTocourse_reference_table                     course_assignment[]          @relation("course_assignment_group_refTocourse_reference_table")
+  course_assignment_course_assignment_session_refTocourse_reference_table                   course_assignment[]          @relation("course_assignment_session_refTocourse_reference_table")
+  course_attendance_course_attendance_group_refTocourse_reference_table                     course_attendance[]          @relation("course_attendance_group_refTocourse_reference_table")
+  course_attendance_course_attendance_session_refTocourse_reference_table                   course_attendance[]          @relation("course_attendance_session_refTocourse_reference_table")
   course_registered_students                                                                course_registered_students[]
   course_registered_students_course_reference_tableTocourse_registered_students_session_ref course_registered_students[] @relation("course_reference_tableTocourse_registered_students_session_ref")
   subj_allot_course_reference_tableTosubj_allot_group_ref                                   subj_allot[]                 @relation("course_reference_tableTosubj_allot_group_ref")
@@ -377,14 +388,18 @@ model course_reference_table {
 }
 
 model course_assigneval {
-  cassigneval_id Int    @default(autoincrement()) @id
-  course_code    String
-  group_ref      Int
-  session_ref    Int
-  assign_num     Int
-  question_num   Int
-  reg_no         Int
-  mark           Float
+  cassigneval_id                                                               Int                    @default(autoincrement()) @id
+  course_code                                                                  String
+  group_ref                                                                    Int
+  session_ref                                                                  Int
+  assign_num                                                                   Int
+  question_num                                                                 String
+  reg_no                                                                       Int
+  mark                                                                         Float
+  course_list                                                                  course_list            @relation(fields: [course_code], references: [course_code])
+  course_reference_table_course_assigneval_group_refTocourse_reference_table   course_reference_table @relation("course_assigneval_group_refTocourse_reference_table", fields: [group_ref], references: [reference_id])
+  student                                                                      student                @relation(fields: [reg_no], references: [Register_No])
+  course_reference_table_course_assigneval_session_refTocourse_reference_table course_reference_table @relation("course_assigneval_session_refTocourse_reference_table", fields: [session_ref], references: [reference_id])
 
   @@index([course_code], name: "code_fk_idx")
   @@index([group_ref], name: "group_fk_idx")
@@ -393,19 +408,21 @@ model course_assigneval {
 }
 
 model course_assignment {
-  cassign_id       Int      @default(autoincrement()) @id
-  course_code      String
-  group_ref        Int
-  session_ref      Int
-  entry_date       DateTime
-  assign_num       Int
-  question_num     String
-  // This type is currently not supported.
-  // question_stmt binary?
-  question_img     String?
-  co_num           Int
-  marks            Int
-  deadline         DateTime
+  cassign_id                                                                   Int                    @default(autoincrement()) @id
+  course_code                                                                  String
+  group_ref                                                                    Int
+  session_ref                                                                  Int
+  entry_date                                                                   DateTime
+  assign_num                                                                   Int
+  question_num                                                                 String
+  question_stmt                                                                String?
+  question_img                                                                 String?
+  co_num                                                                       Int
+  marks                                                                        Int
+  deadline                                                                     DateTime
+  course_list                                                                  course_list            @relation(fields: [course_code], references: [course_code])
+  course_reference_table_course_assignment_group_refTocourse_reference_table   course_reference_table @relation("course_assignment_group_refTocourse_reference_table", fields: [group_ref], references: [reference_id])
+  course_reference_table_course_assignment_session_refTocourse_reference_table course_reference_table @relation("course_assignment_session_refTocourse_reference_table", fields: [session_ref], references: [reference_id])
 
   @@index([course_code], name: "code_fk_idx")
   @@index([group_ref], name: "group_fk_idx")
@@ -475,14 +492,18 @@ model course_assessment {
 }
 
 model course_attendance {
-  cattend_id  Int      @id
-  course_code String
-  group_ref   Int
-  session_ref Int
-  reg_no      Int
-  date        DateTime
-  period      Int
-  presence    String   @default("P")
+  cattend_id                                                                   Int                    @default(autoincrement()) @id
+  course_code                                                                  String
+  group_ref                                                                    Int
+  session_ref                                                                  Int
+  reg_no                                                                       Int
+  date                                                                         DateTime
+  period                                                                       Int
+  presence                                                                     String                 @default("P")
+  course_list                                                                  course_list            @relation(fields: [course_code], references: [course_code])
+  course_reference_table_course_attendance_group_refTocourse_reference_table   course_reference_table @relation("course_attendance_group_refTocourse_reference_table", fields: [group_ref], references: [reference_id])
+  student                                                                      student                @relation(fields: [reg_no], references: [Register_No])
+  course_reference_table_course_attendance_session_refTocourse_reference_table course_reference_table @relation("course_attendance_session_refTocourse_reference_table", fields: [session_ref], references: [reference_id])
 
   @@index([course_code], name: "code_fk_idx")
   @@index([group_ref], name: "group_fk_idx")
