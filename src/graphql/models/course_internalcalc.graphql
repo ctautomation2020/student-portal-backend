@@ -1,0 +1,20 @@
+type Query{
+    studentCourseInternalcalc(data:studentCourseInternalcalcQueryInput!):StudentCourseInternalcalc!
+}
+
+input studentCourseInternalcalcQueryInput{
+    reg_no: Int!
+    course_code: String!
+    group_ref: Int!
+    session_ref: Int!
+}
+type StudentCourseInternalcalc{
+    cintcalc_id: Int
+    course_code: String
+    group_ref: Int
+    session_ref: Int
+    reg_no: Int
+    ca: Float
+    midterm: Float
+    total_marks: Float
+}

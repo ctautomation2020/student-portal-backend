@@ -8,6 +8,8 @@ type Query {
   session_assignments(data: sessionQueryInput!): [Int]
   assignment(data: assignmentQueryInput!): [course_assignment]
   studentAttendance(data: studentAttendanceQueryInput): [StudentAttendance!]!
+  studentCourseEvalution(data: studentCourseEvalutionQueryInput!): [StudentCourseEvalution!]!
+  studentCourseInternalcalc(data: studentCourseInternalcalcQueryInput!): StudentCourseInternalcalc!
   courseList(data: courseListQueryInput!): CourseList!
   courseReference(data: Course_Reference_Input): [Course_Reference_Table]
   studentSessions(data: studentSessions): [Int!]!
@@ -277,6 +279,43 @@ type StudentAttendance {
   date: String
   period: Int
   presence: String
+}
+
+input studentCourseEvalutionQueryInput {
+  reg_no: Int!
+  course_code: String!
+  group_ref: Int!
+  session_ref: Int!
+}
+
+type StudentCourseEvalution {
+  caval_id: Int
+  course_code: String
+  group_ref: Int
+  session_ref: Int
+  type: Int
+  total_mark: Int
+  marks_obtained: Int
+  reg_no: Int
+  weightage: Int
+}
+
+input studentCourseInternalcalcQueryInput {
+  reg_no: Int!
+  course_code: String!
+  group_ref: Int!
+  session_ref: Int!
+}
+
+type StudentCourseInternalcalc {
+  cintcalc_id: Int
+  course_code: String
+  group_ref: Int
+  session_ref: Int
+  reg_no: Int
+  ca: Float
+  midterm: Float
+  total_marks: Float
 }
 
 type CourseList {

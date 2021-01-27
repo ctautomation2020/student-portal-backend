@@ -1,0 +1,22 @@
+type Query{
+    studentCourseEvalution(data:studentCourseEvalutionQueryInput!):[StudentCourseEvalution!]!
+}
+
+input studentCourseEvalutionQueryInput{
+    reg_no: Int!
+    course_code: String!
+    group_ref: Int!
+    session_ref: Int!
+}
+
+type StudentCourseEvalution{
+    caval_id: Int
+    course_code: String
+    group_ref: Int
+    session_ref: Int
+    type: Int
+    total_mark: Int
+    marks_obtained: Int
+    reg_no: Int
+    weightage: Int
+}
