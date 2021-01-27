@@ -1,20 +1,21 @@
 type Query{
-    studentCourseEvalution(data:studentCourseEvalutionQueryInput!):[StudentCourseEvalution!]!
+    studentCourseCAComp(data:studentCourseCACompQueryInput!):[StudentCourseCAComp!]!
 }
 
-input studentCourseEvalutionQueryInput{
+input studentCourseCACompQueryInput{
     reg_no: Int!
     course_code: String!
     group_ref: Int!
     session_ref: Int!
 }
 
-type StudentCourseEvalution{
+type StudentCourseCAComp{
     caval_id: Int
     course_code: String
     group_ref: Int
     session_ref: Int
     type: Int
+    number: Int
     total_mark: Int
     marks_obtained: Int
     reg_no: Int

@@ -145,6 +145,8 @@ model student {
   course_assesseval                                                                course_assesseval[]
   course_assigneval                                                                course_assigneval[]
   course_attendance                                                                course_attendance[]
+  course_evaluation                                                                course_evaluation[]
+  course_internalcalc                                                              course_internalcalc[]
   course_registered_students                                                       course_registered_students[]
   credentials                                                                      credentials[]
   person_guestlecture                                                              person_guestlecture[]
@@ -342,6 +344,9 @@ model course_list {
   course_assigneval          course_assigneval[]
   course_assignment          course_assignment[]
   course_attendance          course_attendance[]
+  course_cacomp              course_cacomp[]
+  course_evaluation          course_evaluation[]
+  course_internalcalc        course_internalcalc[]
   course_registered_students course_registered_students[]
   student_endsemmarks        student_endsemmarks[]
   subj_allot                 subj_allot[]
@@ -381,6 +386,12 @@ model course_reference_table {
   course_assignment_course_assignment_session_refTocourse_reference_table                   course_assignment[]          @relation("course_assignment_session_refTocourse_reference_table")
   course_attendance_course_attendance_group_refTocourse_reference_table                     course_attendance[]          @relation("course_attendance_group_refTocourse_reference_table")
   course_attendance_course_attendance_session_refTocourse_reference_table                   course_attendance[]          @relation("course_attendance_session_refTocourse_reference_table")
+  course_cacomp_course_cacomp_group_refTocourse_reference_table                             course_cacomp[]              @relation("course_cacomp_group_refTocourse_reference_table")
+  course_cacomp_course_cacomp_session_refTocourse_reference_table                           course_cacomp[]              @relation("course_cacomp_session_refTocourse_reference_table")
+  course_evaluation_course_evaluation_group_refTocourse_reference_table                     course_evaluation[]          @relation("course_evaluation_group_refTocourse_reference_table")
+  course_evaluation_course_evaluation_session_refTocourse_reference_table                   course_evaluation[]          @relation("course_evaluation_session_refTocourse_reference_table")
+  course_internalcalc_course_internalcalc_group_refTocourse_reference_table                 course_internalcalc[]        @relation("course_internalcalc_group_refTocourse_reference_table")
+  course_internalcalc_course_internalcalc_session_refTocourse_reference_table               course_internalcalc[]        @relation("course_internalcalc_session_refTocourse_reference_table")
   course_registered_students                                                                course_registered_students[]
   course_registered_students_course_reference_tableTocourse_registered_students_session_ref course_registered_students[] @relation("course_reference_tableTocourse_registered_students_session_ref")
   subj_allot_course_reference_tableTosubj_allot_group_ref                                   subj_allot[]                 @relation("course_reference_tableTosubj_allot_group_ref")
@@ -509,4 +520,63 @@ model course_attendance {
   @@index([group_ref], name: "group_fk_idx")
   @@index([reg_no], name: "regno_fk_idx")
   @@index([session_ref], name: "session_fk_idx")
+}
+
+model course_cacomp {
+  ccacomp_id                                                               Int                    @default(autoincrement()) @id
+  course_code                                                              String
+  group_ref                                                                Int
+  session_ref                                                              Int
+  type                                                                     Int
+  number                                                                   Int
+  weightage                                                                Int
+  total_marks                                                              Int
+  course_list                                                              course_list            @relation(fields: [course_code], references: [course_code])
+  course_reference_table_course_cacomp_group_refTocourse_reference_table   course_reference_table @relation("course_cacomp_group_refTocourse_reference_table", fields: [group_ref], references: [ref_code])
+  course_reference_table_course_cacomp_session_refTocourse_reference_table course_reference_table @relation("course_cacomp_session_refTocourse_reference_table", fields: [session_ref], references: [ref_code])
+
+  @@index([course_code], name: "code_fk10_idx")
+  @@index([group_ref], name: "group_fk10_idx")
+  @@index([session_ref], name: "session_fk10_idx")
+}
+
+model course_evaluation {
+  caval_id                                                                     Int                    @default(autoincrement()) @id
+  course_code                                                                  String
+  group_ref                                                                    Int
+  session_ref                                                                  Int
+  type                                                                         Int
+  number                                                                       Int
+  total_mark                                                                   Int
+  marks_obtained                                                               Int
+  reg_no                                                                       Int
+  course_list                                                                  course_list            @relation(fields: [course_code], references: [course_code])
+  course_reference_table_course_evaluation_group_refTocourse_reference_table   course_reference_table @relation("course_evaluation_group_refTocourse_reference_table", fields: [group_ref], references: [reference_id])
+  student                                                                      student                @relation(fields: [reg_no], references: [Register_No])
+  course_reference_table_course_evaluation_session_refTocourse_reference_table course_reference_table @relation("course_evaluation_session_refTocourse_reference_table", fields: [session_ref], references: [reference_id])
+
+  @@index([course_code], name: "course_code")
+  @@index([group_ref], name: "course_evaluation_ibfk_1")
+  @@index([session_ref], name: "course_evaluation_ibfk_2")
+  @@index([reg_no], name: "reg_no")
+}
+
+model course_internalcalc {
+  cintcalc_id                                                                    Int                    @default(autoincrement()) @id
+  course_code                                                                    String
+  group_ref                                                                      Int
+  session_ref                                                                    Int
+  reg_no                                                                         Int
+  ca                                                                             Float
+  midterm                                                                        Float
+  total_marks                                                                    Float
+  course_list                                                                    course_list            @relation(fields: [course_code], references: [course_code])
+  course_reference_table_course_internalcalc_group_refTocourse_reference_table   course_reference_table @relation("course_internalcalc_group_refTocourse_reference_table", fields: [group_ref], references: [ref_code])
+  student                                                                        student                @relation(fields: [reg_no], references: [Register_No])
+  course_reference_table_course_internalcalc_session_refTocourse_reference_table course_reference_table @relation("course_internalcalc_session_refTocourse_reference_table", fields: [session_ref], references: [ref_code])
+
+  @@index([course_code], name: "code_fk11_idx")
+  @@index([group_ref], name: "group_fk11_idx")
+  @@index([reg_no], name: "regnum_fk11_idx")
+  @@index([session_ref], name: "session_fk11_idx")
 }

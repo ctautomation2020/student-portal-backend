@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2021 at 09:07 AM
+-- Generation Time: Jan 27, 2021 at 09:04 PM
 -- Server version: 8.0.22
 -- PHP Version: 7.4.9
 
@@ -297,7 +297,95 @@ INSERT INTO `course_attendance` (`cattend_id`, `course_code`, `group_ref`, `sess
 (83, 'CS6109', 2, 11, 2018503557, '2020-11-25', 2, 'P'),
 (84, 'CS6109', 2, 11, 2018503557, '2020-11-26', 3, 'A'),
 (85, 'CS6109', 2, 11, 2018503557, '2020-11-27', 1, 'P'),
-(86, 'CS6109', 2, 11, 2018503557, '2020-11-30', 4, 'P');
+(86, 'CS6109', 2, 11, 2018503557, '2020-11-30', 4, 'P'),
+(87, 'CS6109', 2, 11, 2018503557, '2020-08-04', 2, 'A');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_cacomp`
+--
+
+CREATE TABLE `course_cacomp` (
+  `ccacomp_id` int NOT NULL,
+  `course_code` varchar(15) NOT NULL,
+  `group_ref` int NOT NULL,
+  `session_ref` int NOT NULL,
+  `type` int NOT NULL,
+  `number` int NOT NULL,
+  `weightage` int NOT NULL,
+  `total_marks` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `course_cacomp`
+--
+
+INSERT INTO `course_cacomp` (`ccacomp_id`, `course_code`, `group_ref`, `session_ref`, `type`, `number`, `weightage`, `total_marks`) VALUES
+(1, 'CS6101', 2, 6, 0, 1, 5, 25),
+(2, 'CS6101', 2, 6, 0, 2, 5, 30),
+(3, 'CS6101', 2, 6, 0, 3, 10, 10),
+(4, 'CS6101', 2, 6, 0, 4, 10, 100),
+(5, 'CS6101', 2, 6, 1, 1, 20, 50),
+(6, 'CS6101', 2, 6, 1, 2, 20, 50),
+(7, 'CS6101', 2, 6, 1, 3, 20, 50),
+(8, 'CS6101', 2, 6, 0, 5, 10, 50);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_evaluation`
+--
+
+CREATE TABLE `course_evaluation` (
+  `caval_id` int NOT NULL,
+  `course_code` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `group_ref` int NOT NULL,
+  `session_ref` int NOT NULL,
+  `type` int NOT NULL,
+  `number` int NOT NULL,
+  `total_mark` int NOT NULL,
+  `marks_obtained` int NOT NULL,
+  `reg_no` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `course_evaluation`
+--
+
+INSERT INTO `course_evaluation` (`caval_id`, `course_code`, `group_ref`, `session_ref`, `type`, `number`, `total_mark`, `marks_obtained`, `reg_no`) VALUES
+(1, 'CS6101', 2, 6, 0, 1, 25, 20, 2018503557),
+(2, 'CS6101', 2, 6, 0, 2, 30, 29, 2018503557),
+(3, 'CS6101', 2, 6, 0, 3, 10, 10, 2018503557),
+(4, 'CS6101', 2, 6, 0, 4, 100, 80, 2018503557),
+(5, 'CS6101', 2, 6, 1, 1, 50, 50, 2018503557),
+(6, 'CS6101', 2, 6, 1, 2, 50, 45, 2018503557),
+(7, 'CS6101', 2, 6, 1, 3, 50, 30, 2018503557),
+(8, 'CS6101', 2, 6, 0, 5, 50, 40, 2018503557);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `course_internalcalc`
+--
+
+CREATE TABLE `course_internalcalc` (
+  `cintcalc_id` int NOT NULL,
+  `course_code` varchar(15) NOT NULL,
+  `group_ref` int NOT NULL,
+  `session_ref` int NOT NULL,
+  `reg_no` int NOT NULL,
+  `ca` float NOT NULL,
+  `midterm` float NOT NULL,
+  `total_marks` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `course_internalcalc`
+--
+
+INSERT INTO `course_internalcalc` (`cintcalc_id`, `course_code`, `group_ref`, `session_ref`, `reg_no`, `ca`, `midterm`, `total_marks`) VALUES
+(1, 'CS6101', 2, 6, 2018503557, 33.9, 19, 53);
 
 -- --------------------------------------------------------
 
@@ -808,7 +896,8 @@ CREATE TABLE `student_events_participated` (
 --
 
 INSERT INTO `student_events_participated` (`Event_ID`, `Register_No`, `Event_Name`, `Event_Type_Ref`, `Participation_Type_Ref`, `Team_Size`, `Event_Organizer`, `Event_Date`, `Prize_Won_Details`, `Certificate_Copy`) VALUES
-(22, 2018503557, 'event1a', 133, 120, 9, 'org1', '2020-10-31', 'prize1', 'student-events-participated\\StudentEventParticipated_2018503557_22.pdf');
+(22, 2018503557, 'event1a', 133, 120, 9, 'org1', '2020-10-31', 'prize1', 'student-events-participated\\StudentEventParticipated_2018503557_22.pdf'),
+(54, 2018503557, 'event2b', 133, 120, 3, 'kalc', '2021-01-25', '1112', 'student-events-participated\\StudentEventParticipated_2018503557_54.pdf');
 
 -- --------------------------------------------------------
 
@@ -1093,6 +1182,37 @@ ALTER TABLE `course_attendance`
   ADD KEY `regno_fk_idx` (`reg_no`);
 
 --
+-- Indexes for table `course_cacomp`
+--
+ALTER TABLE `course_cacomp`
+  ADD PRIMARY KEY (`ccacomp_id`),
+  ADD UNIQUE KEY `cintcomp_id_UNIQUE` (`ccacomp_id`),
+  ADD KEY `code_fk10_idx` (`course_code`),
+  ADD KEY `group_fk10_idx` (`group_ref`),
+  ADD KEY `session_fk10_idx` (`session_ref`);
+
+--
+-- Indexes for table `course_evaluation`
+--
+ALTER TABLE `course_evaluation`
+  ADD PRIMARY KEY (`caval_id`),
+  ADD KEY `course_evaluation_ibfk_1` (`group_ref`),
+  ADD KEY `course_evaluation_ibfk_2` (`session_ref`),
+  ADD KEY `course_code` (`course_code`),
+  ADD KEY `reg_no` (`reg_no`);
+
+--
+-- Indexes for table `course_internalcalc`
+--
+ALTER TABLE `course_internalcalc`
+  ADD PRIMARY KEY (`cintcalc_id`),
+  ADD UNIQUE KEY `cintcalc_id_UNIQUE` (`cintcalc_id`),
+  ADD KEY `code_fk11_idx` (`course_code`),
+  ADD KEY `group_fk11_idx` (`group_ref`),
+  ADD KEY `session_fk11_idx` (`session_ref`),
+  ADD KEY `regnum_fk11_idx` (`reg_no`);
+
+--
 -- Indexes for table `course_list`
 --
 ALTER TABLE `course_list`
@@ -1287,7 +1407,25 @@ ALTER TABLE `course_assignment`
 -- AUTO_INCREMENT for table `course_attendance`
 --
 ALTER TABLE `course_attendance`
-  MODIFY `cattend_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `cattend_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+
+--
+-- AUTO_INCREMENT for table `course_cacomp`
+--
+ALTER TABLE `course_cacomp`
+  MODIFY `ccacomp_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `course_evaluation`
+--
+ALTER TABLE `course_evaluation`
+  MODIFY `caval_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `course_internalcalc`
+--
+ALTER TABLE `course_internalcalc`
+  MODIFY `cintcalc_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `course_reference_table`
@@ -1335,7 +1473,7 @@ ALTER TABLE `student_endsemmarks`
 -- AUTO_INCREMENT for table `student_events_participated`
 --
 ALTER TABLE `student_events_participated`
-  MODIFY `Event_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `Event_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `student_family_details`
@@ -1425,6 +1563,32 @@ ALTER TABLE `course_attendance`
   ADD CONSTRAINT `course_attendance_ibfk_2` FOREIGN KEY (`group_ref`) REFERENCES `course_reference_table` (`reference_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `course_attendance_ibfk_3` FOREIGN KEY (`session_ref`) REFERENCES `course_reference_table` (`reference_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `course_attendance_ibfk_4` FOREIGN KEY (`reg_no`) REFERENCES `student` (`Register_No`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `course_cacomp`
+--
+ALTER TABLE `course_cacomp`
+  ADD CONSTRAINT `code_fk10` FOREIGN KEY (`course_code`) REFERENCES `course_list` (`course_code`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `group_fk10` FOREIGN KEY (`group_ref`) REFERENCES `course_reference_table` (`ref_code`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `session_fk10` FOREIGN KEY (`session_ref`) REFERENCES `course_reference_table` (`ref_code`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `course_evaluation`
+--
+ALTER TABLE `course_evaluation`
+  ADD CONSTRAINT `course_evaluation_ibfk_1` FOREIGN KEY (`group_ref`) REFERENCES `course_reference_table` (`reference_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `course_evaluation_ibfk_2` FOREIGN KEY (`session_ref`) REFERENCES `course_reference_table` (`reference_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `course_evaluation_ibfk_3` FOREIGN KEY (`course_code`) REFERENCES `course_list` (`course_code`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `course_evaluation_ibfk_4` FOREIGN KEY (`reg_no`) REFERENCES `student` (`Register_No`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `course_internalcalc`
+--
+ALTER TABLE `course_internalcalc`
+  ADD CONSTRAINT `code_fk11` FOREIGN KEY (`course_code`) REFERENCES `course_list` (`course_code`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `course_internalcalc_ibfk_1` FOREIGN KEY (`reg_no`) REFERENCES `student` (`Register_No`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `group_fk11` FOREIGN KEY (`group_ref`) REFERENCES `course_reference_table` (`ref_code`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `session_fk11` FOREIGN KEY (`session_ref`) REFERENCES `course_reference_table` (`ref_code`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `course_registered_students`
