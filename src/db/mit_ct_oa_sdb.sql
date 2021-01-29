@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 27, 2021 at 09:04 PM
+-- Generation Time: Jan 29, 2021 at 11:57 AM
 -- Server version: 8.0.22
 -- PHP Version: 7.4.9
 
@@ -313,23 +313,22 @@ CREATE TABLE `course_cacomp` (
   `session_ref` int NOT NULL,
   `type` int NOT NULL,
   `number` int NOT NULL,
-  `weightage` int NOT NULL,
-  `total_marks` int NOT NULL
+  `weightage` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `course_cacomp`
 --
 
-INSERT INTO `course_cacomp` (`ccacomp_id`, `course_code`, `group_ref`, `session_ref`, `type`, `number`, `weightage`, `total_marks`) VALUES
-(1, 'CS6101', 2, 6, 0, 1, 5, 25),
-(2, 'CS6101', 2, 6, 0, 2, 5, 30),
-(3, 'CS6101', 2, 6, 0, 3, 10, 10),
-(4, 'CS6101', 2, 6, 0, 4, 10, 100),
-(5, 'CS6101', 2, 6, 1, 1, 20, 50),
-(6, 'CS6101', 2, 6, 1, 2, 20, 50),
-(7, 'CS6101', 2, 6, 1, 3, 20, 50),
-(8, 'CS6101', 2, 6, 0, 5, 10, 50);
+INSERT INTO `course_cacomp` (`ccacomp_id`, `course_code`, `group_ref`, `session_ref`, `type`, `number`, `weightage`) VALUES
+(1, 'CS6101', 2, 6, 0, 1, 5),
+(2, 'CS6101', 2, 6, 0, 2, 5),
+(3, 'CS6101', 2, 6, 0, 3, 10),
+(4, 'CS6101', 2, 6, 0, 4, 10),
+(5, 'CS6101', 2, 6, 1, 1, 20),
+(6, 'CS6101', 2, 6, 1, 2, 20),
+(7, 'CS6101', 2, 6, 1, 3, 20),
+(8, 'CS6101', 2, 6, 0, 5, 10);
 
 -- --------------------------------------------------------
 
@@ -346,6 +345,7 @@ CREATE TABLE `course_evaluation` (
   `number` int NOT NULL,
   `total_mark` int NOT NULL,
   `marks_obtained` int NOT NULL,
+  `weighted_marks` float NOT NULL,
   `reg_no` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -353,15 +353,15 @@ CREATE TABLE `course_evaluation` (
 -- Dumping data for table `course_evaluation`
 --
 
-INSERT INTO `course_evaluation` (`caval_id`, `course_code`, `group_ref`, `session_ref`, `type`, `number`, `total_mark`, `marks_obtained`, `reg_no`) VALUES
-(1, 'CS6101', 2, 6, 0, 1, 25, 20, 2018503557),
-(2, 'CS6101', 2, 6, 0, 2, 30, 29, 2018503557),
-(3, 'CS6101', 2, 6, 0, 3, 10, 10, 2018503557),
-(4, 'CS6101', 2, 6, 0, 4, 100, 80, 2018503557),
-(5, 'CS6101', 2, 6, 1, 1, 50, 50, 2018503557),
-(6, 'CS6101', 2, 6, 1, 2, 50, 45, 2018503557),
-(7, 'CS6101', 2, 6, 1, 3, 50, 30, 2018503557),
-(8, 'CS6101', 2, 6, 0, 5, 50, 40, 2018503557);
+INSERT INTO `course_evaluation` (`caval_id`, `course_code`, `group_ref`, `session_ref`, `type`, `number`, `total_mark`, `marks_obtained`, `weighted_marks`, `reg_no`) VALUES
+(1, 'CS6101', 2, 6, 0, 1, 25, 20, 4.5, 2018503557),
+(2, 'CS6101', 2, 6, 0, 2, 30, 29, 4, 2018503557),
+(3, 'CS6101', 2, 6, 0, 3, 10, 10, 9, 2018503557),
+(4, 'CS6101', 2, 6, 0, 4, 100, 80, 8, 2018503557),
+(5, 'CS6101', 2, 6, 1, 1, 50, 50, 18, 2018503557),
+(6, 'CS6101', 2, 6, 1, 2, 50, 45, 19, 2018503557),
+(7, 'CS6101', 2, 6, 1, 3, 50, 30, 17, 2018503557),
+(8, 'CS6101', 2, 6, 0, 5, 50, 40, 8.5, 2018503557);
 
 -- --------------------------------------------------------
 
@@ -385,7 +385,7 @@ CREATE TABLE `course_internalcalc` (
 --
 
 INSERT INTO `course_internalcalc` (`cintcalc_id`, `course_code`, `group_ref`, `session_ref`, `reg_no`, `ca`, `midterm`, `total_marks`) VALUES
-(1, 'CS6101', 2, 6, 2018503557, 33.9, 19, 53);
+(1, 'CS6101', 2, 6, 2018503557, 79.9, 93, 53);
 
 -- --------------------------------------------------------
 
@@ -897,7 +897,8 @@ CREATE TABLE `student_events_participated` (
 
 INSERT INTO `student_events_participated` (`Event_ID`, `Register_No`, `Event_Name`, `Event_Type_Ref`, `Participation_Type_Ref`, `Team_Size`, `Event_Organizer`, `Event_Date`, `Prize_Won_Details`, `Certificate_Copy`) VALUES
 (22, 2018503557, 'event1a', 133, 120, 9, 'org1', '2020-10-31', 'prize1', 'student-events-participated\\StudentEventParticipated_2018503557_22.pdf'),
-(54, 2018503557, 'event2b', 133, 120, 3, 'kalc', '2021-01-25', '1112', 'student-events-participated\\StudentEventParticipated_2018503557_54.pdf');
+(54, 2018503557, 'event2b', 133, 120, 3, 'kalc', '2021-01-25', '1112', 'student-events-participated\\StudentEventParticipated_2018503557_54.pdf'),
+(55, 2018503557, 'admii', 132, 119, 1, 'CEG', '2021-01-01', '3rd Place', 'student-events-participated\\StudentEventParticipated_2018503557_55.pdf');
 
 -- --------------------------------------------------------
 
@@ -1473,7 +1474,7 @@ ALTER TABLE `student_endsemmarks`
 -- AUTO_INCREMENT for table `student_events_participated`
 --
 ALTER TABLE `student_events_participated`
-  MODIFY `Event_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `Event_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `student_family_details`

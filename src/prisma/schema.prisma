@@ -530,7 +530,6 @@ model course_cacomp {
   type                                                                     Int
   number                                                                   Int
   weightage                                                                Int
-  total_marks                                                              Int
   course_list                                                              course_list            @relation(fields: [course_code], references: [course_code])
   course_reference_table_course_cacomp_group_refTocourse_reference_table   course_reference_table @relation("course_cacomp_group_refTocourse_reference_table", fields: [group_ref], references: [ref_code])
   course_reference_table_course_cacomp_session_refTocourse_reference_table course_reference_table @relation("course_cacomp_session_refTocourse_reference_table", fields: [session_ref], references: [ref_code])
@@ -549,6 +548,7 @@ model course_evaluation {
   number                                                                       Int
   total_mark                                                                   Int
   marks_obtained                                                               Int
+  weighted_marks                                                               Float
   reg_no                                                                       Int
   course_list                                                                  course_list            @relation(fields: [course_code], references: [course_code])
   course_reference_table_course_evaluation_group_refTocourse_reference_table   course_reference_table @relation("course_evaluation_group_refTocourse_reference_table", fields: [group_ref], references: [reference_id])

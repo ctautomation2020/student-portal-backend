@@ -10,14 +10,14 @@ input studentCourseCACompQueryInput{
 }
 
 type StudentCourseCAComp{
-    caval_id: Int
+    ccacomp_id: Int
     course_code: String
     group_ref: Int
     session_ref: Int
     type: Int
     number: Int
-    total_mark: Int
-    marks_obtained: Int
-    reg_no: Int
     weightage: Int
+    marks_obtained: Int
+    total_mark: Int
+    weighted_marks: Float
 }
