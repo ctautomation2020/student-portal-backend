@@ -1,0 +1,50 @@
+type Query{
+    student_auth_login(data:user_infoQueryInput!): studentLoginPayload!
+}
+
+type Mutation{
+    auth_createUser(data:createUser_infoInput!): user_infoPayload
+    auth_updateUser(data:updateUser_infoInput!): user_infoPayload
+}
+
+type studentLoginPayload{
+  token: String!
+  Register_No: Int!
+  user_role: Int
+}
+
+type user_info {
+  user_ID: Int!    
+  username: Int!
+  user_role: Int
+  password: String
+  status: String
+  create_time: String
+}
+
+input createUser_infoInput{
+  
+  username: Int! 
+  password: String!
+  user_role: Int
+  status: String
+}
+
+type user_infoPayload{
+  user_ID: Int 
+  username: Int!
+  user_role: Int
+  status: String
+}
+
+input updateUser_infoInput{
+  username: Int
+  password: String
+  user_role: Int
+  status: String
+}
+
+input user_infoQueryInput{
+  username: Int!
+  password: String!
+}
