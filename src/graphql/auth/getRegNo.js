@@ -8,7 +8,7 @@ const getRegNo=(req)=>{
     }
     const token = header.replace('Bearer ','')
     const decoded = jwt.verify(token,"ct_admin")
-    return decoded.Register_No
+    return decoded.username
 }
 
 export default getRegNo

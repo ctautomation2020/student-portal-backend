@@ -11,7 +11,7 @@ module.exports={
 
         async student(parent, args, {prisma,req}, info){
             const Register_No = getRegNo(req)
-            //console.log(Register_No);
+            //console.log(req.headers);
             return await prisma.student.findOne({
                 where: {
                     Register_No

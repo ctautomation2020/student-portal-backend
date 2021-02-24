@@ -38,6 +38,7 @@ type Query {
   studentPlacement(data: studentPlacementQueryInput!): StudentPlacement!
   studentPlacements(data: studentPlacementsQueryInput!): [StudentPlacement!]!
   studentRegisteredCourses(data: studentRegisteredCoursesQueryInput): [StudentRegisteredCourses!]!
+  student_auth_login(data: user_infoQueryInput!): studentLoginPayload!
 }
 
 type Mutation {
@@ -84,6 +85,8 @@ type Mutation {
   updateStudentPlacement(data: updateStudentPlacementInput!): StudentPlacement!
   deleteStudentPlacement(data: deleteStudentPlacementInput!): StudentPlacement!
   uploadStudentPlacement(data: uploadStudentPlacementInput!): String!
+  auth_createUser(data: createUser_infoInput!): user_infoPayload
+  auth_updateUser(data: updateUser_infoInput!): user_infoPayload
 }
 
 type course_assessment {
@@ -1062,6 +1065,47 @@ input studentRegisteredCoursesQueryInput {
   reg_no: Int!
   session_ref: Int
   cregst_id: Int
+}
+
+type studentLoginPayload {
+  token: String!
+  Register_No: Int!
+  user_role: Int
+}
+
+type user_info {
+  user_ID: Int!
+  username: Int!
+  user_role: Int
+  password: String
+  status: String
+  create_time: String
+}
+
+input createUser_infoInput {
+  username: Int!
+  password: String!
+  user_role: Int
+  status: String
+}
+
+type user_infoPayload {
+  user_ID: Int
+  username: Int!
+  user_role: Int
+  status: String
+}
+
+input updateUser_infoInput {
+  username: Int
+  password: String
+  user_role: Int
+  status: String
+}
+
+input user_infoQueryInput {
+  username: Int!
+  password: String!
 }
 
 schema {

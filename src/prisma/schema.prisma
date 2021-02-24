@@ -324,8 +324,8 @@ model student_placement {
 
 model user_info {
   user_ID     Int       @default(autoincrement()) @id
-  username    Int
-  user_role   String?
+  username    Int       @unique
+  user_role   Int?
   password    String?
   status      String?
   create_time DateTime? @default(now())
