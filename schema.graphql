@@ -9,7 +9,7 @@ type Query {
   assignment(data: assignmentQueryInput!): [course_assignment]
   studentAttendance(data: studentAttendanceQueryInput): [StudentAttendance!]!
   studentCourseCAComp(data: studentCourseCACompQueryInput!): [StudentCourseCAComp!]!
-  studentCourseInternalcalc(data: studentCourseInternalcalcQueryInput!): StudentCourseInternalcalc!
+  studentCourseInternalcalc(data: studentCourseInternalcalcQueryInput!): StudentCourseInternalcalc
   courseList(data: courseListQueryInput!): CourseList!
   courseReference(data: Course_Reference_Input): [Course_Reference_Table]
   studentSessions(data: studentSessions): [Int!]!
@@ -59,32 +59,26 @@ type Mutation {
   createStudentAward(data: createStudentAwardInput!): StudentAward!
   updateStudentAward(data: updateStudentAwardInput!): StudentAward!
   deleteStudentAward(data: deleteStudentAwardInput!): StudentAward!
-  uploadStudentAward(data: uploadStudentAwardInput!): String!
   createStudentEndsemMark(data: createStudentEndsemMarkInput!): StudentEndsemMark!
   updateStudentEndsemMark(data: [updateStudentEndsemMarkInput!]!): [StudentEndsemMark!]!
   deleteStudentEndsemMark(data: deleteStudentEndsemMarkInput!): StudentEndsemMark!
   createEventParticipated(data: createEventParticipatedInput!): StudentEventParticipated!
   updateEventParticipated(data: updateEventParticipatedInput!): StudentEventParticipated!
   deleteEventParticipated(data: deleteEventParticipatedInput!): StudentEventParticipated!
-  uploadEventParticipated(data: uploadEventParticipatedInput!): String!
   createStudentFamilyDetails(data: createStudentFamilyDetailsInput!): StudentFamilyDetails!
   updateStudentFamilyDetails(data: updateStudentFamilyDetailsInput!): StudentFamilyDetails!
   createStudentGpa(data: createStudentGpaInput!): StudentGpa!
   updateStudentGpa(data: updateStudentGpaInput!): StudentGpa!
   deleteStudentGpa(data: deleteStudentGpaInput!): StudentGpa!
-  uploadStudentGpa(data: uploadStudentGpaInput!): String!
   createStudentHigherStudy(data: createStudentHigherStudyInput!): StudentHigherStudy!
   updateStudentHigherStudy(data: updateStudentHigherStudyInput!): StudentHigherStudy!
   deleteStudentHigherStudy(data: deleteStudentHigherStudyInput!): StudentHigherStudy!
-  uploadStudentHigherStudy(data: uploadStudentHigherStudyInput!): String!
   createStudentInternship(data: createStudentInternshipInput!): StudentInternship!
   updateStudentInternship(data: updateStudentInternshipInput!): StudentInternship!
   deleteStudentInternship(data: deleteStudentInternshipInput!): StudentInternship!
-  uploadStudentInternship(data: uploadStudentInternshipInput!): String!
   createStudentPlacement(data: createStudentPlacementInput!): StudentPlacement!
   updateStudentPlacement(data: updateStudentPlacementInput!): StudentPlacement!
   deleteStudentPlacement(data: deleteStudentPlacementInput!): StudentPlacement!
-  uploadStudentPlacement(data: uploadStudentPlacementInput!): String!
   auth_createUser(data: createUser_infoInput!): user_infoPayload
   auth_updateUser(data: updateUser_infoInput!): user_infoPayload
 }
@@ -487,7 +481,6 @@ input updatePersonInput {
 
 type Person_Reference_Table {
   Reference_ID: Int!
-  Ref_Code: Int
   Category: String
   Ref_Name: String
   Description: String
@@ -664,11 +657,6 @@ input deleteStudentAwardInput {
   Award_ID: Int!
 }
 
-input uploadStudentAwardInput {
-  Award_ID: Int!
-  file: Upload!
-}
-
 input studentEndsemsMarksQueryInput {
   Register_No: Int!
 }
@@ -765,11 +753,6 @@ input updateEventParticipatedInput {
 
 input deleteEventParticipatedInput {
   Event_ID: Int!
-}
-
-input uploadEventParticipatedInput {
-  Event_ID: Int!
-  file: Upload!
 }
 
 type StudentFamilyDetails {
@@ -872,11 +855,6 @@ input deleteStudentGpaInput {
   Gpa_ID: Int!
 }
 
-input uploadStudentGpaInput {
-  Gpa_ID: Int!
-  file: Upload!
-}
-
 type StudentHigherStudy {
   HigherStudies_ID: Int!
   Register_No: Int!
@@ -928,11 +906,6 @@ input updateStudentHigherStudyInput {
 
 input deleteStudentHigherStudyInput {
   HigherStudies_ID: Int!
-}
-
-input uploadStudentHigherStudyInput {
-  HigherStudies_ID: Int!
-  file: Upload!
 }
 
 type StudentInternship {
@@ -988,11 +961,6 @@ input deleteStudentInternshipInput {
   Internship_ID: Int!
 }
 
-input uploadStudentInternshipInput {
-  Internship_ID: Int!
-  file: Upload!
-}
-
 type StudentPlacement {
   Placement_ID: Int!
   Register_No: Int!
@@ -1044,11 +1012,6 @@ input updateStudentPlacementInput {
 
 input deleteStudentPlacementInput {
   Placement_ID: Int!
-}
-
-input uploadStudentPlacementInput {
-  Placement_ID: Int!
-  file: Upload!
 }
 
 type StudentRegisteredCourses {

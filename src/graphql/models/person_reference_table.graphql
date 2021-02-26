@@ -3,8 +3,7 @@ type Query {
 }
 
 type Person_Reference_Table {
-  Reference_ID: Int!                       
-  Ref_Code: Int                  
+  Reference_ID: Int!                                        
   Category: String
   Ref_Name: String
   Description: String

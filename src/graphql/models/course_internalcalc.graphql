@@ -1,5 +1,5 @@
 type Query{
-    studentCourseInternalcalc(data:studentCourseInternalcalcQueryInput!):StudentCourseInternalcalc!
+    studentCourseInternalcalc(data:studentCourseInternalcalcQueryInput!):StudentCourseInternalcalc
 }
 
 input studentCourseInternalcalcQueryInput{
