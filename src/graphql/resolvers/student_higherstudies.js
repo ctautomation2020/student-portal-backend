@@ -15,7 +15,6 @@ module.exports={
         },
         async studentHigherStudy(parent, {data}, {prisma,req}, info){
             const HigherStudies_ID = data.HigherStudies_ID
-            console.log(HigherStudies_ID)
             return await prisma.student_higherstudies.findOne({
                 where: {
                     HigherStudies_ID
@@ -96,19 +95,21 @@ module.exports={
                     ...ref_data
                 }
             })
-            const { createReadStream, filename } = await file;
-            const ext = filename.substr(filename.lastIndexOf('.') + 1);
-            const fileName = "StudentHigherStudies_"+Register_No+"_"+HigherStudies_ID+"."+ext;
+            if(file != null){
+                const { createReadStream, filename } = await file;
+                const ext = filename.substr(filename.lastIndexOf('.') + 1);
+                const fileName = "StudentHigherStudies_"+Register_No+"_"+HigherStudies_ID+"."+ext;
 
-            if(fs.existsSync(path.join(__dirname, "../../files/student-higher-studies", fileName))){
-                fs.unlinkSync(path.join(__dirname, "../../files/student-higher-studies", fileName))
+                if(fs.existsSync(path.join(__dirname, "../../files/student-higher-studies", fileName))){
+                    fs.unlinkSync(path.join(__dirname, "../../files/student-higher-studies", fileName))
+                }
+                
+                await new Promise(res =>
+                    createReadStream()
+                    .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-higher-studies", fileName)))
+                    .on("close", res)
+                );
             }
-            
-            await new Promise(res =>
-                createReadStream()
-                .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-higher-studies", fileName)))
-                .on("close", res)
-            );
             return student_higherstudies;
 
         },
@@ -124,38 +125,6 @@ module.exports={
             }
             return student_higherstudies;
         },
-        
-        uploadStudentHigherStudy: async (_, { data },{prisma,req}) => {
-            const{file,HigherStudies_ID} = data;
-            const { createReadStream, filename } = await file;
-            const ext = filename.substr(filename.lastIndexOf('.') + 1);
-            const fileName = "StudentHigherStudies_"+getRegNo(req)+"_"+HigherStudies_ID+"."+ext;
-
-            if(fs.existsSync(path.join(__dirname, "../../files/student-higher-studies", fileName))){
-                fs.unlinkSync(path.join(__dirname, "../../files/student-higher-studies", fileName))
-            }
-            
-            await new Promise(res =>
-                createReadStream()
-                .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-higher-studies", fileName)))
-                .on("close", res)
-            );
-            const Score_Card_Copy = path.join("student-higher-studies", fileName);
-
-            await prisma.student_higherstudies.update({
-                where:{
-                    HigherStudies_ID
-                },
-                data:{
-                    Score_Card_Copy
-                }
-            })
-            //files.push(filename);
-            console.log(createReadStream)
-
-
-            return Score_Card_Copy;
-        }
     }
     
 }

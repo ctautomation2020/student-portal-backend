@@ -77,19 +77,21 @@ module.exports={
                     ...ref_data
                 }
             })
-            const { createReadStream, filename } = await file;
-            const ext = filename.substr(filename.lastIndexOf('.') + 1);
-            const fileName = "StudentGradeSheet_"+Register_No+"_"+Gpa_ID+"."+ext;
+            if(file != null){
+                const { createReadStream, filename } = await file;
+                const ext = filename.substr(filename.lastIndexOf('.') + 1);
+                const fileName = "StudentGradeSheet_"+Register_No+"_"+Gpa_ID+"."+ext;
 
-            if(fs.existsSync(path.join(__dirname, "../../files/student-grade-sheets", fileName))){
-                fs.unlinkSync(path.join(__dirname, "../../files/student-grade-sheets", fileName));
+                if(fs.existsSync(path.join(__dirname, "../../files/student-grade-sheets", fileName))){
+                    fs.unlinkSync(path.join(__dirname, "../../files/student-grade-sheets", fileName));
+                }
+
+                await new Promise(res =>
+                    createReadStream()
+                    .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-grade-sheets", fileName)))
+                    .on("close", res)
+                );
             }
-
-            await new Promise(res =>
-                createReadStream()
-                .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-grade-sheets", fileName)))
-                .on("close", res)
-            );
             return student_gpa;
         },
 
@@ -105,33 +107,6 @@ module.exports={
             }
             return student_gpa;
         },
-
-        uploadStudentGpa: async (_, { data },{prisma,req}) => {
-            const{Gpa_ID,file} = data;
-            const { createReadStream, filename } = await file;
-            const ext = filename.substr(filename.lastIndexOf('.') + 1);
-            const fileName = "StudentGradeSheet_"+getRegNo(req)+"_"+Gpa_ID+"."+ext;
-
-            if(fs.existsSync(path.join(__dirname, "../../files/student-grade-sheets", fileName))){
-                fs.unlinkSync(path.join(__dirname, "../../files/student-grade-sheets", fileName));
-            }
-
-            await new Promise(res =>
-                createReadStream()
-                .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-grade-sheets", fileName)))
-                .on("close", res)
-            );
-            const Grade_Sheet =  path.join("student-grade-sheets", fileName);
-            await prisma.student_gpa.update({
-                where:{
-                    Gpa_ID
-                },
-                data:{
-                    Grade_Sheet
-                }
-            })
-            return Grade_Sheet;
-        }
     }
     
 }

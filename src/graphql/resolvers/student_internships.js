@@ -108,19 +108,21 @@ module.exports={
                     ...ref_data
                 }
             })
-            const { createReadStream, filename } = await file;
-            const ext = filename.substr(filename.lastIndexOf('.') + 1);
-            const fileName = "StudentInternship_"+Register_No+"_"+Internship_ID+"."+ext;
+            if(file != null){
+                const { createReadStream, filename } = await file;
+                const ext = filename.substr(filename.lastIndexOf('.') + 1);
+                const fileName = "StudentInternship_"+Register_No+"_"+Internship_ID+"."+ext;
 
-            if(fs.existsSync(path.join(__dirname, "../../files/student-internships", fileName))){
-                fs.unlinkSync(path.join(__dirname, "../../files/student-internships", fileName))
+                if(fs.existsSync(path.join(__dirname, "../../files/student-internships", fileName))){
+                    fs.unlinkSync(path.join(__dirname, "../../files/student-internships", fileName))
+                }
+                
+                await new Promise(res =>
+                    createReadStream()
+                    .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-internships", fileName)))
+                    .on("close", res)
+                );
             }
-            
-            await new Promise(res =>
-                createReadStream()
-                .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-internships", fileName)))
-                .on("close", res)
-            );
             return student_internship;
         },
 
@@ -139,37 +141,6 @@ module.exports={
 
             return student_internship;
         },
-
-        uploadStudentInternship: async (_, { data },{prisma,req}) => {
-            const{file,Internship_ID} = data;
-            const { createReadStream, filename } = await file;
-            const ext = filename.substr(filename.lastIndexOf('.') + 1);
-            const fileName = "StudentInternship_"+getRegNo(req)+"_"+Internship_ID+"."+ext;
-
-            if(fs.existsSync(path.join(__dirname, "../../files/student-internships", fileName))){
-                fs.unlinkSync(path.join(__dirname, "../../files/student-internships", fileName))
-            }
-            
-            await new Promise(res =>
-                createReadStream()
-                .pipe(fs.createWriteStream(path.join(__dirname, "../../files/student-internships", fileName)))
-                .on("close", res)
-            );
-            const Order_Copy = path.join("student-internships", fileName);
-            await prisma.student_internship.update({
-                where:{
-                    Internship_ID
-                },
-                data:{
-                    Order_Copy
-                }
-            })
-            //files.push(filename);
-            console.log(createReadStream)
-
-
-            return Order_Copy ;
-        }
     }
     
 }

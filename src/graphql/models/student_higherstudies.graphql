@@ -7,7 +7,6 @@ type Mutation{
     createStudentHigherStudy(data: createStudentHigherStudyInput!): StudentHigherStudy!
     updateStudentHigherStudy(data: updateStudentHigherStudyInput!): StudentHigherStudy!
     deleteStudentHigherStudy(data: deleteStudentHigherStudyInput!): StudentHigherStudy!
-    uploadStudentHigherStudy(data: uploadStudentHigherStudyInput!): String!
 }
 
 type StudentHigherStudy{
@@ -61,9 +60,4 @@ input updateStudentHigherStudyInput{
 
 input deleteStudentHigherStudyInput{
     HigherStudies_ID: Int!
-}
-
-input uploadStudentHigherStudyInput{
-    HigherStudies_ID: Int!
-    file: Upload!
 }

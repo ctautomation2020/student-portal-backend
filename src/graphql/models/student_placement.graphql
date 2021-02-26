@@ -6,8 +6,7 @@ type Query{
 type Mutation{
     createStudentPlacement(data: createStudentPlacementInput!): StudentPlacement!
     updateStudentPlacement(data: updateStudentPlacementInput!): StudentPlacement!
-    deleteStudentPlacement(data: deleteStudentPlacementInput!): StudentPlacement! 
-    uploadStudentPlacement(data: uploadStudentPlacementInput!): String!
+    deleteStudentPlacement(data: deleteStudentPlacementInput!): StudentPlacement!
 }
 
 type StudentPlacement{
@@ -61,9 +60,4 @@ input updateStudentPlacementInput{
 
 input deleteStudentPlacementInput{
     Placement_ID: Int!
-}
-
-input uploadStudentPlacementInput{
-    Placement_ID: Int!
-    file: Upload!
 }
