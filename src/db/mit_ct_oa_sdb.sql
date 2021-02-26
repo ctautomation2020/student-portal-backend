@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 29, 2021 at 11:57 AM
+-- Generation Time: Feb 26, 2021 at 09:43 PM
 -- Server version: 8.0.22
 -- PHP Version: 7.4.9
 
@@ -20,17 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `mit_ct_oa_sdb`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `category`
---
-
-CREATE TABLE `category` (
-  `category_id` int NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -516,27 +505,6 @@ INSERT INTO `course_registered_students` (`cregst_id`, `course_code`, `reg_no`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `credentials`
---
-
-CREATE TABLE `credentials` (
-  `Credentials_ID` int NOT NULL,
-  `Register_No` int NOT NULL,
-  `Username` text NOT NULL,
-  `Password` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `credentials`
---
-
-INSERT INTO `credentials` (`Credentials_ID`, `Register_No`, `Username`, `Password`) VALUES
-(1, 2018503557, 'admin', '$2b$08$U0VES/hQqaNBzeM90mijUuzEEd.8alRIq9nRZJbF54KCLL4ljSxG.'),
-(2, 2018503556, 'user2', '$2b$08$OzucEPKeSZbyPAnQA9vyh.GlVb4HgsBzeEzM638VwzshSSrwqTHD.');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `person`
 --
 
@@ -580,29 +548,11 @@ INSERT INTO `person` (`Person_ID`, `Prefix_Ref`, `First_Name`, `Last_Name`, `Gen
 -- --------------------------------------------------------
 
 --
--- Table structure for table `person_guestlecture`
---
-
-CREATE TABLE `person_guestlecture` (
-  `GuestLecture_ID` int NOT NULL,
-  `Person_ID` int NOT NULL,
-  `Level_Ref` int DEFAULT NULL,
-  `Topic` varchar(100) DEFAULT NULL,
-  `Programme` varchar(100) DEFAULT NULL,
-  `Organization` varchar(100) DEFAULT NULL,
-  `Place` varchar(20) DEFAULT NULL,
-  `Start_Date` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `person_reference_table`
 --
 
 CREATE TABLE `person_reference_table` (
   `Reference_ID` int NOT NULL,
-  `Ref_Code` int DEFAULT NULL,
   `Category` varchar(25) DEFAULT NULL,
   `Ref_Name` varchar(100) DEFAULT NULL,
   `Description` varchar(255) DEFAULT NULL
@@ -612,150 +562,150 @@ CREATE TABLE `person_reference_table` (
 -- Dumping data for table `person_reference_table`
 --
 
-INSERT INTO `person_reference_table` (`Reference_ID`, `Ref_Code`, `Category`, `Ref_Name`, `Description`) VALUES
-(1, 1, 'Prefix', 'Mr.', NULL),
-(2, 2, 'Prefix', 'Mrs.', NULL),
-(3, 3, 'Prefix', 'Dr.', NULL),
-(4, 4, 'Prefix', 'Ms.', NULL),
-(5, 5, 'Community', 'Backward Classes Muslims', NULL),
-(6, 6, 'Community', 'Scheduled Tribes', NULL),
-(7, 7, 'Community', 'Scheduled Castes', NULL),
-(8, 8, 'Community', 'Most Backward Classes', NULL),
-(9, 9, 'Community', 'Backward Classes', NULL),
-(10, 10, 'Community', 'Denotified Communities', NULL),
-(11, 11, 'Community', 'Others', NULL),
-(12, 12, 'Qualification_Level', 'Under Graduate', NULL),
-(13, 13, 'Qualification_Level', 'Post Graduate', NULL),
-(14, 14, 'Qualification_Level', 'Doctorate', NULL),
-(15, 15, 'Degree', 'B.C.A', NULL),
-(16, 16, 'Degree', 'B.E.', NULL),
-(17, 17, 'Degree', 'B.Sc.', NULL),
-(18, 18, 'Degree', 'B.Tech.', NULL),
-(19, 19, 'Degree', 'M.C.A', NULL),
-(20, 20, 'Degree', 'M.E.', NULL),
-(21, 21, 'Degree', 'M.Tech.', NULL),
-(22, 22, 'Degree', 'M.Sc.', NULL),
-(23, 23, 'Degree', 'M.S.', NULL),
-(24, 24, 'Degree', 'Ph.D.', NULL),
-(25, 25, 'Degree', 'Postdoctoral Research', NULL),
-(26, 26, 'Branch', 'Computer Science and Engineering', NULL),
-(27, 27, 'Branch', 'Computer Science', NULL),
-(28, 28, 'Branch', 'Electrical and Electronics Engineering', NULL),
-(29, 29, 'Branch', 'Electronics and Communication Engineering', NULL),
-(30, 30, 'Branch', 'Electronics and Instrumentation Engineering', NULL),
-(31, 31, 'Branch', 'Information Technology', NULL),
-(32, 32, 'Branch', 'Others', NULL),
-(33, 33, 'Class_Obtained', 'Honors', NULL),
-(34, 34, 'Class_Obtained', 'First Class with Distinction', NULL),
-(35, 35, 'Class_Obtained', 'First Class', NULL),
-(36, 36, 'Class_Obtained', 'Second Class', NULL),
-(37, 37, 'Class_Obtained', 'Others', NULL),
-(38, 38, 'Designation', 'Professor', NULL),
-(39, 39, 'Designation', 'Associate Professor', NULL),
-(40, 40, 'Designation', 'Assistant Professor Sr. Grade', NULL),
-(41, 41, 'Designation', 'Assistant Professor Sl. Grade', NULL),
-(42, 42, 'Designation', 'Assistant Professor Or. Grade', NULL),
-(43, 43, 'Designation', 'Teaching Fellow', NULL),
-(44, 44, 'Designation', 'Lecturer', NULL),
-(45, 45, 'Emp_Category', 'Permanent', NULL),
-(46, 46, 'Emp_Category', 'Temporary', NULL),
-(47, 47, 'Work Nature', 'Industry', NULL),
-(48, 48, 'Work Nature', 'Academics/Research', NULL),
-(49, 49, 'Level', 'International', NULL),
-(50, 50, 'Level', 'National', NULL),
-(51, 51, 'Level', 'State', NULL),
-(52, 52, 'Event_Type', 'Conference', NULL),
-(53, 53, 'Event_Type', 'Seminar', NULL),
-(54, 54, 'Event_Type', 'Workshop', NULL),
-(55, 55, 'Event_Type', 'Guest Lecture', NULL),
-(56, 56, 'Event_Type', 'Short Course', NULL),
-(57, 57, 'Project_Type', 'Research', NULL),
-(58, 58, 'Project_Type', 'Infra Structure', NULL),
-(59, 59, 'Project_Type', 'Consultancy', NULL),
-(60, 60, 'Guide_Type', 'Supervisor', NULL),
-(61, 61, 'Guide_Type', 'Joint Supervisor', NULL),
-(62, 62, 'Status', 'Completed', NULL),
-(63, 63, 'Status', 'Ongoing', NULL),
-(64, 64, 'Patent_Status', 'Filed', NULL),
-(65, 65, 'Patent_Status', 'Awarded', NULL),
-(66, 66, 'Gender', 'Male', NULL),
-(67, 67, 'Gender', 'Female', NULL),
-(68, 68, 'Marital_Status', 'Married', NULL),
-(69, 69, 'Marital_Status', 'Unmarried', NULL),
-(70, 70, 'Marital_Status', 'Widow/Widower', NULL),
-(71, 71, 'Participation_Status', 'Presented', NULL),
-(72, 72, 'Participation_Status', 'Attended', NULL),
-(73, 73, 'Publication_Type', 'Poster', NULL),
-(74, 74, 'Publication_Type', 'Conference', NULL),
-(75, 75, 'Publication_Type', 'Journal', NULL),
-(76, 76, 'Class_Type', 'Theory', NULL),
-(77, 77, 'Class_Type', 'Laboratory', NULL),
-(78, 78, 'Class_Type', 'Project', NULL),
-(79, 79, 'Class_Type', 'Theory cum Practical Integrated', NULL),
-(80, 80, 'Responsibility_Ref', 'FA', NULL),
-(81, 81, 'Responsibility_Ref', 'Library Incharge', NULL),
-(82, 82, 'Responsibility_Ref', 'PI of proposal', NULL),
-(83, 83, 'Responsibility_Ref', 'Project Coordinator', NULL),
-(84, 84, 'Membership_Type', 'Member', NULL),
-(85, 85, 'Membership_Type', 'Senior', NULL),
-(86, 86, 'Option', 'Yes', NULL),
-(87, 87, 'Option', 'No', NULL),
-(88, 88, 'Registration_Mode', 'Full Time', NULL),
-(89, 89, 'Registration_Mode', 'Part Time', NULL),
-(90, 90, 'Admission_Category', 'Counselling', NULL),
-(91, 91, 'Admission_Category', 'Sports', NULL),
-(92, 92, 'Admission_Category', 'Industrial Consortium', NULL),
-(93, 93, 'Admission_Category', 'Founders Quota', NULL),
-(94, 94, 'Admission_Category', 'NRI', NULL),
-(95, 95, 'Admission_Category', 'Others', NULL),
-(96, 96, 'Residential_Type', 'Hostel', NULL),
-(97, 97, 'Residential_Type', 'Day Scholar', NULL),
-(98, 98, 'Residential_Type', 'PG Accomodation', NULL),
-(99, 99, 'Programme', 'B.E.', NULL),
-(100, 100, 'Programme', 'M.E.', NULL),
-(101, 101, 'Programme', 'Ph.D.', NULL),
-(102, 102, 'Placement_Type', 'On-Campus', NULL),
-(103, 103, 'Placement_Type', 'Off-Campus', NULL),
-(104, 104, 'Admission_Mode', 'GRE', NULL),
-(105, 105, 'Admission_Mode', 'TOEFEL', NULL),
-(106, 106, 'Admission_Mode', 'IELTS', NULL),
-(107, 107, 'Admission_Mode', 'GMAT', NULL),
-(108, 108, 'Admission_Mode', 'GATE', NULL),
-(109, 109, 'Admission_Mode', 'TANCET', NULL),
-(110, 110, 'Admission_Mode', 'Direct', NULL),
-(111, 111, 'Admission_Mode', 'Others', NULL),
-(112, 112, 'Award_Type', 'Technical', NULL),
-(113, 113, 'Award_Type', 'Non-Technical', NULL),
-(114, 114, 'Award_Category', 'State', NULL),
-(115, 115, 'Award_Category', 'National', NULL),
-(116, 116, 'Award_Category', 'International', NULL),
-(117, 117, 'Selection_Mode', 'CUIC', NULL),
-(118, 118, 'Selection_Mode', 'Direct', NULL),
-(119, 119, 'Participation_Type', 'Individual', NULL),
-(120, 120, 'Participation_Type', 'Group', NULL),
-(121, 121, 'Blood_Group', 'O +ve', NULL),
-(122, 122, 'Blood_Group', 'A +ve', NULL),
-(123, 123, 'Blood_Group', 'A -ve', NULL),
-(124, 124, 'Blood_Group', 'AB-ve', NULL),
-(125, 125, 'Blood_Group', 'O -ve', NULL),
-(126, 126, 'Blood_Group', 'B +ve', NULL),
-(127, 127, 'Blood_Group', 'B -ve', NULL),
-(128, 128, 'Blood_Group', 'AB +ve', NULL),
-(129, 129, 'NSS/NSO/YRC_Volunteer', 'NSS', NULL),
-(130, 130, 'NSS/NSO/YRC_Volunteer', 'NSO', NULL),
-(131, 131, 'NSS/NSO/YRC_Volunteer', 'YRC', NULL),
-(132, 132, 'SEvent_Type', 'Technical', 'None'),
-(133, 133, 'SEvent_Type', 'Non Technical', 'None'),
-(134, 134, 'Session', 'November 2016', NULL),
-(135, 135, 'Session', 'April17', NULL),
-(136, 136, 'Session', 'November17', NULL),
-(137, 137, 'Session', 'April18', NULL),
-(138, 138, 'Session', 'November18', NULL),
-(139, 139, 'Session', 'April19', NULL),
-(140, 140, 'Session', 'November19', NULL),
-(141, 141, 'Session', 'April20', NULL),
-(142, 142, 'Gender', 'Others', NULL),
-(143, -1, 'None', 'None', 'None');
+INSERT INTO `person_reference_table` (`Reference_ID`, `Category`, `Ref_Name`, `Description`) VALUES
+(1, 'Prefix', 'Mr.', NULL),
+(2, 'Prefix', 'Mrs.', NULL),
+(3, 'Prefix', 'Dr.', NULL),
+(4, 'Prefix', 'Ms.', NULL),
+(5, 'Community', 'Backward Classes Muslims', NULL),
+(6, 'Community', 'Scheduled Tribes', NULL),
+(7, 'Community', 'Scheduled Castes', NULL),
+(8, 'Community', 'Most Backward Classes', NULL),
+(9, 'Community', 'Backward Classes', NULL),
+(10, 'Community', 'Denotified Communities', NULL),
+(11, 'Community', 'Others', NULL),
+(12, 'Qualification_Level', 'Under Graduate', NULL),
+(13, 'Qualification_Level', 'Post Graduate', NULL),
+(14, 'Qualification_Level', 'Doctorate', NULL),
+(15, 'Degree', 'B.C.A', NULL),
+(16, 'Degree', 'B.E.', NULL),
+(17, 'Degree', 'B.Sc.', NULL),
+(18, 'Degree', 'B.Tech.', NULL),
+(19, 'Degree', 'M.C.A', NULL),
+(20, 'Degree', 'M.E.', NULL),
+(21, 'Degree', 'M.Tech.', NULL),
+(22, 'Degree', 'M.Sc.', NULL),
+(23, 'Degree', 'M.S.', NULL),
+(24, 'Degree', 'Ph.D.', NULL),
+(25, 'Degree', 'Postdoctoral Research', NULL),
+(26, 'Branch', 'Computer Science and Engineering', NULL),
+(27, 'Branch', 'Computer Science', NULL),
+(28, 'Branch', 'Electrical and Electronics Engineering', NULL),
+(29, 'Branch', 'Electronics and Communication Engineering', NULL),
+(30, 'Branch', 'Electronics and Instrumentation Engineering', NULL),
+(31, 'Branch', 'Information Technology', NULL),
+(32, 'Branch', 'Others', NULL),
+(33, 'Class_Obtained', 'Honors', NULL),
+(34, 'Class_Obtained', 'First Class with Distinction', NULL),
+(35, 'Class_Obtained', 'First Class', NULL),
+(36, 'Class_Obtained', 'Second Class', NULL),
+(37, 'Class_Obtained', 'Others', NULL),
+(38, 'Designation', 'Professor', NULL),
+(39, 'Designation', 'Associate Professor', NULL),
+(40, 'Designation', 'Assistant Professor Sr. Grade', NULL),
+(41, 'Designation', 'Assistant Professor Sl. Grade', NULL),
+(42, 'Designation', 'Assistant Professor Or. Grade', NULL),
+(43, 'Designation', 'Teaching Fellow', NULL),
+(44, 'Designation', 'Lecturer', NULL),
+(45, 'Emp_Category', 'Permanent', NULL),
+(46, 'Emp_Category', 'Temporary', NULL),
+(47, 'Work Nature', 'Industry', NULL),
+(48, 'Work Nature', 'Academics/Research', NULL),
+(49, 'Level', 'International', NULL),
+(50, 'Level', 'National', NULL),
+(51, 'Level', 'State', NULL),
+(52, 'Event_Type', 'Conference', NULL),
+(53, 'Event_Type', 'Seminar', NULL),
+(54, 'Event_Type', 'Workshop', NULL),
+(55, 'Event_Type', 'Guest Lecture', NULL),
+(56, 'Event_Type', 'Short Course', NULL),
+(57, 'Project_Type', 'Research', NULL),
+(58, 'Project_Type', 'Infra Structure', NULL),
+(59, 'Project_Type', 'Consultancy', NULL),
+(60, 'Guide_Type', 'Supervisor', NULL),
+(61, 'Guide_Type', 'Joint Supervisor', NULL),
+(62, 'Status', 'Completed', NULL),
+(63, 'Status', 'Ongoing', NULL),
+(64, 'Patent_Status', 'Filed', NULL),
+(65, 'Patent_Status', 'Awarded', NULL),
+(66, 'Gender', 'Male', NULL),
+(67, 'Gender', 'Female', NULL),
+(68, 'Marital_Status', 'Married', NULL),
+(69, 'Marital_Status', 'Unmarried', NULL),
+(70, 'Marital_Status', 'Widow/Widower', NULL),
+(71, 'Participation_Status', 'Presented', NULL),
+(72, 'Participation_Status', 'Attended', NULL),
+(73, 'Publication_Type', 'Poster', NULL),
+(74, 'Publication_Type', 'Conference', NULL),
+(75, 'Publication_Type', 'Journal', NULL),
+(76, 'Class_Type', 'Theory', NULL),
+(77, 'Class_Type', 'Laboratory', NULL),
+(78, 'Class_Type', 'Project', NULL),
+(79, 'Class_Type', 'Theory cum Practical Integrated', NULL),
+(80, 'Responsibility_Ref', 'FA', NULL),
+(81, 'Responsibility_Ref', 'Library Incharge', NULL),
+(82, 'Responsibility_Ref', 'PI of proposal', NULL),
+(83, 'Responsibility_Ref', 'Project Coordinator', NULL),
+(84, 'Membership_Type', 'Member', NULL),
+(85, 'Membership_Type', 'Senior', NULL),
+(86, 'Option', 'Yes', NULL),
+(87, 'Option', 'No', NULL),
+(88, 'Registration_Mode', 'Full Time', NULL),
+(89, 'Registration_Mode', 'Part Time', NULL),
+(90, 'Admission_Category', 'Counselling', NULL),
+(91, 'Admission_Category', 'Sports', NULL),
+(92, 'Admission_Category', 'Industrial Consortium', NULL),
+(93, 'Admission_Category', 'Founders Quota', NULL),
+(94, 'Admission_Category', 'NRI', NULL),
+(95, 'Admission_Category', 'Others', NULL),
+(96, 'Residential_Type', 'Hostel', NULL),
+(97, 'Residential_Type', 'Day Scholar', NULL),
+(98, 'Residential_Type', 'PG Accomodation', NULL),
+(99, 'Programme', 'B.E.', NULL),
+(100, 'Programme', 'M.E.', NULL),
+(101, 'Programme', 'Ph.D.', NULL),
+(102, 'Placement_Type', 'On-Campus', NULL),
+(103, 'Placement_Type', 'Off-Campus', NULL),
+(104, 'Admission_Mode', 'GRE', NULL),
+(105, 'Admission_Mode', 'TOEFEL', NULL),
+(106, 'Admission_Mode', 'IELTS', NULL),
+(107, 'Admission_Mode', 'GMAT', NULL),
+(108, 'Admission_Mode', 'GATE', NULL),
+(109, 'Admission_Mode', 'TANCET', NULL),
+(110, 'Admission_Mode', 'Direct', NULL),
+(111, 'Admission_Mode', 'Others', NULL),
+(112, 'Award_Type', 'Technical', NULL),
+(113, 'Award_Type', 'Non-Technical', NULL),
+(114, 'Award_Category', 'State', NULL),
+(115, 'Award_Category', 'National', NULL),
+(116, 'Award_Category', 'International', NULL),
+(117, 'Selection_Mode', 'CUIC', NULL),
+(118, 'Selection_Mode', 'Direct', NULL),
+(119, 'Participation_Type', 'Individual', NULL),
+(120, 'Participation_Type', 'Group', NULL),
+(121, 'Blood_Group', 'O +ve', NULL),
+(122, 'Blood_Group', 'A +ve', NULL),
+(123, 'Blood_Group', 'A -ve', NULL),
+(124, 'Blood_Group', 'AB-ve', NULL),
+(125, 'Blood_Group', 'O -ve', NULL),
+(126, 'Blood_Group', 'B +ve', NULL),
+(127, 'Blood_Group', 'B -ve', NULL),
+(128, 'Blood_Group', 'AB +ve', NULL),
+(129, 'NSS/NSO/YRC_Volunteer', 'NSS', NULL),
+(130, 'NSS/NSO/YRC_Volunteer', 'NSO', NULL),
+(131, 'NSS/NSO/YRC_Volunteer', 'YRC', NULL),
+(132, 'SEvent_Type', 'Technical', 'None'),
+(133, 'SEvent_Type', 'Non Technical', 'None'),
+(134, 'Session', 'November 2016', NULL),
+(135, 'Session', 'April17', NULL),
+(136, 'Session', 'November17', NULL),
+(137, 'Session', 'April18', NULL),
+(138, 'Session', 'November18', NULL),
+(139, 'Session', 'April19', NULL),
+(140, 'Session', 'November19', NULL),
+(141, 'Session', 'April20', NULL),
+(142, 'Gender', 'Others', NULL),
+(143, 'None', 'None', 'None');
 
 -- --------------------------------------------------------
 
@@ -803,10 +753,10 @@ CREATE TABLE `student` (
 
 INSERT INTO `student` (`Register_No`, `First_Name`, `Middle_Name`, `Last_Name`, `Gender_Ref`, `DOB`, `Community_Ref`, `Caste`, `MailID`, `Aadhar_Card`, `Primary_ContactNumber`, `Secondary_ContactNumber`, `Address_Line1`, `Address_Line2`, `Address_Line3`, `Address_Line4`, `Correspondence_Address`, `Photo`, `Residential_Type_Ref`, `FA`, `Programme_Ref`, `Branch_Ref`, `Registration_Mode_Ref`, `Blood_Group_Ref`, `GATE_Cutoff_Mark`, `Admission_Date`, `Admission_Category_Ref`, `Scholarship_Received_Ref`, `Scholarship_Details`, `NSS_NSO_YRC_Volunteer_Ref`, `Hostel_Block_Room`) VALUES
 (4000, 'Anitha', '', 's', 67, '2020-10-02', 7, 'xxx', 'anithacse@gmail.com', 'adf333', 'zzz', '', 'zzz', 'zzz', 'zzz', 'zzz', 'zzz', 'photos/AULogo11601882158.jpg', 97, 5001, 99, 26, 88, 121, 345.55, '2020-10-09', 90, 87, 'zzz', 129, 'zzz'),
-(6000, 'sss', '', 'sss', 67, '2020-10-10', 6, 'asasd', 'anithacse@gmail.com', '123456789123', '1234567890', '', 'yyy', 'yyy', 'yyy', 'sdfds', 'yyy', 'photos/Anitha_Photo1602148254.jpg', 96, 5001, 99, 26, 88, 121, 192, '2020-11-04', 91, -1, '', 129, 'fdgfdg'),
+(6000, 'sss', '', 'sss', 67, '2020-10-10', 6, 'asasd', 'anithacse@gmail.com', '123456789123', '1234567890', '', 'yyy', 'yyy', 'yyy', 'sdfds', 'yyy', 'photos/Anitha_Photo1602148254.jpg', 96, 5001, 99, 26, 88, 121, 192, '2020-11-04', 91, 143, '', 129, 'fdgfdg'),
 (2018503556, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (2018503557, 'student1', '', 'B', 66, '2000-03-22', 11, 'yyyxx', 'student1254@gmail.com', '332291039280', '9876543111', '1234561111', 'House No', 'Street', 'City', '600011', 'House No, Street, City, 600011', '', 97, 123, 99, 26, 88, 122, 197, '2021-01-01', 90, 87, '', 131, ''),
-(2018615001, 'yyy', '', 'yyy', 67, '2020-10-09', 5, 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'photos/AULogo11602068816.jpg', 96, 5001, 99, 26, 88, 122, 0, '2020-10-21', 90, 86, 'yyy', -1, 'yyy');
+(2018615001, 'yyy', '', 'yyy', 67, '2020-10-09', 5, 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'yyy', 'photos/AULogo11602068816.jpg', 96, 5001, 99, 26, 88, 122, 0, '2020-10-21', 90, 86, 'yyy', 143, 'yyy');
 
 -- --------------------------------------------------------
 
@@ -858,19 +808,19 @@ CREATE TABLE `student_endsemmarks` (
 --
 
 INSERT INTO `student_endsemmarks` (`Mark_ID`, `Register_No`, `Semester`, `Course_Code`, `Session_Ref`, `Grade`, `Credits`, `Entry_Date`) VALUES
-(228, 2018503557, 1, 'HS6151', 134, 'D', 4, '2021-01-07'),
-(229, 2018503557, 1, 'PH6151', 135, 'E', 4, '2021-01-07'),
-(230, 2018503557, 1, 'MA6151', 134, 'B', 3, '2021-01-07'),
-(231, 2018503557, 1, 'CS6101', 134, 'B', 3, '2021-01-07'),
-(232, 2018503557, 1, 'CS6102', 134, 'A', 3, '2021-01-07'),
-(235, 2018503557, 2, 'HS6251', 134, 'O', 4, '2021-01-07'),
-(236, 2018503557, 2, 'CY6251', 134, 'A', 4, '2021-01-07'),
-(237, 2018503557, 2, 'MA6251', 134, 'B', 3, '2021-01-07'),
-(238, 2018503557, 2, 'GE6251', 137, 'A', 4, '2021-01-07'),
-(239, 2018503557, 2, 'CS6103', 134, 'C', 3, '2021-01-07'),
-(240, 2018503557, 3, 'CS6104', 134, 'O', 3, '2021-01-11'),
-(241, 2018503557, 3, 'CS6105', 134, 'B+', 2, '2021-01-11'),
-(242, 2018503557, 3, 'MA6351', 138, 'A', 2, '2021-01-11');
+(228, 2018503557, 1, 'HS6151', 134, 'D', 4, '2021-02-25'),
+(229, 2018503557, 1, 'PH6151', 135, 'E', 4, '2021-02-25'),
+(230, 2018503557, 1, 'MA6151', 134, 'B', 3, '2021-02-25'),
+(231, 2018503557, 1, 'CS6101', 134, 'B', 3, '2021-02-25'),
+(232, 2018503557, 1, 'CS6102', 134, 'A', 3, '2021-02-25'),
+(235, 2018503557, 2, 'HS6251', 134, 'O', 4, '2021-02-26'),
+(236, 2018503557, 2, 'CY6251', 134, 'A', 4, '2021-02-26'),
+(237, 2018503557, 2, 'MA6251', 134, 'A+', 3, '2021-02-26'),
+(238, 2018503557, 2, 'GE6251', 137, 'O', 4, '2021-02-26'),
+(239, 2018503557, 2, 'CS6103', 134, 'C', 3, '2021-02-26'),
+(240, 2018503557, 3, 'CS6104', 134, 'O', 3, '2021-02-26'),
+(241, 2018503557, 3, 'CS6105', 134, 'B+', 2, '2021-02-26'),
+(242, 2018503557, 3, 'MA6351', 138, 'A', 2, '2021-02-26');
 
 -- --------------------------------------------------------
 
@@ -897,8 +847,7 @@ CREATE TABLE `student_events_participated` (
 
 INSERT INTO `student_events_participated` (`Event_ID`, `Register_No`, `Event_Name`, `Event_Type_Ref`, `Participation_Type_Ref`, `Team_Size`, `Event_Organizer`, `Event_Date`, `Prize_Won_Details`, `Certificate_Copy`) VALUES
 (22, 2018503557, 'event1a', 133, 120, 9, 'org1', '2020-10-31', 'prize1', 'student-events-participated\\StudentEventParticipated_2018503557_22.pdf'),
-(54, 2018503557, 'event2b', 133, 120, 3, 'kalc', '2021-01-25', '1112', 'student-events-participated\\StudentEventParticipated_2018503557_54.pdf'),
-(55, 2018503557, 'admii', 132, 119, 1, 'CEG', '2021-01-01', '3rd Place', 'student-events-participated\\StudentEventParticipated_2018503557_55.pdf');
+(54, 2018503557, 'event2b', 133, 120, 19, 'kalc', '2021-01-25', '1112', 'student-events-participated\\StudentEventParticipated_2018503557_54.pdf');
 
 -- --------------------------------------------------------
 
@@ -956,8 +905,8 @@ INSERT INTO `student_gpa` (`Gpa_ID`, `Register_No`, `Semester`, `GPA`, `Grade_Sh
 (10, 4000, 1, 7, 'gradesheets/dynamicarray1602054854.pdf'),
 (11, 4000, 2, 8, 'gradesheets/Class TT-20201602054920.pdf'),
 (12, 6000, 1, 7, 'gradesheets/dynamicarray1602153412.pdf'),
-(13, 2018503557, 1, 8.76, ''),
-(14, 2018503557, 2, 6.98, ''),
+(13, 2018503557, 1, 8.76, 'student-grade-sheets\\StudentGradeSheet_2018503557_13.pdf'),
+(14, 2018503557, 2, 9.21, 'student-grade-sheets\\StudentGradeSheet_2018503557_14.pdf'),
 (15, 2018503557, 3, 9.69, 'student-grade-sheets\\StudentGradeSheet_2018503557_15.pdf'),
 (16, 2018503557, 4, 0, ''),
 (17, 2018503557, 5, 9.7, '');
@@ -1015,7 +964,7 @@ CREATE TABLE `student_internship` (
 --
 
 INSERT INTO `student_internship` (`Internship_ID`, `Register_No`, `Company`, `Title`, `Order_Copy`, `Address`, `Start_Date`, `End_Date`, `Stiphend_Option_Ref`, `Stiphend_Amount`, `Selection_Mode_Ref`) VALUES
-(4, 2018503557, 'CE', 'postal', 'student-internships\\StudentInternship_2018503557_4.pdf', '19 DOOR Chenna', '2020-10-13', '2021-09-16', 86, 235, 118),
+(4, 2018503557, 'CE', 'postal', 'student-internships\\StudentInternship_2018503557_4.pdf', '19 DOOR Chenna', '2020-10-13', '2021-09-16', 86, 1000, 118),
 (5, 2018503557, 'Wipro', 'Systems Intern', '', 'xxx', '2020-10-21', '2020-10-14', 87, 0, 117),
 (11, 2018503557, 'Microsoft', 'intern3', '', 'Chennai', '2021-01-01', '2021-01-07', 86, 3000, 117),
 (12, 2018503557, 'Google', 'Assistant Software', 'student-internships\\StudentInternship_2018503557_12.pdf', 'adadasd', '2021-01-03', '2021-01-31', 86, 11000, 117);
@@ -1105,8 +1054,8 @@ INSERT INTO `subj_allot` (`sallot_id`, `staff_id`, `course_code`, `group_ref`, `
 CREATE TABLE `user_info` (
   `user_ID` int NOT NULL,
   `username` int NOT NULL,
-  `user_role` varchar(10) DEFAULT NULL,
-  `password` varchar(10) DEFAULT NULL,
+  `user_role` int DEFAULT NULL,
+  `password` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `status` varchar(10) DEFAULT NULL,
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -1116,21 +1065,11 @@ CREATE TABLE `user_info` (
 --
 
 INSERT INTO `user_info` (`user_ID`, `username`, `user_role`, `password`, `status`, `create_time`) VALUES
-(2016506001, 2016506000, NULL, '12345', NULL, '2020-10-01 04:11:17'),
-(2016506002, 2016506001, NULL, '12345', NULL, '2020-10-01 04:11:49'),
-(2016506003, 4000, NULL, '1234', 'Y', '2020-10-01 04:12:12'),
-(2016506004, 2018615001, NULL, '1234', NULL, '2020-10-07 11:05:54'),
-(2016506005, 6000, NULL, '1234', NULL, '2020-10-08 06:06:45');
+(5, 2018503557, 1, '$2b$08$QbaJnpzPeeJY/ybyqbzD/uveC1HimgoyOwXIfMFHozzgUR53X7qyW', NULL, '2021-02-23 22:17:00');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `category`
---
-ALTER TABLE `category`
-  ADD PRIMARY KEY (`category_id`);
 
 --
 -- Indexes for table `course_assesseval`
@@ -1239,14 +1178,6 @@ ALTER TABLE `course_registered_students`
   ADD KEY `session_fk_idx` (`session_ref`);
 
 --
--- Indexes for table `credentials`
---
-ALTER TABLE `credentials`
-  ADD PRIMARY KEY (`Credentials_ID`),
-  ADD UNIQUE KEY `Username` (`Username`(128)),
-  ADD KEY `Register_No` (`Register_No`) USING BTREE;
-
---
 -- Indexes for table `person`
 --
 ALTER TABLE `person`
@@ -1258,21 +1189,11 @@ ALTER TABLE `person`
   ADD KEY `Prefix_Reference_ID_FK_idx` (`Prefix_Ref`);
 
 --
--- Indexes for table `person_guestlecture`
---
-ALTER TABLE `person_guestlecture`
-  ADD PRIMARY KEY (`GuestLecture_ID`),
-  ADD UNIQUE KEY `GuestLecture_ID_UNIQUE` (`GuestLecture_ID`),
-  ADD KEY `Level_Reference_ID_FK_idx` (`Level_Ref`),
-  ADD KEY `Person_ID_FK215` (`Person_ID`);
-
---
 -- Indexes for table `person_reference_table`
 --
 ALTER TABLE `person_reference_table`
   ADD PRIMARY KEY (`Reference_ID`),
-  ADD UNIQUE KEY `Reference_ID_UNIQUE` (`Reference_ID`),
-  ADD UNIQUE KEY `Ref_Code` (`Ref_Code`);
+  ADD UNIQUE KEY `Reference_ID_UNIQUE` (`Reference_ID`);
 
 --
 -- Indexes for table `student`
@@ -1380,7 +1301,7 @@ ALTER TABLE `subj_allot`
 --
 ALTER TABLE `user_info`
   ADD PRIMARY KEY (`user_ID`),
-  ADD UNIQUE KEY `user_ID_UNIQUE` (`user_ID`);
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -1439,18 +1360,6 @@ ALTER TABLE `course_reference_table`
 --
 ALTER TABLE `course_registered_students`
   MODIFY `cregst_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-
---
--- AUTO_INCREMENT for table `credentials`
---
-ALTER TABLE `credentials`
-  MODIFY `Credentials_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `person_guestlecture`
---
-ALTER TABLE `person_guestlecture`
-  MODIFY `GuestLecture_ID` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `person_reference_table`
@@ -1516,7 +1425,7 @@ ALTER TABLE `subj_allot`
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `user_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2016506006;
+  MODIFY `user_ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -1601,39 +1510,26 @@ ALTER TABLE `course_registered_students`
   ADD CONSTRAINT `course_registered_students_ibfk_4` FOREIGN KEY (`session_ref`) REFERENCES `course_reference_table` (`reference_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Constraints for table `credentials`
---
-ALTER TABLE `credentials`
-  ADD CONSTRAINT `fk_Register_No` FOREIGN KEY (`Register_No`) REFERENCES `student` (`Register_No`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Constraints for table `person_guestlecture`
---
-ALTER TABLE `person_guestlecture`
-  ADD CONSTRAINT `Level_Reference_ID_FK2` FOREIGN KEY (`Level_Ref`) REFERENCES `person_reference_table` (`Ref_Code`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Person_ID_FK215` FOREIGN KEY (`Person_ID`) REFERENCES `student` (`Register_No`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `student`
 --
 ALTER TABLE `student`
-  ADD CONSTRAINT `Admission_Category_FK` FOREIGN KEY (`Admission_Category_Ref`) REFERENCES `person_reference_table` (`Ref_Code`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Blood_Group_FK` FOREIGN KEY (`Blood_Group_Ref`) REFERENCES `person_reference_table` (`Ref_Code`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Branch_Reference_ID_FK` FOREIGN KEY (`Branch_Ref`) REFERENCES `person_reference_table` (`Ref_Code`),
-  ADD CONSTRAINT `Community_Reference_ID_FK` FOREIGN KEY (`Community_Ref`) REFERENCES `person_reference_table` (`Ref_Code`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Gender_Reference_ID_FK` FOREIGN KEY (`Gender_Ref`) REFERENCES `person_reference_table` (`Ref_Code`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Programme_Reference_ID_FK` FOREIGN KEY (`Programme_Ref`) REFERENCES `person_reference_table` (`Ref_Code`),
-  ADD CONSTRAINT `Registration_Mode_FK` FOREIGN KEY (`Registration_Mode_Ref`) REFERENCES `person_reference_table` (`Ref_Code`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Resedential_Reference_ID_FK` FOREIGN KEY (`Residential_Type_Ref`) REFERENCES `person_reference_table` (`Ref_Code`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Scholarship_FK` FOREIGN KEY (`Scholarship_Received_Ref`) REFERENCES `person_reference_table` (`Ref_Code`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Volunteer_FK` FOREIGN KEY (`NSS_NSO_YRC_Volunteer_Ref`) REFERENCES `person_reference_table` (`Ref_Code`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `Admission_Category_FK` FOREIGN KEY (`Admission_Category_Ref`) REFERENCES `person_reference_table` (`Reference_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Blood_Group_FK` FOREIGN KEY (`Blood_Group_Ref`) REFERENCES `person_reference_table` (`Reference_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Branch_Reference_ID_FK` FOREIGN KEY (`Branch_Ref`) REFERENCES `person_reference_table` (`Reference_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `Community_Reference_ID_FK` FOREIGN KEY (`Community_Ref`) REFERENCES `person_reference_table` (`Reference_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Gender_Reference_ID_FK` FOREIGN KEY (`Gender_Ref`) REFERENCES `person_reference_table` (`Reference_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `NSS_NSO_YRC_Volunteer_Ref` FOREIGN KEY (`NSS_NSO_YRC_Volunteer_Ref`) REFERENCES `person_reference_table` (`Reference_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Programme_Reference_ID_FK` FOREIGN KEY (`Programme_Ref`) REFERENCES `person_reference_table` (`Reference_ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `Registration_Mode_FK` FOREIGN KEY (`Registration_Mode_Ref`) REFERENCES `person_reference_table` (`Reference_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Resedential_Reference_ID_FK` FOREIGN KEY (`Residential_Type_Ref`) REFERENCES `person_reference_table` (`Reference_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Scholarship_Received_Ref` FOREIGN KEY (`Scholarship_Received_Ref`) REFERENCES `person_reference_table` (`Reference_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student_awards`
 --
 ALTER TABLE `student_awards`
-  ADD CONSTRAINT `Award_Category_FK` FOREIGN KEY (`Award_Category_Ref`) REFERENCES `person_reference_table` (`Ref_Code`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Award_Type_FK` FOREIGN KEY (`Award_Type_Ref`) REFERENCES `person_reference_table` (`Ref_Code`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Award_Category_FK` FOREIGN KEY (`Award_Category_Ref`) REFERENCES `person_reference_table` (`Reference_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Award_Type_FK` FOREIGN KEY (`Award_Type_Ref`) REFERENCES `person_reference_table` (`Reference_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Person_ID_FK21902` FOREIGN KEY (`Register_No`) REFERENCES `student` (`Register_No`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -1641,15 +1537,15 @@ ALTER TABLE `student_awards`
 --
 ALTER TABLE `student_endsemmarks`
   ADD CONSTRAINT `Person_ID_FK21900` FOREIGN KEY (`Register_No`) REFERENCES `student` (`Register_No`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Session_FK2` FOREIGN KEY (`Session_Ref`) REFERENCES `person_reference_table` (`Ref_Code`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Session_FK2` FOREIGN KEY (`Session_Ref`) REFERENCES `person_reference_table` (`Reference_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `student_endsemmarks_ibfk_1` FOREIGN KEY (`Course_Code`) REFERENCES `course_list` (`course_code`);
 
 --
 -- Constraints for table `student_events_participated`
 --
 ALTER TABLE `student_events_participated`
-  ADD CONSTRAINT `Event_Type_FK` FOREIGN KEY (`Event_Type_Ref`) REFERENCES `person_reference_table` (`Ref_Code`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Participation_Type_FK` FOREIGN KEY (`Participation_Type_Ref`) REFERENCES `person_reference_table` (`Ref_Code`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Event_Type_FK` FOREIGN KEY (`Event_Type_Ref`) REFERENCES `person_reference_table` (`Reference_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Participation_Type_FK` FOREIGN KEY (`Participation_Type_Ref`) REFERENCES `person_reference_table` (`Reference_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Person_ID_FK219020` FOREIGN KEY (`Register_No`) REFERENCES `student` (`Register_No`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -1668,7 +1564,7 @@ ALTER TABLE `student_gpa`
 -- Constraints for table `student_higherstudies`
 --
 ALTER TABLE `student_higherstudies`
-  ADD CONSTRAINT `Admission_Mode_FK` FOREIGN KEY (`Admission_Mode_Ref`) REFERENCES `person_reference_table` (`Ref_Code`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Admission_Mode_FK` FOREIGN KEY (`Admission_Mode_Ref`) REFERENCES `person_reference_table` (`Reference_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `Person_ID_FK21901` FOREIGN KEY (`Register_No`) REFERENCES `student` (`Register_No`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -1676,15 +1572,15 @@ ALTER TABLE `student_higherstudies`
 --
 ALTER TABLE `student_internship`
   ADD CONSTRAINT `Person_ID_FK21903` FOREIGN KEY (`Register_No`) REFERENCES `student` (`Register_No`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Stiphend_Mode_FK` FOREIGN KEY (`Selection_Mode_Ref`) REFERENCES `person_reference_table` (`Ref_Code`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Stiphend_Option_FK` FOREIGN KEY (`Stiphend_Option_Ref`) REFERENCES `person_reference_table` (`Ref_Code`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `Stiphend_Mode_FK` FOREIGN KEY (`Selection_Mode_Ref`) REFERENCES `person_reference_table` (`Reference_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Stiphend_Option_FK` FOREIGN KEY (`Stiphend_Option_Ref`) REFERENCES `person_reference_table` (`Reference_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `student_placement`
 --
 ALTER TABLE `student_placement`
   ADD CONSTRAINT `Person_ID_FK2190` FOREIGN KEY (`Register_No`) REFERENCES `student` (`Register_No`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Placement_Type_FK` FOREIGN KEY (`Placement_Type_Ref`) REFERENCES `person_reference_table` (`Ref_Code`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `Placement_Type_FK` FOREIGN KEY (`Placement_Type_Ref`) REFERENCES `person_reference_table` (`Reference_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `subj_allot`
