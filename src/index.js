@@ -5,12 +5,13 @@ import getRegNo from './graphql/auth/getRegNo'
 import resolvers from './graphql/index'
 
 const { PrismaClient } = require("@prisma/client")
+const prisma = new PrismaClient()
 
 const server = new ApolloServer({
   typeDefs: gql(readFileSync(join(__dirname, "../schema.graphql"), "utf8")),
   resolvers,
   context: async ({ req }) => ({
-    prisma: await new PrismaClient(),
+    prisma: prisma,
     auth: getRegNo,
     req
   })
