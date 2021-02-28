@@ -1,0 +1,25 @@
+type Query{
+    studentCourseEvaluation(data:studentCourseEvaluationQueryInput!):StudentCourseEvaluation
+}
+
+input studentCourseEvaluationQueryInput{
+    reg_no: Int!
+    course_code: String!
+    group_ref: Int!
+    session_ref: Int!
+    type: Int!
+    number: Int!
+}
+
+type StudentCourseEvaluation{
+    ceval_id: Int
+    course_code: String
+    group_ref: Int
+    session_ref: Int
+    type: Int
+    total_mark: Int
+    marks_obtained: Int
+    reg_no: Int
+    number: Int    
+    weighted_mark: Float
+}

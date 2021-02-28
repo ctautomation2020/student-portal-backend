@@ -9,6 +9,7 @@ type Query {
   assignment(data: assignmentQueryInput!): [course_assignment]
   studentAttendance(data: studentAttendanceQueryInput): [StudentAttendance!]!
   studentCourseCAComp(data: studentCourseCACompQueryInput!): [StudentCourseCAComp!]!
+  studentCourseEvaluation(data: studentCourseEvaluationQueryInput!): StudentCourseEvaluation!
   studentCourseInternalcalc(data: studentCourseInternalcalcQueryInput!): StudentCourseInternalcalc
   courseList(data: courseListQueryInput!): CourseList!
   courseReference(data: Course_Reference_Input): [Course_Reference_Table]
@@ -296,6 +297,28 @@ type StudentCourseCAComp {
   marks_obtained: Int
   total_mark: Int
   weighted_marks: Float
+}
+
+input studentCourseEvaluationQueryInput {
+  reg_no: Int!
+  course_code: String!
+  group_ref: Int!
+  session_ref: Int!
+  type: Int!
+  number: Int!
+}
+
+type StudentCourseEvaluation {
+  ceval_id: Int
+  course_code: String
+  group_ref: Int
+  session_ref: Int
+  type: Int
+  total_mark: Int
+  marks_obtained: Int
+  reg_no: Int
+  number: Int
+  weighted_mark: Float
 }
 
 input studentCourseInternalcalcQueryInput {
