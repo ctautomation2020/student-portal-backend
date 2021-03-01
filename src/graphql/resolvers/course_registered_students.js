@@ -18,11 +18,19 @@ module.exports = {
                 },
                 distinct: ["session_ref"]
             })
-            const res=[]
-            session_arr.forEach(element => {
-                res.push(element.session_ref)
-            });
-            return res
+            const session_details = async(session_arr)=>{
+                const ans =[];
+                for (let element of session_arr){
+                    const session = await prisma.course_reference_table.findOne({
+                        where:{
+                            reference_id : element.session_ref
+                        }
+                    })
+                    ans.push(session)
+                }
+                return ans;
+            }
+            return session_details(session_arr);
         }
     },
 }

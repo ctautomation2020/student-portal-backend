@@ -1,5 +1,5 @@
 type Query{
-    studentSessions(data:studentSessions):[Int!]!
+    studentSessions(data:studentSessions):[StudentSessions]
     courseRegisteredStudent(data: courseRegisteredStudentQueryInput!): [CourseRegisteredStudent!]!
 }
 
@@ -19,4 +19,11 @@ input studentSessions{
 input courseRegisteredStudentQueryInput{
     reg_no: Int!
     session_ref: Int
+}
+type StudentSessions{
+    reference_id: Int
+    ref_code: Int
+    category: String
+    ref_name: String
+    description: String
 }

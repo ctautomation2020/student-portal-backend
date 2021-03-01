@@ -9,11 +9,11 @@ type Query {
   assignment(data: assignmentQueryInput!): [course_assignment]
   studentAttendance(data: studentAttendanceQueryInput): [StudentAttendance!]!
   studentCourseCAComp(data: studentCourseCACompQueryInput!): [StudentCourseCAComp!]!
-  studentCourseEvaluation(data: studentCourseEvaluationQueryInput!): StudentCourseEvaluation!
+  studentCourseEvaluation(data: studentCourseEvaluationQueryInput!): StudentCourseEvaluation
   studentCourseInternalcalc(data: studentCourseInternalcalcQueryInput!): StudentCourseInternalcalc
   courseList(data: courseListQueryInput!): CourseList!
   courseReference(data: Course_Reference_Input): [Course_Reference_Table]
-  studentSessions(data: studentSessions): [Int!]!
+  studentSessions(data: studentSessions): [StudentSessions]
   courseRegisteredStudent(data: courseRegisteredStudentQueryInput!): [CourseRegisteredStudent!]!
   login(data: credentialQueryInput!): loginPayload!
   allPersons: [Person!]!
@@ -382,6 +382,14 @@ input studentSessions {
 input courseRegisteredStudentQueryInput {
   reg_no: Int!
   session_ref: Int
+}
+
+type StudentSessions {
+  reference_id: Int
+  ref_code: Int
+  category: String
+  ref_name: String
+  description: String
 }
 
 type credentials {
