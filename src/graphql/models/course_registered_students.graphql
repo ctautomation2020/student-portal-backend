@@ -22,7 +22,6 @@ input courseRegisteredStudentQueryInput{
 }
 type StudentSessions{
     Reference_ID: Int
-    Ref_code: Int
     Category: String
     Ref_Name: String
     Description: String

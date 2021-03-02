@@ -53,14 +53,14 @@ module.exports = {
                                 reg_no
                             }
                         },
-                        course_reference_table_course_assesseval_group_refTocourse_reference_table:{
+                        person_reference_table_course_assesseval_group_refToperson_reference_table:{
                             connect: {
-                                reference_id: group_ref
+                                Reference_ID: group_ref
                             }
                         },
-                        course_reference_table_course_assesseval_session_refTocourse_reference_table:{
+                        person_reference_table_course_assesseval_session_refToperson_reference_table:{
                             connect: {
-                                reference_id: session_ref
+                                Reference_ID: session_ref
                             }
                         },
                         assess_num,

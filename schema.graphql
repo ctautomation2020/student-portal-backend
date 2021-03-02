@@ -12,7 +12,6 @@ type Query {
   studentCourseEvaluation(data: studentCourseEvaluationQueryInput!): StudentCourseEvaluation
   studentCourseInternalcalc(data: studentCourseInternalcalcQueryInput!): StudentCourseInternalcalc
   courseList(data: courseListQueryInput!): CourseList!
-  courseReference(data: Course_Reference_Input): [Course_Reference_Table]
   studentSessions(data: studentSessions): [StudentSessions]
   courseRegisteredStudent(data: courseRegisteredStudentQueryInput!): [CourseRegisteredStudent!]!
   login(data: credentialQueryInput!): loginPayload!
@@ -353,19 +352,6 @@ input courseListQueryInput {
   course_code: String!
 }
 
-type Course_Reference_Table {
-  reference_id: Int!
-  ref_code: Int!
-  category: String
-  ref_name: String
-  description: String
-}
-
-input Course_Reference_Input {
-  reference_id: Int
-  category: String
-}
-
 type CourseRegisteredStudent {
   cregst_id: Int!
   course_code: String
@@ -386,7 +372,6 @@ input courseRegisteredStudentQueryInput {
 
 type StudentSessions {
   Reference_ID: Int
-  Ref_code: Int
   Category: String
   Ref_Name: String
   Description: String
