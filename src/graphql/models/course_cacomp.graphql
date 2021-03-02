@@ -19,5 +19,5 @@ type StudentCourseCAComp{
     weightage: Int
     marks_obtained: Int
     total_mark: Int
-    weighted_marks: Float
+    weighted_mark: Float
 }
