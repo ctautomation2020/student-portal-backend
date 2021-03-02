@@ -16,17 +16,27 @@ module.exports = {
                 select: {
                     session_ref: true
                 },
-                distinct: ["session_ref"]
+                distinct: ["session_ref"],
             })
             const session_details = async(session_arr)=>{
                 const ans =[];
-                for (let element of session_arr){
-                    const session = await prisma.course_reference_table.findOne({
-                        where:{
-                            reference_id : element.session_ref
+                const all_session = await prisma.person_reference_table.findMany({
+                    where:{
+                        Category:"Session"
+                    },
+                    orderBy:[{
+                        Ref_Name:'desc'
+                    }]
+                })
+                for (let session1 of all_session){
+                    for(let session2 of session_arr)
+                    {
+                        if(session1.Reference_ID===session2.session_ref)
+                        {
+                            ans.push(session1);
+                            break;
                         }
-                    })
-                    ans.push(session)
+                    }
                 }
                 return ans;
             }

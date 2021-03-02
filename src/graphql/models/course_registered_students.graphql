@@ -21,9 +21,9 @@ input courseRegisteredStudentQueryInput{
     session_ref: Int
 }
 type StudentSessions{
-    reference_id: Int
-    ref_code: Int
-    category: String
-    ref_name: String
-    description: String
+    Reference_ID: Int
+    Ref_code: Int
+    Category: String
+    Ref_Name: String
+    Description: String
 }
